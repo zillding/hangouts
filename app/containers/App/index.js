@@ -20,7 +20,6 @@ import 'semantic-ui-css/semantic.css';
 import { setNotificationSystem } from './actions';
 import Webrtc from 'containers/Webrtc';
 
-/* eslint-disable react/prefer-stateless-function */
 class App extends Component {
   componentDidMount() {
     this.props.setNotificationSystem(this.refs.notification);
