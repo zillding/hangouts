@@ -1,3 +1,12 @@
+import { createSelector } from 'reselect';
+
+const selectGlobal = () => state => state.get('global');
+
+const selectRoomName = () => createSelector(
+  selectGlobal(),
+  globalState => globalState.get('roomName')
+);
+
 // selectLocationState expects a plain JS object for the routing state
 const selectLocationState = () => {
   let prevRoutingState;
@@ -16,5 +25,6 @@ const selectLocationState = () => {
 };
 
 export {
+  selectRoomName,
   selectLocationState,
 };
