@@ -8,7 +8,7 @@ const frontend = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
 
 const app = express();
-const server = require('http').Server(app); // eslint-disable-line
+const server = require('http').Server(app); // eslint-disable-line new-cap
 const io = require('socket.io')(server);
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
