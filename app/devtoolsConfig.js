@@ -3,6 +3,8 @@ import {
   SET_SOCKET,
 } from './containers/App/constants';
 import {
+  SET_MUTE_STATE,
+  SET_VIDEO_STATE,
   SET_WEBRTC,
 } from './containers/Webrtc/constants';
 
@@ -14,6 +16,10 @@ export function actionsFilter(action) {
       return action.ns ? { ...action, ns: LARGE_OBJ } : action;
     case SET_SOCKET:
       return action.socket ? { ...action, socket: LARGE_OBJ } : action;
+    case SET_MUTE_STATE:
+      return action.webrtc ? { ...action, webrtc: LARGE_OBJ } : action;
+    case SET_VIDEO_STATE:
+      return action.webrtc ? { ...action, webrtc: LARGE_OBJ } : action;
     case SET_WEBRTC:
       return action.webrtc ? { ...action, webrtc: LARGE_OBJ } : action;
     default:

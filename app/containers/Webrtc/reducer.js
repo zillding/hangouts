@@ -1,3 +1,5 @@
+import { fromJS } from 'immutable';
+
 import {
   ADD_PEER_VIDEO,
   REMOVE_PEER_VIDEO,
@@ -7,7 +9,6 @@ import {
   SET_VOLUME,
   SET_WEBRTC,
 } from './constants';
-import { fromJS } from 'immutable';
 
 const initialState = fromJS({
   audioIsMuted: false,
