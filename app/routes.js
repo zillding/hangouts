@@ -22,7 +22,7 @@ export default function createRoutes() {
       name: 'home',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          System.import('components/HomePage'),
+          System.import('containers/HomePage'),
         ]);
 
         const renderRoute = loadModule(cb);
@@ -32,6 +32,13 @@ export default function createRoutes() {
         });
 
         importModules.catch(errorLoading);
+      },
+    }, {
+      path: '/splash',
+      getComponent(location, cb) {
+        System.import('containers/SplashPage')
+          .then(loadModule(cb))
+          .catch(errorLoading);
       },
     }, {
       path: '*',

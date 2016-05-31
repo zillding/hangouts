@@ -14,5 +14,5 @@ export function setRoomName(roomName) {
   return {
     type: SET_ROOM_NAME,
     roomName,
-  }
+  };
 }
