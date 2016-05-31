@@ -1,0 +1,1 @@
+export const SET_NOTIFICATION_SYSTEM = 'hangouts/App/SET_NOTIFICATION_SYSTEM';

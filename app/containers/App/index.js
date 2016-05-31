@@ -11,20 +11,39 @@
  * the linting exception.
  */
 
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import NotificationSystem from 'react-notification-system';
+
+import { setNotificationSystem } from './actions';
+
+import 'semantic-ui-css/semantic.css';
 
 /* eslint-disable react/prefer-stateless-function */
-export default class App extends React.Component {
-
-  static propTypes = {
-    children: React.PropTypes.node,
-  };
+class App extends Component {
+  componentDidMount() {
+    this.props.setNotificationSystem(this.refs.notification);
+  }
 
   render() {
     return (
       <div>
         {this.props.children}
+        <NotificationSystem ref="notification" />
       </div>
     );
   }
 }
+
+App.propTypes = {
+  children: PropTypes.node,
+  setNotificationSystem: PropTypes.func.isRequired,
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setNotificationSystem: ns => dispatch(setNotificationSystem(ns)),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(App);
