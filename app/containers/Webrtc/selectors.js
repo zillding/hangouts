@@ -4,6 +4,13 @@ function selectGlobal() {
   return state => state.get('webrtc');
 }
 
+export function selectAudioIsMuted() {
+  return createSelector(
+    selectGlobal(),
+    globalState => globalState.get('audioIsMuted')
+  );
+}
+
 export function selectPeerVideos() {
   return createSelector(
     selectGlobal(),
@@ -15,6 +22,13 @@ export function selectSelectedPeerVideoId() {
   return createSelector(
     selectGlobal(),
     globalState => globalState.get('selectedPeerVideoId')
+  );
+}
+
+export function selectVideoIsPaused() {
+  return createSelector(
+    selectGlobal(),
+    globalState => globalState.get('videoIsPaused')
   );
 }
 
