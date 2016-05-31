@@ -15,9 +15,10 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import NotificationSystem from 'react-notification-system';
 
-import { setNotificationSystem } from './actions';
-
 import 'semantic-ui-css/semantic.css';
+
+import { setNotificationSystem } from './actions';
+import Webrtc from 'containers/Webrtc';
 
 /* eslint-disable react/prefer-stateless-function */
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
     return (
       <div>
         {this.props.children}
+        <Webrtc />
         <NotificationSystem ref="notification" />
       </div>
     );

@@ -4,10 +4,10 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-export class SplashPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class SplashPage extends Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div>
