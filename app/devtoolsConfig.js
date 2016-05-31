@@ -1,5 +1,6 @@
 import {
   SET_NOTIFICATION_SYSTEM,
+  SET_SOCKET,
 } from './containers/App/constants';
 import {
   SET_WEBRTC,
@@ -11,6 +12,8 @@ export function actionsFilter(action) {
   switch (action.type) {
     case SET_NOTIFICATION_SYSTEM:
       return action.ns ? { ...action, ns: LARGE_OBJ } : action;
+    case SET_SOCKET:
+      return action.socket ? { ...action, socket: LARGE_OBJ } : action;
     case SET_WEBRTC:
       return action.webrtc ? { ...action, webrtc: LARGE_OBJ } : action;
     default:
@@ -21,13 +24,15 @@ export function actionsFilter(action) {
 export function statesFilter(state) {
   let result = state;
 
-  if (result.getIn(['global', 'notificationSystem'])) {
-    result = result.setIn(['global', 'notificationSystem'], LARGE_OBJ);
-  }
-
-  if (result.getIn(['webrtc', 'webrtc'])) {
-    result = result.setIn(['webrtc', 'webrtc'], LARGE_OBJ);
-  }
+  [
+    ['global', 'notificationSystem'],
+    ['global', 'socket'],
+    ['webrtc', 'webrtc'],
+  ].forEach(array => {
+    if (result.getIn(array)) {
+      result = result.setIn(array, LARGE_OBJ);
+    }
+  });
 
   return result;
 }

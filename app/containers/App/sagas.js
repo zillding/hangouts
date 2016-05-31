@@ -1,4 +1,9 @@
+import { put } from 'redux-saga/effects';
 import io from 'socket.io-client';
+
+import {
+  setSocket,
+} from './actions';
 
 export default [
   setUpSocket,
@@ -6,5 +11,5 @@ export default [
 
 export function* setUpSocket() {
   const socket = io();
-  console.log(socket);
+  yield put(setSocket(socket));
 }
