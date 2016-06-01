@@ -13,7 +13,22 @@ import classNames from 'classnames';
 
 import { setRoomName } from 'containers/App/actions';
 
-import styles from './styles.css';
+// inline these styles to acheive better performance
+const containerStyle = {
+  position: 'fixed',
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+
+const segmentStyle = {
+  minWidth: 400,
+};
 
 class SplashPage extends Component {
   constructor(props) {
@@ -68,7 +83,7 @@ class SplashPage extends Component {
     const { error } = this.state;
 
     return (
-      <div className={styles.container}>
+      <div style={containerStyle}>
         <GitHubForkRibbon
           href="https://github.com/zillding/hangouts"
           target="_blank"
@@ -76,7 +91,7 @@ class SplashPage extends Component {
         >
           Fork me on GitHub
         </GitHubForkRibbon>
-        <div className={styles.segment}>
+        <div style={segmentStyle}>
           <div className="ui segment">
             <h2>Let's hangout!</h2>
             <form
