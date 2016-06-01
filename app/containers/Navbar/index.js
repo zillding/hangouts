@@ -27,7 +27,7 @@ import NavItemToggleMute from 'components/NavItemToggleMute';
 import NavItemToggleVideo from 'components/NavItemToggleVideo';
 import NavItemToggleSidebar from 'components/NavItemToggleSidebar';
 
-const Navbar = (props) => {
+function Navbar(props) {
   const {
     roomName,
     currentApp,
@@ -64,7 +64,7 @@ const Navbar = (props) => {
           isConnected ? null : <NavItemConnecting />
         }
         {
-          audioIsMuted ? null : <NavItemVolume volume={volume} />
+          audioIsMuted ? null : <NavItemVolume value={volume} />
         }
         <NavItemToggleMute
           audioIsMuted={audioIsMuted}

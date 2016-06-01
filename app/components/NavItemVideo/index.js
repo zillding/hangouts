@@ -4,14 +4,26 @@
 *
 */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 
-function NavItemVideo() {
+function NavItemVideo({ currentApp, onClick }) {
+  const cn = currentApp === 'youtube' ? 'active red item' : 'item';
+
   return (
-    <div>
-    </div>
+    <a
+      className={cn}
+      onClick={onClick}
+    >
+      <i className="record icon"></i>
+      Video
+    </a>
   );
 }
+
+NavItemVideo.propTypes = {
+  currentApp: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 
 export default NavItemVideo;

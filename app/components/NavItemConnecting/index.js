@@ -9,7 +9,11 @@ import React from 'react';
 
 function NavItemConnecting() {
   return (
-    <div>
+    <div className="item">
+      <div className="ui active mini inline loader"></div>
+      <span style={{ marginLeft: 10 }}>
+        Connecting...
+      </span>
     </div>
   );
 }
