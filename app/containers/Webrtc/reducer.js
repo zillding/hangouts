@@ -4,10 +4,10 @@ import {
   ADD_PEER_VIDEO,
   REMOVE_PEER_VIDEO,
   SELECT_PEER_VIDEO,
-  SET_MUTE_STATE,
-  SET_VIDEO_STATE,
   SET_VOLUME,
   SET_WEBRTC,
+  TOGGLE_MUTE,
+  TOGGLE_VIDEO,
 } from './constants';
 
 const initialState = fromJS({
@@ -34,32 +34,34 @@ function webrtcReducer(state = initialState, action) {
     case SELECT_PEER_VIDEO:
       return state
         .set('selectedPeerVideoId', action.id);
-    case SET_MUTE_STATE: {
-      const { mute, webrtc } = action;
-      if (mute) {
-        webrtc.mute();
-      } else {
-        webrtc.unmute();
-      }
-      return state
-        .set('audioIsMuted', mute);
-    }
-    case SET_VIDEO_STATE: {
-      const { pause, webrtc } = action;
-      if (pause) {
-        webrtc.pauseVideo();
-      } else {
-        webrtc.resumeVideo();
-      }
-      return state
-        .set('videoIsPaused', pause);
-    }
     case SET_VOLUME:
       return state
         .set('volume', action.volume);
     case SET_WEBRTC:
       return state
         .set('webrtc', action.webrtc);
+    case TOGGLE_MUTE: {
+      const audioIsMuted = state.get('audioIsMuted');
+      const webrtc = state.get('webrtc');
+      if (audioIsMuted) {
+        webrtc.unmute();
+      } else {
+        webrtc.mute();
+      }
+      return state
+        .set('audioIsMuted', !audioIsMuted);
+    }
+    case TOGGLE_VIDEO: {
+      const videoIsPaused = state.get('videoIsPaused');
+      const webrtc = state.get('webrtc');
+      if (videoIsPaused) {
+        webrtc.resumeVideo();
+      } else {
+        webrtc.pauseVideo();
+      }
+      return state
+        .set('videoIsPaused', !videoIsPaused);
+    }
     default:
       return state;
   }

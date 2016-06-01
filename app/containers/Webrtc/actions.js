@@ -2,10 +2,10 @@ import {
   ADD_PEER_VIDEO,
   REMOVE_PEER_VIDEO,
   SELECT_PEER_VIDEO,
-  SET_MUTE_STATE,
-  SET_VIDEO_STATE,
   SET_VOLUME,
   SET_WEBRTC,
+  TOGGLE_MUTE,
+  TOGGLE_VIDEO,
 } from './constants';
 
 export function addPeerVideo(data) {
@@ -29,22 +29,6 @@ export function selectPeerVideo(id) {
   };
 }
 
-export function setMuteState(mute, webrtc) {
-  return {
-    type: SET_MUTE_STATE,
-    mute,
-    webrtc,
-  };
-}
-
-export function setVideoState(pause, webrtc) {
-  return {
-    type: SET_VIDEO_STATE,
-    pause,
-    webrtc,
-  };
-}
-
 export function setVolume(volume) {
   return {
     type: SET_VOLUME,
@@ -56,5 +40,17 @@ export function setWebrtc(webrtc) {
   return {
     type: SET_WEBRTC,
     webrtc,
+  };
+}
+
+export function toggleMute() {
+  return {
+    type: TOGGLE_MUTE,
+  };
+}
+
+export function toggleVideo() {
+  return {
+    type: TOGGLE_VIDEO,
   };
 }
