@@ -14,10 +14,8 @@ import { List } from 'immutable';
 import { createSelector } from 'reselect';
 
 import { selectRoomName } from 'containers/App/selectors';
-import { selectCurrentApp } from 'containers/HomePage/selectors';
 import {
-  selectPeerVideos,
-  selectSelectedPeerVideoId,
+  selectDisplayPeerVideos,
   selectWebrtc,
 } from './selectors';
 
@@ -76,18 +74,7 @@ class Webrtc extends Component {
   }
 
   render() {
-    const {
-      currentApp,
-      peerVideos,
-      selectedPeerVideoId,
-      onPeerSelect,
-    } = this.props;
-
-    const data = currentApp === 'video' ?
-      peerVideos.filterNot(
-        ({ peer: { id } }) => id === selectedPeerVideoId
-      ) :
-      peerVideos;
+    const { peerVideos, onPeerSelect } = this.props;
 
     return (
       <Draggable
@@ -101,7 +88,7 @@ class Webrtc extends Component {
             height="150"
           />
           <PeerVideos
-            data={data}
+            data={peerVideos}
             onSelect={onPeerSelect}
           />
         </div>
@@ -113,9 +100,7 @@ class Webrtc extends Component {
 Webrtc.propTypes = {
   roomName: PropTypes.string,
   webrtc: PropTypes.object,
-  currentApp: PropTypes.string.isRequired,
   peerVideos: PropTypes.instanceOf(List).isRequired,
-  selectedPeerVideoId: PropTypes.string.isRequired,
   onReady: PropTypes.func.isRequired,
   addPeer: PropTypes.func.isRequired,
   removePeer: PropTypes.func.isRequired,
@@ -136,14 +121,10 @@ function mapDispatchToProps(dispatch) {
 export default connect(createSelector(
   selectRoomName(),
   selectWebrtc(),
-  selectCurrentApp(),
-  selectPeerVideos(),
-  selectSelectedPeerVideoId(),
-  (roomName, webrtc, currentApp, peerVideos, selectedPeerVideoId) => ({
+  selectDisplayPeerVideos(),
+  (roomName, webrtc, peerVideos) => ({
     roomName,
     webrtc,
-    currentApp,
     peerVideos,
-    selectedPeerVideoId,
   })
 ), mapDispatchToProps)(Webrtc);

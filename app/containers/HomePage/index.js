@@ -33,6 +33,10 @@ class HomePage extends Component {
   shouldComponentUpdate = shouldPureComponentUpdate
 
   render() {
+    if (!this.props.roomName) {
+      return null;
+    }
+
     return (
       <div className={styles.container}>
         <div className={styles.navbarContainer}>

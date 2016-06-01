@@ -4,26 +4,47 @@
  *
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import selectVideo from './selectors';
+import { createSelector } from 'reselect';
 
-export class Video extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  render() {
-    return (
-      <div>
-      This is Video container !
-      </div>
-    );
+import { selectCurrentApp } from 'containers/HomePage/selectors';
+import { selectMainPeerVideo } from 'containers/Webrtc/selectors';
+
+import Waiting from 'components/Waiting';
+
+import styles from './styles.css';
+
+function Video({ currentApp, data }) {
+  if (currentApp !== 'video') {
+    return null;
   }
+
+  if (!data) {
+    return <Waiting />;
+  }
+
+  const { video } = data;
+
+  return (
+    <video
+      src={video.src}
+      id={video.id}
+      className={styles.video}
+    />
+  );
 }
 
-const mapStateToProps = selectVideo();
+Video.propTypes = {
+  currentApp: PropTypes.string.isRequired,
+  data: PropTypes.shape({
+    video: PropTypes.node.isRequired,
+    peer: PropTypes.object.isRequired,
+  }),
+};
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Video);
+export default connect(createSelector(
+  selectCurrentApp(),
+  selectMainPeerVideo(),
+  (currentApp, data) => ({ currentApp, data })
+))(Video);
