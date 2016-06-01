@@ -3,10 +3,15 @@ import {
   SET_SOCKET,
 } from './containers/App/constants';
 import {
+  SET_VOLUME,
   SET_WEBRTC,
 } from './containers/Webrtc/constants';
 
 const LARGE_OBJ = '<<LARGE_OBJ>>';
+
+export const actionsBlacklist = [
+  SET_VOLUME,
+];
 
 export function actionsFilter(action) {
   switch (action.type) {
