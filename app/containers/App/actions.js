@@ -1,8 +1,15 @@
 import {
+  ADD_NOTIFICATION,
   SET_NOTIFICATION_SYSTEM,
   SET_ROOM_NAME,
-  SET_SOCKET,
 } from './constants';
+
+export function addNotification(data) {
+  return {
+    type: ADD_NOTIFICATION,
+    data,
+  };
+}
 
 export function setNotificationSystem(ns) {
   return {
@@ -15,12 +22,5 @@ export function setRoomName(roomName) {
   return {
     type: SET_ROOM_NAME,
     roomName,
-  };
-}
-
-export function setSocket(socket) {
-  return {
-    type: SET_SOCKET,
-    socket,
   };
 }
