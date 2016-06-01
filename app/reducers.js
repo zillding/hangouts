@@ -10,6 +10,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import globalReducer from 'containers/App/reducer';
 import webrtcReducer from 'containers/Webrtc/reducer';
 import homeReducer from 'containers/HomePage/reducer';
+import youtubeReducer from 'containers/Youtube/reducer';
 
 /*
  * routeReducer
@@ -48,6 +49,7 @@ export default function createReducer(asyncReducers) {
     global: globalReducer,
     webrtc: webrtcReducer,
     home: homeReducer,
+    youtube: youtubeReducer,
     ...asyncReducers,
   });
 }

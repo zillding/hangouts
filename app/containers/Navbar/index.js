@@ -15,9 +15,11 @@ import {
   selectVideoIsPaused,
   selectVolume,
 } from 'containers/Webrtc/selectors';
+import { selectIsConnected, selectShowSidebar } from 'containers/Youtube/selectors';
 
 import { setApp } from 'containers/HomePage/actions';
 import { toggleMute, toggleVideo } from 'containers/Webrtc/actions';
+import { toggleSidebar } from 'containers/Youtube/actions';
 
 import NavItemVideo from 'components/NavItemVideo';
 import NavItemYoutube from 'components/NavItemYoutube';
@@ -39,7 +41,7 @@ function Navbar(props) {
     setCurrentApp,
     toggleMuteState,
     toggleVideoState,
-    toggleSidebar,
+    toggleSidebarState,
   } = props;
 
   return (
@@ -78,14 +80,14 @@ function Navbar(props) {
           currentApp === 'youtube' ?
             <NavItemToggleSidebar
               showSidebar={showSidebar}
-              onClick={toggleSidebar}
+              onClick={toggleSidebarState}
             /> :
             null
         }
       </div>
     </div>
   );
-};
+}
 
 Navbar.propTypes = {
   roomName: PropTypes.string.isRequired,
@@ -98,7 +100,7 @@ Navbar.propTypes = {
   setCurrentApp: PropTypes.func.isRequired,
   toggleMuteState: PropTypes.func.isRequired,
   toggleVideoState: PropTypes.func.isRequired,
-  toggleSidebar: PropTypes.func.isRequired,
+  toggleSidebarState: PropTypes.func.isRequired,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -106,21 +108,25 @@ function mapDispatchToProps(dispatch) {
     setCurrentApp: app => dispatch(setApp(app)),
     toggleMuteState: () => dispatch(toggleMute()),
     toggleVideoState: () => dispatch(toggleVideo()),
-    toggleSidebar: () => dispatch(toggleSidebar()),
+    toggleSidebarState: () => dispatch(toggleSidebar()),
   };
 }
 
 export default connect(createSelector(
   selectRoomName(),
   selectCurrentApp(),
+  selectIsConnected(),
+  selectVolume(),
   selectAudioIsMuted(),
   selectVideoIsPaused(),
-  selectVolume(),
-  (roomName, currentApp, audioIsMuted, videoIsPaused, volume) => ({
+  selectShowSidebar(),
+  (roomName, currentApp, isConnected, volume, audioIsMuted, videoIsPaused, showSidebar) => ({
     roomName,
     currentApp,
+    isConnected,
+    volume,
     audioIsMuted,
     videoIsPaused,
-    volume,
+    showSidebar,
   })
 ), mapDispatchToProps)(Navbar);
