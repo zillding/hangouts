@@ -59,6 +59,8 @@ class SplashPage extends Component {
       const { goToHome, onSubmit } = this.props;
       onSubmit(value);
       goToHome();
+    } else {
+      this.setState({ error: true });
     }
   }
 
