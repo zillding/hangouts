@@ -93,7 +93,7 @@ Navbar.propTypes = {
   roomName: PropTypes.string.isRequired,
   currentApp: PropTypes.string.isRequired,
   isConnected: PropTypes.bool.isRequired,
-  volume: PropTypes.string.isRequired,
+  volume: PropTypes.number.isRequired,
   audioIsMuted: PropTypes.bool.isRequired,
   videoIsPaused: PropTypes.bool.isRequired,
   showSidebar: PropTypes.bool.isRequired,
