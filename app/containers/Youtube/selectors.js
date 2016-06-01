@@ -17,3 +17,31 @@ export function selectShowSidebar() {
     youtubeState => youtubeState.get('showSidebar')
   );
 }
+
+export function selectShowSearch() {
+  return createSelector(
+    selectYoutube(),
+    youtubeState => youtubeState.get('showSearch')
+  );
+}
+
+export function selectPlaylist() {
+  return createSelector(
+    selectYoutube(),
+    youtubeState => youtubeState.get('playlist')
+  );
+}
+
+export function selectVideoId() {
+  return createSelector(
+    selectYoutube(),
+    youtubeState => youtubeState.get('videoId')
+  );
+}
+
+export function selectIsPlaying() {
+  return createSelector(
+    selectYoutube(),
+    youtubeState => youtubeState.get('isPlaying')
+  );
+}

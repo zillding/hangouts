@@ -33,10 +33,15 @@ function setUpSocket(io) {
 
       const { playlist, currentPlayingVideoId } = rooms[room];
       socket.emit('welcome', {
-        room,
         playlist: playlist.toArray(),
-        currentPlayingVideoId,
       });
+
+      if (currentPlayingVideoId) {
+        socket.emit('action', {
+          type: 'PLAY',
+          data: currentPlayingVideoId,
+        });
+      }
     });
 
     socket.on('action', msg => {
