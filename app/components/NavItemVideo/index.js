@@ -8,7 +8,7 @@ import React, { PropTypes } from 'react';
 
 
 function NavItemVideo({ currentApp, onClick }) {
-  const cn = currentApp === 'youtube' ? 'active red item' : 'item';
+  const cn = currentApp === 'video' ? 'active green item' : 'item';
 
   return (
     <a
