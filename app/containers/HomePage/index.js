@@ -15,6 +15,12 @@ import {
   selectRoomName,
 } from 'containers/App/selectors';
 
+import Navbar from 'containers/Navbar';
+import Video from 'containers/Video';
+import Youtube from 'containers/Youtube';
+
+import styles from './styles.css';
+
 class HomePage extends Component {
 
   componentWillMount() {
@@ -28,8 +34,14 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div>
-      This is HomePage container !
+      <div className={styles.container}>
+        <div className={styles.navbarContainer}>
+          <Navbar />
+        </div>
+        <div className={styles.contentContainer}>
+          <Video />
+          <Youtube />
+        </div>
       </div>
     );
   }
