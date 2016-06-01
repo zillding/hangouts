@@ -71,8 +71,10 @@ function youtubeReducer(state = initialState, action) {
       return state.set('videoId', id);
     }
     case PAUSE_YOUTUBE:
+      state.get('player').pauseVideo();
       return state.set('isPlaying', false);
     case RESUME_YOUTUBE:
+      state.get('player').playVideo();
       return state.set('isPlaying', true);
     case SYNC_PLAY_TIME:
       return state.get('player').seekTo(action.time);

@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import selectYoutubePlaylist from './selectors';
+// import selectYoutubePlaylist from './selectors';
 
 class YoutubePlaylist extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -18,7 +18,7 @@ class YoutubePlaylist extends React.Component { // eslint-disable-line react/pre
   }
 }
 
-const mapStateToProps = selectYoutubePlaylist();
+// const mapStateToProps = selectYoutubePlaylist();
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -26,4 +26,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(YoutubePlaylist);
+export default connect(null, mapDispatchToProps)(YoutubePlaylist);

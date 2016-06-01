@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import selectYoutubeControl from './selectors';
+// import selectYoutubeControl from './selectors';
 
 export class YoutubeControl extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -18,7 +18,7 @@ export class YoutubeControl extends React.Component { // eslint-disable-line rea
   }
 }
 
-const mapStateToProps = selectYoutubeControl();
+// const mapStateToProps = selectYoutubeControl();
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -26,4 +26,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(YoutubeControl);
+export default connect(null, mapDispatchToProps)(YoutubeControl);
