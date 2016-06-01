@@ -16,6 +16,8 @@ import 'semantic-ui-css/semantic.css';
 import { setNotificationSystem } from './actions';
 import Webrtc from 'containers/Webrtc';
 
+import styles from './styles.css';
+
 class App extends Component {
   componentDidMount() {
     this.props.setNotificationSystem(this.refs.notification);
@@ -23,7 +25,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.container}>
         {this.props.children}
         <Webrtc />
         <NotificationSystem ref="notification" />

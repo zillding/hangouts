@@ -8,22 +8,31 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import SimpleWebRTC from 'simplewebrtc';
 import shouldPureComponentUpdate from 'react-pure-render/function';
+import Draggable from 'react-draggable';
+import { List } from 'immutable';
 
 import { createSelector } from 'reselect';
 
+import { selectRoomName } from 'containers/App/selectors';
+import { selectCurrentApp } from 'containers/HomePage/selectors';
 import {
-  selectRoomName,
-} from 'containers/App/selectors';
-import {
+  selectPeerVideos,
+  selectSelectedPeerVideoId,
   selectWebrtc,
 } from './selectors';
 
 import {
   addPeerVideo,
   removePeerVideo,
+  selectPeerVideo,
   setVolume,
   setWebrtc,
 } from './actions';
+
+import DragHandle from 'components/DragHandle';
+import PeerVideos from 'components/PeerVideos';
+
+import styles from './styles.css';
 
 class Webrtc extends Component {
 
@@ -67,13 +76,36 @@ class Webrtc extends Component {
   }
 
   render() {
+    const {
+      currentApp,
+      peerVideos,
+      selectedPeerVideoId,
+      onPeerSelect,
+    } = this.props;
+
+    const data = currentApp === 'video' ?
+      peerVideos.filterNot(
+        ({ peer: { id } }) => id === selectedPeerVideoId
+      ) :
+      peerVideos;
+
     return (
-      <div>
-        <video
-          ref="local"
-          height="150"
-        />
-      </div>
+      <Draggable
+        bounds="parent"
+        handle=".drag.handle"
+      >
+        <div className={styles.container}>
+          <DragHandle />
+          <video
+            ref="local"
+            height="150"
+          />
+          <PeerVideos
+            data={data}
+            onSelect={onPeerSelect}
+          />
+        </div>
+      </Draggable>
     );
   }
 }
@@ -81,10 +113,14 @@ class Webrtc extends Component {
 Webrtc.propTypes = {
   roomName: PropTypes.string,
   webrtc: PropTypes.object,
+  currentApp: PropTypes.string.isRequired,
+  peerVideos: PropTypes.instanceOf(List).isRequired,
+  selectedPeerVideoId: PropTypes.string.isRequired,
   onReady: PropTypes.func.isRequired,
   addPeer: PropTypes.func.isRequired,
   removePeer: PropTypes.func.isRequired,
   setVolumeNumber: PropTypes.func.isRequired,
+  onPeerSelect: PropTypes.func.isRequired,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -93,11 +129,21 @@ function mapDispatchToProps(dispatch) {
     addPeer: data => dispatch(addPeerVideo(data)),
     removePeer: data => dispatch(removePeerVideo(data)),
     setVolumeNumber: volume => dispatch(setVolume(volume)),
+    onPeerSelect: id => dispatch(selectPeerVideo(id)),
   };
 }
 
 export default connect(createSelector(
   selectRoomName(),
   selectWebrtc(),
-  (roomName, webrtc) => ({ webrtc, roomName })
+  selectCurrentApp(),
+  selectPeerVideos(),
+  selectSelectedPeerVideoId(),
+  (roomName, webrtc, currentApp, peerVideos, selectedPeerVideoId) => ({
+    roomName,
+    webrtc,
+    currentApp,
+    peerVideos,
+    selectedPeerVideoId,
+  })
 ), mapDispatchToProps)(Webrtc);

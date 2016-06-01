@@ -1,0 +1,9 @@
+.dragHandle {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 9999;
+  cursor: move;
+  font-size: 1.5em;
+  font-weight: bold;
+}
