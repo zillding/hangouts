@@ -15,12 +15,13 @@ function NavItemVolume({ value }) {
   }
 
   return (
-    <div className={`item ${styles.container}`}>`
+    <div className={`item ${styles.container}`}>
     {
       array.map(index =>
         <div
           key={index}
           className={`ui green empty circular label ${styles.ball}`}
+          style={{ marginLeft: 1 }}
         />
       )
     }
