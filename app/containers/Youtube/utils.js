@@ -6,6 +6,14 @@ import {
   setConnected,
   setSocket,
   setYoutubeState,
+  addVideoItem,
+  deleteVideoItem,
+  playYoututbe,
+  playNextVideo,
+  playPrevVideo,
+  pauseYoutube,
+  resumeYoutube,
+  syncPlayTime,
 } from './actions';
 
 export function setUpSocket(roomName, dispatch) {
@@ -32,7 +40,9 @@ export function setUpSocket(roomName, dispatch) {
     // TODO
     switch (type) {
       case 'ADD_VIDEO':
-        return dispatch();
+        return dispatch(addVideoItem(data));
+      case 'DELETE_VIDEO':
+        return dispatch(deleteVideoItem(data));
       default:
         return null;
     }
@@ -44,7 +54,7 @@ export function setUpSocket(roomName, dispatch) {
       message: 'Lost connection to server!',
       level: 'error',
     }));
-    dispatch(pause());
+    dispatch(pauseYoutube());
   });
 }
 
