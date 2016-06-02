@@ -8,6 +8,16 @@ import {
   TOGGLE_SEARCH,
   SET_PLAYER,
   SET_YOUTUBE_STATE,
+
+  SEND_ADD_VIDEO_ITEM,
+  SEND_DELETE_VIDEO_ITEM,
+  SEND_PLAY_YOUTUBE,
+  SEND_PLAY_NEXT_VIDEO,
+  SEND_PLAY_PREV_VIDEO,
+  SEND_PAUSE_YOUTUBE,
+  SEND_RESUME_YOUTUBE,
+  SEND_SYNC_PLAY_TIME,
+
   ADD_VIDEO_ITEM,
   DELETE_VIDEO_ITEM,
   PLAY_YOUTUBE,
@@ -29,6 +39,14 @@ const initialState = fromJS({
   playlist: [],
   videoId: '',
   isPlaying: false,
+  isSending: fromJS({
+    play: false,
+    playNext: false,
+    playPrevious: false,
+    pause: false,
+    resume: false,
+    syncTime: false,
+  }),
 });
 
 function youtubeReducer(state = initialState, action) {
@@ -52,6 +70,46 @@ function youtubeReducer(state = initialState, action) {
       return state.set('player', action.player);
     case SET_YOUTUBE_STATE:
       return state.set('playlist', action.data.playlist);
+
+    case SEND_ADD_VIDEO_ITEM:
+      state.get('socket').emit('action', {
+        type: 'ADD_VIDEO',
+        data: action.data,
+      });
+      return state;
+    case SEND_DELETE_VIDEO_ITEM:
+      state.get('socket').emit('action', {
+        type: 'DELETE_VIDEO',
+        data: action.data,
+      });
+      return state;
+    case SEND_PLAY_YOUTUBE:
+      state.get('socket').emit('action', {
+        type: 'PLAY',
+        data: action.videoId,
+      });
+      return state.setIn(['isSending', 'play'], true);
+    case SEND_PLAY_NEXT_VIDEO:
+      state.get('socket').emit('action', { type: 'PLAY_NEXT' });
+      return state.setIn(['isSending', 'playNext'], true);
+    case SEND_PLAY_PREV_VIDEO:
+      state.get('socket').emit('action', { type: 'PLAY_PREVIOUS' });
+      return state.setIn(['isSending', 'playPrevious'], true);
+    case SEND_PAUSE_YOUTUBE:
+      state.get('socket').emit('action', { type: 'PAUSE' });
+      return state.setIn(['isSending', 'pause'], true);
+    case SEND_RESUME_YOUTUBE:
+      state.get('socket').emit('action', { type: 'RESUME' });
+      return state.setIn(['isSending', 'resume'], true);
+    case SEND_SYNC_PLAY_TIME: {
+      const data = state.get('player').getCurrentTime();
+      state.get('socket').emit('action', {
+        type: 'SYNC_TIME',
+        data,
+      });
+      return state.setIn(['isSending', 'syncTime'], true);
+    }
+
     case ADD_VIDEO_ITEM:
       return state.set('playlist', state.get('playlist').push(action.data));
     case DELETE_VIDEO_ITEM:

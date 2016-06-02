@@ -7,6 +7,16 @@ export const TOGGLE_SEARCH = 'hangouts/Youtube/TOGGLE_SEARCH';
 
 export const SET_PLAYER = 'hangouts/Youtube/SET_PLAYER';
 export const SET_YOUTUBE_STATE = 'hangouts/Youtube/SET_YOUTUBE_STATE';
+
+export const SEND_ADD_VIDEO_ITEM = 'hangouts/Youtube/SEND_ADD_VIDEO_ITEM';
+export const SEND_DELETE_VIDEO_ITEM = 'hangouts/Youtube/SEND_DELETE_VIDEO_ITEM';
+export const SEND_PLAY_YOUTUBE = 'hangouts/Youtube/SEND_PLAY_YOUTUBE';
+export const SEND_PLAY_NEXT_VIDEO = 'hangouts/Youtube/SEND_PLAY_NEXT_VIDEO';
+export const SEND_PLAY_PREV_VIDEO = 'hangouts/Youtube/SEND_PLAY_PREV_VIDEO';
+export const SEND_PAUSE_YOUTUBE = 'hangouts/Youtube/SEND_PAUSE_YOUTUBE';
+export const SEND_RESUME_YOUTUBE = 'hangouts/Youtube/SEND_RESUME_YOUTUBE';
+export const SEND_SYNC_PLAY_TIME = 'hangouts/Youtube/SEND_SYNC_PLAY_TIME';
+
 export const ADD_VIDEO_ITEM = 'hangouts/Youtube/ADD_VIDEO_ITEM';
 export const DELETE_VIDEO_ITEM = 'hangouts/Youtube/DELETE_VIDEO_ITEM';
 export const PLAY_YOUTUBE = 'hangouts/Youtube/PLAY_YOUTUBE';
