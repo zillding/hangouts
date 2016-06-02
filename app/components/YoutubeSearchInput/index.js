@@ -10,18 +10,16 @@ import classNames from 'classnames';
 
 class YoutubeSearchInput extends Component {
 
-  handleChange(e) {
-    this.props.onChange(e.target.value);
-  }
+  handleChange = e => this.props.onChange(e.target.value);
 
-  handleEnter(e) {
+  handleEnter = e => {
     if (e.key === 'Enter') {
       const { value, onSearch } = this.props;
       if (value) {
         onSearch(value);
       }
     }
-  }
+  };
 
   render() {
     const { isSearching, value } = this.props;
