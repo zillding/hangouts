@@ -173,6 +173,7 @@
     "react-youtube": "^6.1.0",
     "redux": "^3.5.2",
     "redux-immutable": "^3.0.6",
+    "redux-logger": "^2.6.1",
     "redux-saga": "^0.10.0",
     "reselect": "^2.5.1",
     "sanitize.css": "^3.3.0",

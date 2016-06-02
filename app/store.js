@@ -7,10 +7,11 @@ import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
-import * as devtoolsConfig from './devtoolsConfig';
+import loggerMiddleware from './loggerMiddleware';
+// import * as devtoolsConfig from './devtoolsConfig';
 
 const sagaMiddleware = createSagaMiddleware();
-const devtools = window.devToolsExtension || (() => noop => noop);
+// const devtools = window.devToolsExtension || (() => noop => noop);
 
 export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
@@ -19,11 +20,12 @@ export default function configureStore(initialState = {}, history) {
   const middlewares = [
     sagaMiddleware,
     routerMiddleware(history),
+    loggerMiddleware,
   ];
 
   const enhancers = [
     applyMiddleware(...middlewares),
-    devtools(devtoolsConfig),
+    // devtools(devtoolsConfig),
   ];
 
   const store = createStore(
