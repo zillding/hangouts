@@ -1,33 +1,40 @@
+import { combineReducers } from 'redux-immutable';
+
+import webrtcReducer from 'containers/Webrtc/reducer';
+
 import {
   ADD_NOTIFICATION,
   SET_NOTIFICATION_SYSTEM,
   SET_ROOM_NAME,
 } from './constants';
-import { fromJS } from 'immutable';
 
-const initialState = fromJS({
-  notificationSystem: null,
-  roomName: '',
-});
-
-function appReducer(state = initialState, action) {
+function notificationSystem(state = null, action) {
   switch (action.type) {
+    case SET_NOTIFICATION_SYSTEM:
+      return action.ns;
     case ADD_NOTIFICATION: {
       const notification = Object.assign({
         position: 'br',
       }, action.data);
-      state.get('notificationSystem').addNotification(notification);
+      state.addNotification(notification);
       return state;
     }
-    case SET_NOTIFICATION_SYSTEM:
-      return state
-        .set('notificationSystem', action.ns);
-    case SET_ROOM_NAME:
-      return state
-        .set('roomName', action.roomName);
     default:
       return state;
   }
 }
 
-export default appReducer;
+function roomName(state = '', action) {
+  switch (action.type) {
+    case SET_ROOM_NAME:
+      return action.roomName;
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({
+  notificationSystem,
+  roomName,
+  webrtc: webrtcReducer,
+});

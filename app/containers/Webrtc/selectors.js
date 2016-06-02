@@ -3,7 +3,7 @@ import { createSelector, createStructuredSelector } from 'reselect';
 import { roomNameSelector } from 'containers/App/selectors';
 import { currentAppSelector } from 'containers/HomePage/selectors';
 
-const rtcSelector = state => state.get('webrtc');
+const rtcSelector = state => state.get('global').get('webrtc');
 
 export const audioIsMutedSelector = createSelector(
   rtcSelector,
