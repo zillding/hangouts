@@ -70,7 +70,7 @@ export function setUpSocket(roomName, dispatch) {
 }
 
 
-function getVideoIndex(playlist, videoId) {
+export function getVideoIndex(playlist, videoId) {
   return playlist.findIndex(video => video.id.videoId === videoId);
 }
 

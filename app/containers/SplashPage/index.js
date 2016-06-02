@@ -38,7 +38,7 @@ class SplashPage extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  shouldComponentUpdate = shouldPureComponentUpdate;
+  shouldComponentUpdate = shouldPureComponentUpdate
 
   getErrorNode() {
     if (!this.state.error) {

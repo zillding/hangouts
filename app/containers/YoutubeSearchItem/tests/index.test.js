@@ -1,9 +1,9 @@
-import YoutubeSearchResultItem from '../index';
+import YoutubeSearchItem from '../index';
 
 import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
 
-describe('<YoutubeSearchResultItem />', () => {
+describe('<YoutubeSearchItem />', () => {
 
 });

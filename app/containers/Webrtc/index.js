@@ -55,7 +55,7 @@ class Webrtc extends Component {
     onReady(webrtc);
   }
 
-  shouldComponentUpdate = shouldPureComponentUpdate;
+  shouldComponentUpdate = shouldPureComponentUpdate
 
   render() {
     const { peerVideos, onPeerSelect } = this.props;
