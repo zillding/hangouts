@@ -26,133 +26,87 @@ import {
   SYNC_PLAY_TIME,
 } from './constants';
 
-export function sendRoomName(roomName) {
-  return {
-    type: SEND_ROOM_NAME,
-    roomName,
-  };
-}
+export const sendRoomName = roomName => ({
+  type: SEND_ROOM_NAME,
+  roomName,
+});
 
-export function setConnected(connected) {
-  return {
-    type: SET_CONNECTED,
-    connected,
-  };
-}
+export const setConnected = connected => ({
+  type: SET_CONNECTED,
+  connected,
+});
 
-export function setSocket(socket) {
-  return {
-    type: SET_SOCKET,
-    socket,
-  };
-}
+export const setSocket = socket => ({
+  type: SET_SOCKET,
+  socket,
+});
 
-export function toggleSidebar() {
-  return { type: TOGGLE_SIDEBAR };
-}
+export const toggleSidebar = () => ({ type: TOGGLE_SIDEBAR });
 
-export function toggleSearch() {
-  return { type: TOGGLE_SEARCH };
-}
+export const toggleSearch = () => ({ type: TOGGLE_SEARCH });
 
-export function setPlayer(player) {
-  return {
-    type: SET_PLAYER,
-    player,
-  };
-}
+export const setPlayer = player => ({
+  type: SET_PLAYER,
+  player,
+});
 
-export function setYoutubeState(data) {
-  return {
-    type: SET_YOUTUBE_STATE,
-    data,
-  };
-}
+export const setYoutubeState = data => ({
+  type: SET_YOUTUBE_STATE,
+  data,
+});
 
-export function sendAddVideoItem(data) {
-  return {
-    type: SEND_ADD_VIDEO_ITEM,
-    data,
-  };
-}
+export const sendAddVideoItem = data => ({
+  type: SEND_ADD_VIDEO_ITEM,
+  data,
+});
 
-export function sendDeleteVideoItem(index) {
-  return {
-    type: SEND_DELETE_VIDEO_ITEM,
-    index,
-  };
-}
+export const sendDeleteVideoItem = index => ({
+  type: SEND_DELETE_VIDEO_ITEM,
+  index,
+});
 
-export function sendPlayYoutube(videoId) {
-  return {
-    type: SEND_PLAY_YOUTUBE,
-    videoId,
-  };
-}
+export const sendPlayYoutube = videoId => ({
+  type: SEND_PLAY_YOUTUBE,
+  videoId,
+});
 
-export function sendPlayNextVideo() {
-  return { type: SEND_PLAY_NEXT_VIDEO };
-}
+export const sendPlayNextVideo = () => ({ type: SEND_PLAY_NEXT_VIDEO });
 
-export function sendPlayPrevVideo() {
-  return { type: SEND_PLAY_PREV_VIDEO };
-}
+export const sendPlayPrevVideo = () => ({ type: SEND_PLAY_PREV_VIDEO });
 
-export function sendPauseYoutube() {
-  return { type: SEND_PAUSE_YOUTUBE };
-}
+export const sendPauseYoutube = () => ({ type: SEND_PAUSE_YOUTUBE });
 
-export function sendResumeYoutube() {
-  return { type: SEND_RESUME_YOUTUBE };
-}
+export const sendResumeYoutube = () => ({ type: SEND_RESUME_YOUTUBE });
 
-export function sendSyncPlayTime(time) {
-  return {
-    type: SEND_SYNC_PLAY_TIME,
-    time,
-  };
-}
+export const sendSyncPlayTime = time => ({
+  type: SEND_SYNC_PLAY_TIME,
+  time,
+});
 
-export function addVideoItem(data) {
-  return {
-    type: ADD_VIDEO_ITEM,
-    data,
-  };
-}
+export const addVideoItem = data => ({
+  type: ADD_VIDEO_ITEM,
+  data,
+});
 
-export function deleteVideoItem(index) {
-  return {
-    type: DELETE_VIDEO_ITEM,
-    index,
-  };
-}
+export const deleteVideoItem = index => ({
+  type: DELETE_VIDEO_ITEM,
+  index,
+});
 
-export function playYoutube(videoId) {
-  return {
-    type: PLAY_YOUTUBE,
-    videoId,
-  };
-}
+export const playYoutube = videoId => ({
+  type: PLAY_YOUTUBE,
+  videoId,
+});
 
-export function playNextVideo() {
-  return { type: PLAY_NEXT_VIDEO };
-}
+export const playNextVideo = () => ({ type: PLAY_NEXT_VIDEO });
 
-export function playPrevVideo() {
-  return { type: PLAY_PREV_VIDEO };
-}
+export const playPrevVideo = () => ({ type: PLAY_PREV_VIDEO });
 
-export function pauseYoutube() {
-  return { type: PAUSE_YOUTUBE };
-}
+export const pauseYoutube = () => ({ type: PAUSE_YOUTUBE });
 
-export function resumeYoutube() {
-  return { type: RESUME_YOUTUBE };
-}
+export const resumeYoutube = () => ({ type: RESUME_YOUTUBE });
 
-export function syncPlayTime(time) {
-  return {
-    type: SYNC_PLAY_TIME,
-    time,
-  };
-}
+export const syncPlayTime = time => ({
+  type: SYNC_PLAY_TIME,
+  time,
+});

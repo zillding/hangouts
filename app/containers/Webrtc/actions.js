@@ -8,52 +8,34 @@ import {
   TOGGLE_VIDEO,
 } from './constants';
 
-export function addPeerVideo(data) {
-  return {
-    type: ADD_PEER_VIDEO,
-    data,
-  };
-}
+export const addPeerVideo = data => ({
+  type: ADD_PEER_VIDEO,
+  data,
+});
 
-export function removePeerVideo(data) {
-  return {
-    type: REMOVE_PEER_VIDEO,
-    data,
-  };
-}
+export const removePeerVideo = data => ({
+  type: REMOVE_PEER_VIDEO,
+  data,
+});
 
-export function selectPeerVideo(id) {
-  return {
-    type: SELECT_PEER_VIDEO,
-    id,
-  };
-}
+export const selectPeerVideo = id => ({
+  type: SELECT_PEER_VIDEO,
+  id,
+});
 
-export function setVolume(volume) {
-  return {
-    type: SET_VOLUME,
-    volume,
-  };
-}
+export const setVolume = volume => ({
+  type: SET_VOLUME,
+  volume,
+});
 
-export function setWebrtc(webrtc) {
-  return {
-    type: SET_WEBRTC,
-    webrtc,
-  };
-}
+export const setWebrtc = webrtc => ({
+  type: SET_WEBRTC,
+  webrtc,
+});
 
-export function toggleMute() {
-  return {
-    type: TOGGLE_MUTE,
-  };
-}
+export const toggleMute = () => ({ type: TOGGLE_MUTE });
 
-export function toggleVideo() {
-  return {
-    type: TOGGLE_VIDEO,
-  };
-}
+export const toggleVideo = () => ({ type: TOGGLE_VIDEO });
 
 export default dispatch => ({
   onReady: webrtc => dispatch(setWebrtc(webrtc)),

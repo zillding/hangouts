@@ -7,30 +7,22 @@ import {
   SET_SEARCH_ERROR,
 } from './constants';
 
-export function setSearchTerm(text) {
-  return {
-    type: SET_SEARCH_TERM,
-    text,
-  };
-}
+export const setSearchTerm = text => ({
+  type: SET_SEARCH_TERM,
+  text,
+});
 
-export function fetchSearchResult() {
-  return { type: FETCH_SEARCH_RESULT };
-}
+export const fetchSearchResult = () => ({ type: FETCH_SEARCH_RESULT });
 
-export function setSearchResult(data) {
-  return {
-    type: SET_SEARCH_RESULT,
-    data,
-  };
-}
+export const setSearchResult = data => ({
+  type: SET_SEARCH_RESULT,
+  data,
+});
 
-export function setSearchError(error) {
-  return {
-    type: SET_SEARCH_ERROR,
-    error,
-  };
-}
+export const setSearchError = error => ({
+  type: SET_SEARCH_ERROR,
+  error,
+});
 
 export default dispatch => ({
   toggleSearch: () => dispatch(toggleSearch()),
