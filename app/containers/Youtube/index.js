@@ -51,10 +51,12 @@ class Youtube extends Component {
   }
 
   render() {
+    const style = this.props.currentApp === 'youtube' ? {} : { display: 'none' };
+
     return (
       <Flex
         className={styles.container}
-        hidden={this.props.currentApp !== 'youtube'}
+        style={style}
       >
         <div className={styles.player}>
           <YoutubePlayer />
