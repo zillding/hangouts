@@ -1,21 +1,23 @@
-import { fromJS } from 'immutable';
+import { combineReducers } from 'redux-immutable';
+
+import youtubeReducer from 'containers/Youtube/reducer';
+import youtubeSearchReducer from 'containers/YoutubeSearch/reducer';
 
 import {
   SET_APP,
 } from './constants';
 
-const initialState = fromJS({
-  currentApp: 'video',
-});
-
-function homeReducer(state = initialState, action) {
+function currentApp(state = 'video', action) {
   switch (action.type) {
     case SET_APP:
-      return state
-        .set('currentApp', action.app);
+      return action.app;
     default:
       return state;
   }
 }
 
-export default homeReducer;
+export default combineReducers({
+  currentApp,
+  youtube: youtubeReducer,
+  youtubeSearch: youtubeSearchReducer,
+});

@@ -8,9 +8,6 @@ import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 import globalReducer from 'containers/App/reducer';
-import homeReducer from 'containers/HomePage/reducer';
-import youtubeReducer from 'containers/Youtube/reducer';
-import youtubeSearchReducer from 'containers/YoutubeSearch/reducer';
 
 /*
  * routeReducer
@@ -47,9 +44,6 @@ export default function createReducer(asyncReducers) {
   return combineReducers({
     route: routeReducer,
     global: globalReducer,
-    home: homeReducer,
-    youtube: youtubeReducer,
-    youtubeSearch: youtubeSearchReducer,
     ...asyncReducers,
   });
 }

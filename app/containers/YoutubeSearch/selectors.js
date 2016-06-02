@@ -1,6 +1,6 @@
 import { createSelector, createStructuredSelector } from 'reselect';
 
-const youtubeSearchSelector = state => state.get('youtubeSearch');
+const youtubeSearchSelector = state => state.get('home').get('youtubeSearch');
 
 export const searchTermSelector = createSelector(
     youtubeSearchSelector,

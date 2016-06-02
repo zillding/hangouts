@@ -3,7 +3,7 @@ import { createSelector, createStructuredSelector } from 'reselect';
 import { roomNameSelector } from 'containers/App/selectors';
 import { currentAppSelector } from 'containers/HomePage/selectors';
 
-const youtubeSelector = state => state.get('youtube');
+const youtubeSelector = state => state.get('home').get('youtube');
 
 export const isConnectedSelector = createSelector(
   youtubeSelector,
