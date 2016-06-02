@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import SimpleWebRTC from 'simplewebrtc';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import { List } from 'immutable';
-import { createSelector } from 'reselect';
+import { createStructuredSelector } from 'reselect';
 
 import Draggable from 'react-draggable';
 import { Flex } from 'react-flex';
@@ -119,13 +119,8 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(createSelector(
-  roomNameSelector,
-  selectWebrtc(),
-  selectDisplayPeerVideos(),
-  (roomName, webrtc, peerVideos) => ({
-    roomName,
-    webrtc,
-    peerVideos,
-  })
-), mapDispatchToProps)(Webrtc);
+export default connect(createStructuredSelector({
+  roomName: roomNameSelector,
+  webrtc: selectWebrtc(),
+  peerVideos: selectDisplayPeerVideos(),
+}), mapDispatchToProps)(Webrtc);

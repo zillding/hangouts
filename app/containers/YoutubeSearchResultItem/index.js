@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import selectYoutubeSearchResultItem from './selectors';
+// import selectYoutubeSearchResultItem from './selectors';
 
 export class YoutubeSearchResultItem extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -18,7 +18,7 @@ export class YoutubeSearchResultItem extends React.Component { // eslint-disable
   }
 }
 
-const mapStateToProps = selectYoutubeSearchResultItem();
+// const mapStateToProps = selectYoutubeSearchResultItem();
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -26,4 +26,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(YoutubeSearchResultItem);
+export default connect(null, mapDispatchToProps)(YoutubeSearchResultItem);

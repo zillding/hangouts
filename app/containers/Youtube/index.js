@@ -7,7 +7,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
-import { createSelector } from 'reselect';
+import { createStructuredSelector } from 'reselect';
 
 import { Flex, Item } from 'react-flex';
 
@@ -83,15 +83,9 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(createSelector(
-  roomNameSelector,
-  selectCurrentApp(),
-  selectShowSidebar(),
-  selectShowSearch(),
-  (roomName, currentApp, showSidebar, showSearch) => ({
-    roomName,
-    currentApp,
-    showSidebar,
-    showSearch,
-  })
-), mapDispatchToProps)(Youtube);
+export default connect(createStructuredSelector({
+  roomName: roomNameSelector,
+  currentApp: selectCurrentApp(),
+  showSidebar: selectShowSidebar(),
+  showSearch: selectShowSearch(),
+}), mapDispatchToProps)(Youtube);

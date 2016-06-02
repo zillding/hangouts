@@ -6,7 +6,7 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import { createStructuredSelector } from 'reselect';
 
 import { selectCurrentApp } from 'containers/HomePage/selectors';
 import { selectMainPeerVideo } from 'containers/Webrtc/selectors';
@@ -43,8 +43,7 @@ Video.propTypes = {
   }),
 };
 
-export default connect(createSelector(
-  selectCurrentApp(),
-  selectMainPeerVideo(),
-  (currentApp, data) => ({ currentApp, data })
-))(Video);
+export default connect(createStructuredSelector({
+  currentApp: selectCurrentApp(),
+  data: selectMainPeerVideo(),
+}))(Video);

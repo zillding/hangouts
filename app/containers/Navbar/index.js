@@ -6,7 +6,7 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import { createStructuredSelector } from 'reselect';
 
 import { roomNameSelector } from 'containers/App/selectors';
 import { selectCurrentApp } from 'containers/HomePage/selectors';
@@ -112,21 +112,12 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(createSelector(
-  roomNameSelector,
-  selectCurrentApp(),
-  selectIsConnected(),
-  selectVolume(),
-  selectAudioIsMuted(),
-  selectVideoIsPaused(),
-  selectShowSidebar(),
-  (roomName, currentApp, isConnected, volume, audioIsMuted, videoIsPaused, showSidebar) => ({
-    roomName,
-    currentApp,
-    isConnected,
-    volume,
-    audioIsMuted,
-    videoIsPaused,
-    showSidebar,
-  })
-), mapDispatchToProps)(Navbar);
+export default connect(createStructuredSelector({
+  roomName: roomNameSelector,
+  currentApp: selectCurrentApp(),
+  isConnected: selectIsConnected(),
+  volume: selectVolume(),
+  audioIsMuted: selectAudioIsMuted(),
+  videoIsPaused: selectVideoIsPaused(),
+  showSidebar: selectShowSidebar(),
+}), mapDispatchToProps)(Navbar);

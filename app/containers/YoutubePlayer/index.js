@@ -6,7 +6,8 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import { createStructuredSelector } from 'reselect';
+
 import YouTube from 'react-youtube';
 
 import { selectVideoId } from 'containers/Youtube/selectors';
@@ -67,7 +68,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(createSelector(
-  selectVideoId(),
-  videoId => ({ videoId })
-), mapDispatchToProps)(YoutubePlayer);
+export default connect(createStructuredSelector({
+  videoId: selectVideoId(),
+}), mapDispatchToProps)(YoutubePlayer);
