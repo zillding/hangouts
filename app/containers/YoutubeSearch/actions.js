@@ -1,3 +1,5 @@
+import { toggleSearch } from 'containers/Youtube/actions';
+
 import {
   SET_SEARCH_TERM,
   FETCH_SEARCH_RESULT,
@@ -29,3 +31,9 @@ export function setSearchError(error) {
     error,
   };
 }
+
+export default dispatch => ({
+  toggleSearch: () => dispatch(toggleSearch()),
+  setSearchTerm: text => dispatch(setSearchTerm(text)),
+  fetchResult: () => dispatch(fetchSearchResult()),
+});

@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect';
+import { createSelector, createStructuredSelector } from 'reselect';
 
 const youtubeSearchSelector = state => state.get('youtubeSearch');
 
@@ -21,3 +21,9 @@ export const searchErrorSelector = createSelector(
   youtubeSearchSelector,
   searchState => searchState.get('searchError')
 );
+
+
+export default createStructuredSelector({
+  isSearching: isSearchingSelector,
+  searchTerm: searchTermSelector,
+});
