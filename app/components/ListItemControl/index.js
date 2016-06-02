@@ -6,13 +6,18 @@
 
 import React, { PropTypes } from 'react';
 
+import { Item } from 'react-flex';
+
 import styles from './styles.css';
 
 function ListItemControl({ children }) {
   return (
-    <div className={styles.listItemControl}>
+    <Item
+      flexShrink={0}
+      className={styles.listItemControl}
+    >
       {children}
-    </div>
+    </Item>
   );
 }
 

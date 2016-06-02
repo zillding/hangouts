@@ -6,13 +6,18 @@
 
 import React, { PropTypes } from 'react';
 
+import { Flex } from 'react-flex';
+
 import styles from './styles.css';
 
 function ListItem({ children }) {
   return (
-    <div className={styles.listItem}>
+    <Flex
+      justifyContent="space-between"
+      className={styles.listItem}
+    >
       {children}
-    </div>
+    </Flex>
   );
 }
 
