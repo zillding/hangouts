@@ -37,12 +37,23 @@ export function setUpSocket(roomName, dispatch) {
       level: 'info',
     }));
 
-    // TODO
     switch (type) {
       case 'ADD_VIDEO':
         return dispatch(addVideoItem(data));
       case 'DELETE_VIDEO':
         return dispatch(deleteVideoItem(data));
+      case 'PLAY':
+        return dispatch(playYoututbe(data));
+      case 'PLAY_NEXT':
+        return dispatch(playNextVideo());
+      case 'PLAY_PREVIOUS':
+        return dispatch(playPrevVideo());
+      case 'PAUSE':
+        return dispatch(pauseYoutube());
+      case 'RESUME':
+        return dispatch(resumeYoutube());
+      case 'SYNC_TIME':
+        return dispatch(syncPlayTime(data));
       default:
         return null;
     }
