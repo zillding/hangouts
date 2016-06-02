@@ -24,7 +24,12 @@ import styles from './styles.css';
 class Webrtc extends Component {
 
   componentDidMount() {
-    const { onReady, setVolumeNumber } = this.props;
+    const {
+      onReady,
+      setVolumeNumber,
+      addPeer,
+      removePeer,
+    } = this.props;
 
     const webrtc = new SimpleWebRTC({
       localVideoEl: this.refs.local,
@@ -39,28 +44,18 @@ class Webrtc extends Component {
       }
     });
 
+    webrtc.on('videoAdded', (video, peer) =>
+      addPeer({ video, peer })
+    );
+
+    webrtc.on('videoRemoved', (video, peer) =>
+      removePeer({ video, peer })
+    );
+
     onReady(webrtc);
   }
 
   shouldComponentUpdate = shouldPureComponentUpdate;
-
-  componentDidUpdate(prevProps) {
-    const { roomName, webrtc } = this.props;
-
-    if (webrtc && roomName !== prevProps.roomName) {
-      webrtc.joinRoom(roomName);
-      webrtc.on('videoAdded', this.addVideo.bind(this));
-      webrtc.on('videoRemoved', this.removeVideo.bind(this));
-    }
-  }
-
-  addVideo(video, peer) {
-    this.props.addPeer({ video, peer });
-  }
-
-  removeVideo(video, peer) {
-    this.props.removePeer({ video, peer });
-  }
 
   render() {
     const { peerVideos, onPeerSelect } = this.props;
@@ -88,7 +83,6 @@ class Webrtc extends Component {
 
 Webrtc.propTypes = {
   roomName: PropTypes.string,
-  webrtc: PropTypes.object,
   peerVideos: PropTypes.instanceOf(List).isRequired,
   onReady: PropTypes.func.isRequired,
   addPeer: PropTypes.func.isRequired,

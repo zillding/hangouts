@@ -49,13 +49,7 @@ export const volumeSelector = createSelector(
   rtcState => rtcState.get('volume')
 );
 
-export const webrtcSelector = createSelector(
-  rtcSelector,
-  rtcState => rtcState.get('webrtc')
-);
-
 export default createStructuredSelector({
   roomName: roomNameSelector,
-  webrtc: webrtcSelector,
   peerVideos: displayPeerVideosSelector,
 });

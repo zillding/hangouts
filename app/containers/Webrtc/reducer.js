@@ -1,5 +1,6 @@
 import { fromJS } from 'immutable';
 
+import { SET_ROOM_NAME } from 'containers/App/constants';
 import {
   ADD_PEER_VIDEO,
   REMOVE_PEER_VIDEO,
@@ -21,6 +22,9 @@ const initialState = fromJS({
 
 function webrtcReducer(state = initialState, action) {
   switch (action.type) {
+    case SET_ROOM_NAME:
+      state.get('webrtc').joinRoom(action.roomName);
+      return state;
     case ADD_PEER_VIDEO:
       return state
         .set('peerVideos', state.get('peerVideos').push(action.data));
