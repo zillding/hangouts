@@ -18,7 +18,7 @@ class YoutubePlayer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      width: window.innnerWidth > 1800 ? 1280 : 853,
+      width: window.innerWidth > 1800 ? 1280 : 853,
     };
   }
 
