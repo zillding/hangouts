@@ -1,15 +1,11 @@
 import { createSelector } from 'reselect';
 
-function selectGlobal() {
-  return state => state.get('global');
-}
+const globalSelector = state => state.get('global');
 
-export function selectRoomName() {
-  return createSelector(
-    selectGlobal(),
-    globalState => globalState.get('roomName')
-  );
-}
+export const roomNameSelector = createSelector(
+  globalSelector,
+  globalState => globalState.get('roomName')
+);
 
 // selectLocationState expects a plain JS object for the routing state
 export function selectLocationState() {

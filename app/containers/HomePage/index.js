@@ -8,14 +8,11 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
+import { createStructuredSelector } from 'reselect';
 
 import { Flex, Item } from 'react-flex';
 
-import { createSelector } from 'reselect';
-
-import {
-  selectRoomName,
-} from 'containers/App/selectors';
+import { roomNameSelector } from 'containers/App/selectors';
 
 import Navbar from 'containers/Navbar';
 import Video from 'containers/Video';
@@ -77,7 +74,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(createSelector(
-  selectRoomName(),
-  roomName => ({ roomName })
-), mapDispatchToProps)(HomePage);
+export default connect(createStructuredSelector({
+  roomName: roomNameSelector,
+}), mapDispatchToProps)(HomePage);

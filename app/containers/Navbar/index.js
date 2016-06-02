@@ -8,7 +8,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { selectRoomName } from 'containers/App/selectors';
+import { roomNameSelector } from 'containers/App/selectors';
 import { selectCurrentApp } from 'containers/HomePage/selectors';
 import {
   selectAudioIsMuted,
@@ -113,7 +113,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(createSelector(
-  selectRoomName(),
+  roomNameSelector,
   selectCurrentApp(),
   selectIsConnected(),
   selectVolume(),

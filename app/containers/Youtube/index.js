@@ -11,7 +11,7 @@ import { createSelector } from 'reselect';
 
 import { Flex, Item } from 'react-flex';
 
-import { selectRoomName } from 'containers/App/selectors';
+import { roomNameSelector } from 'containers/App/selectors';
 import { selectCurrentApp } from 'containers/HomePage/selectors';
 import { selectShowSidebar, selectShowSearch } from './selectors';
 
@@ -82,7 +82,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(createSelector(
-  selectRoomName(),
+  roomNameSelector,
   selectCurrentApp(),
   selectShowSidebar(),
   selectShowSearch(),
