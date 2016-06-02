@@ -52,6 +52,7 @@ class Youtube extends Component {
 
     return (
       <Flex
+        alignItems="stretch"
         className={styles.container}
         style={style}
       >
