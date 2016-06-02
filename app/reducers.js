@@ -11,6 +11,7 @@ import globalReducer from 'containers/App/reducer';
 import webrtcReducer from 'containers/Webrtc/reducer';
 import homeReducer from 'containers/HomePage/reducer';
 import youtubeReducer from 'containers/Youtube/reducer';
+import youtubeSearchReducer from 'containers/YoutubeSearch/reducer';
 
 /*
  * routeReducer
@@ -50,6 +51,7 @@ export default function createReducer(asyncReducers) {
     webrtc: webrtcReducer,
     home: homeReducer,
     youtube: youtubeReducer,
+    youtubeSearch: youtubeSearchReducer,
     ...asyncReducers,
   });
 }
