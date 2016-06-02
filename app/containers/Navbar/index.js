@@ -6,20 +6,9 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
-import { roomNameSelector } from 'containers/App/selectors';
-import { selectCurrentApp } from 'containers/HomePage/selectors';
-import {
-  selectAudioIsMuted,
-  selectVideoIsPaused,
-  selectVolume,
-} from 'containers/Webrtc/selectors';
-import { selectIsConnected, selectShowSidebar } from 'containers/Youtube/selectors';
-
-import { setApp } from 'containers/HomePage/actions';
-import { toggleMute, toggleVideo } from 'containers/Webrtc/actions';
-import { toggleSidebar } from 'containers/Youtube/actions';
+import mapStateToProps from './selectors';
+import mapDispatchToProps from './actions';
 
 import NavItemVideo from 'components/NavItemVideo';
 import NavItemYoutube from 'components/NavItemYoutube';
@@ -103,21 +92,4 @@ Navbar.propTypes = {
   toggleSidebarState: PropTypes.func.isRequired,
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
-    setCurrentApp: app => dispatch(setApp(app)),
-    toggleMuteState: () => dispatch(toggleMute()),
-    toggleVideoState: () => dispatch(toggleVideo()),
-    toggleSidebarState: () => dispatch(toggleSidebar()),
-  };
-}
-
-export default connect(createStructuredSelector({
-  roomName: roomNameSelector,
-  currentApp: selectCurrentApp(),
-  isConnected: selectIsConnected(),
-  volume: selectVolume(),
-  audioIsMuted: selectAudioIsMuted(),
-  videoIsPaused: selectVideoIsPaused(),
-  showSidebar: selectShowSidebar(),
-}), mapDispatchToProps)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

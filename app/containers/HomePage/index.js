@@ -6,13 +6,12 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
-import { createStructuredSelector } from 'reselect';
 
 import { Flex, Item } from 'react-flex';
 
-import { roomNameSelector } from 'containers/App/selectors';
+import mapStateToProps from './selectors';
+import mapDispatchToProps from './actions';
 
 import Navbar from 'containers/Navbar';
 import Video from 'containers/Video';
@@ -68,12 +67,4 @@ HomePage.propTypes = {
   goToSplash: PropTypes.func.isRequired,
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
-    goToSplash: () => dispatch(push('splash')),
-  };
-}
-
-export default connect(createStructuredSelector({
-  roomName: roomNameSelector,
-}), mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

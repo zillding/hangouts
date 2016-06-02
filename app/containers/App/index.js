@@ -9,12 +9,11 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+
 import NotificationSystem from 'react-notification-system';
 
-import 'semantic-ui-css/semantic.css';
-import 'react-flex/index.css';
+import mapDispatchToProps from './actions';
 
-import { setNotificationSystem } from './actions';
 import Webrtc from 'containers/Webrtc';
 
 import styles from './styles.css';
@@ -39,11 +38,5 @@ App.propTypes = {
   children: PropTypes.node,
   setNotificationSystem: PropTypes.func.isRequired,
 };
-
-function mapDispatchToProps(dispatch) {
-  return {
-    setNotificationSystem: ns => dispatch(setNotificationSystem(ns)),
-  };
-}
 
 export default connect(null, mapDispatchToProps)(App);

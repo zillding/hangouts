@@ -6,13 +6,11 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
 import YouTube from 'react-youtube';
 
-import { selectVideoId } from 'containers/Youtube/selectors';
-
-import { setPlayer } from 'containers/Youtube/actions';
+import mapStateToProps from './selectors';
+import mapDispatchToProps from './actions';
 
 import YoutubeOverlay from 'components/YoutubeOverlay';
 
@@ -62,12 +60,4 @@ YoutubePlayer.propTypes = {
   onReady: PropTypes.func.isRequired,
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onReady: player => dispatch(setPlayer(player)),
-  };
-}
-
-export default connect(createStructuredSelector({
-  videoId: selectVideoId(),
-}), mapDispatchToProps)(YoutubePlayer);
+export default connect(mapStateToProps, mapDispatchToProps)(YoutubePlayer);

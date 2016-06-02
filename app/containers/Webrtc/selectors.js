@@ -1,5 +1,6 @@
-import { createSelector } from 'reselect';
+import { createSelector, createStructuredSelector } from 'reselect';
 
+import { roomNameSelector } from 'containers/App/selectors';
 import { selectCurrentApp } from 'containers/HomePage/selectors';
 
 function selectRtc() {
@@ -70,3 +71,9 @@ export function selectWebrtc() {
     globalState => globalState.get('webrtc')
   );
 }
+
+export default createStructuredSelector({
+  roomName: roomNameSelector,
+  webrtc: selectWebrtc(),
+  peerVideos: selectDisplayPeerVideos(),
+});

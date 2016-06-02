@@ -11,7 +11,7 @@ export function addNotification(data) {
   };
 }
 
-export function setNotificationSystem(ns) {
+function setNotificationSystem(ns) {
   return {
     type: SET_NOTIFICATION_SYSTEM,
     ns,
@@ -24,3 +24,7 @@ export function setRoomName(roomName) {
     roomName,
   };
 }
+
+export default dispatch => ({
+  setNotificationSystem: ns => dispatch(setNotificationSystem(ns)),
+});

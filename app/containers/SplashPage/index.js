@@ -6,14 +6,13 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import classNames from 'classnames';
 
 import GitHubForkRibbon from 'react-github-fork-ribbon';
 import { Flex } from 'react-flex';
 
-import { setRoomName } from 'containers/App/actions';
+import mapDispatchToProps from './actions';
 
 // inline these styles to acheive better performance
 const containerStyle = {
@@ -130,12 +129,5 @@ SplashPage.propTypes = {
   goToHome: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
-
-function mapDispatchToProps(dispatch) {
-  return {
-    goToHome: () => dispatch(push('/')),
-    onSubmit: name => dispatch(setRoomName(name)),
-  };
-}
 
 export default connect(null, mapDispatchToProps)(SplashPage);

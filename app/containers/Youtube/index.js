@@ -7,13 +7,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
-import { createStructuredSelector } from 'reselect';
 
 import { Flex, Item } from 'react-flex';
 
-import { roomNameSelector } from 'containers/App/selectors';
-import { selectCurrentApp } from 'containers/HomePage/selectors';
-import { selectShowSidebar, selectShowSearch } from './selectors';
+import mapStateToProps from './selectors';
 
 import YoutubeSearch from 'containers/YoutubeSearch';
 import YoutubePlaylist from 'containers/YoutubePlaylist';
@@ -77,15 +74,4 @@ Youtube.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
-
-export default connect(createStructuredSelector({
-  roomName: roomNameSelector,
-  currentApp: selectCurrentApp(),
-  showSidebar: selectShowSidebar(),
-  showSearch: selectShowSearch(),
-}), mapDispatchToProps)(Youtube);
+export default connect(mapStateToProps)(Youtube);

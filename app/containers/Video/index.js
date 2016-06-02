@@ -6,10 +6,8 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
-import { selectCurrentApp } from 'containers/HomePage/selectors';
-import { selectMainPeerVideo } from 'containers/Webrtc/selectors';
+import mapStateToProps from './selectors';
 
 import Waiting from 'components/Waiting';
 
@@ -43,7 +41,4 @@ Video.propTypes = {
   }),
 };
 
-export default connect(createStructuredSelector({
-  currentApp: selectCurrentApp(),
-  data: selectMainPeerVideo(),
-}))(Video);
+export default connect(mapStateToProps)(Video);

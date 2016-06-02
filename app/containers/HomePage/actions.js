@@ -1,3 +1,5 @@
+import { push } from 'react-router-redux';
+
 import {
   SET_APP,
 } from './constants';
@@ -8,3 +10,7 @@ export function setApp(app) {
     app,
   };
 }
+
+export default dispatch => ({
+  goToSplash: () => dispatch(push('splash')),
+});

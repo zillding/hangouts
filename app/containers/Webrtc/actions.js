@@ -54,3 +54,12 @@ export function toggleVideo() {
     type: TOGGLE_VIDEO,
   };
 }
+
+export default dispatch => ({
+  onReady: webrtc => dispatch(setWebrtc(webrtc)),
+  addPeer: data => dispatch(addPeerVideo(data)),
+  removePeer: data => dispatch(removePeerVideo(data)),
+  setVolumeNumber: volume => dispatch(setVolume(volume)),
+  onPeerSelect: id => dispatch(selectPeerVideo(id)),
+});
+

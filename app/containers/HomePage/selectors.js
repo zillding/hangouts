@@ -1,12 +1,16 @@
-import { createSelector } from 'reselect';
+import { createSelector, createStructuredSelector } from 'reselect';
 
-function selectHome() {
-  return state => state.get('home');
-}
+import { roomNameSelector } from 'containers/App/selectors';
+
+const homeSelector = state => state.get('home');
 
 export function selectCurrentApp() {
   return createSelector(
-    selectHome(),
+    homeSelector,
     homeState => homeState.get('currentApp')
   );
 }
+
+export default createStructuredSelector({
+  roomName: roomNameSelector,
+});

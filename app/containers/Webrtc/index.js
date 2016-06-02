@@ -9,24 +9,12 @@ import { connect } from 'react-redux';
 import SimpleWebRTC from 'simplewebrtc';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import { List } from 'immutable';
-import { createStructuredSelector } from 'reselect';
 
 import Draggable from 'react-draggable';
 import { Flex } from 'react-flex';
 
-import { roomNameSelector } from 'containers/App/selectors';
-import {
-  selectDisplayPeerVideos,
-  selectWebrtc,
-} from './selectors';
-
-import {
-  addPeerVideo,
-  removePeerVideo,
-  selectPeerVideo,
-  setVolume,
-  setWebrtc,
-} from './actions';
+import mapStateToProps from './selectors';
+import mapDispatchToProps from './actions';
 
 import DragHandle from 'components/DragHandle';
 import PeerVideos from 'components/PeerVideos';
@@ -109,18 +97,4 @@ Webrtc.propTypes = {
   onPeerSelect: PropTypes.func.isRequired,
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onReady: webrtc => dispatch(setWebrtc(webrtc)),
-    addPeer: data => dispatch(addPeerVideo(data)),
-    removePeer: data => dispatch(removePeerVideo(data)),
-    setVolumeNumber: volume => dispatch(setVolume(volume)),
-    onPeerSelect: id => dispatch(selectPeerVideo(id)),
-  };
-}
-
-export default connect(createStructuredSelector({
-  roomName: roomNameSelector,
-  webrtc: selectWebrtc(),
-  peerVideos: selectDisplayPeerVideos(),
-}), mapDispatchToProps)(Webrtc);
+export default connect(mapStateToProps, mapDispatchToProps)(Webrtc);
