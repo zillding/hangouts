@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import NotificationSystem from 'react-notification-system';
 
 import 'semantic-ui-css/semantic.css';
+import 'react-flex/index.css';
 
 import { setNotificationSystem } from './actions';
 import Webrtc from 'containers/Webrtc';

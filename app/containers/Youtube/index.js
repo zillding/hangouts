@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import { createSelector } from 'reselect';
 
+import { Flex, Item } from 'react-flex';
+
 import { selectRoomName } from 'containers/App/selectors';
 import { selectCurrentApp } from 'containers/HomePage/selectors';
 import { selectShowSidebar, selectShowSearch } from './selectors';
@@ -39,21 +41,20 @@ class Youtube extends Component {
     }
 
     return (
-      <div className={styles.sidebar}>
+      <Item
+        flex={1}
+        className={styles.sidebar}
+      >
         {showSearch ? <YoutubeSearch /> : <YoutubePlaylist />}
-      </div>
+      </Item>
     );
   }
 
   render() {
-    const style = {
-      display: this.props.currentApp === 'youtube' ? 'flex' : 'none',
-    };
-
     return (
-      <div
+      <Flex
         className={styles.container}
-        style={style}
+        hidden={this.props.currentApp !== 'youtube'}
       >
         <div className={styles.player}>
           <YoutubePlayer />
@@ -61,7 +62,7 @@ class Youtube extends Component {
           <YoutubeNotice />
         </div>
         {this.getSidebar()}
-      </div>
+      </Flex>
     );
   }
 }

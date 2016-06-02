@@ -6,10 +6,12 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import GitHubForkRibbon from 'react-github-fork-ribbon';
 import { push } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import classNames from 'classnames';
+
+import GitHubForkRibbon from 'react-github-fork-ribbon';
+import { Flex } from 'react-flex';
 
 import { setRoomName } from 'containers/App/actions';
 
@@ -20,10 +22,6 @@ const containerStyle = {
   bottom: 0,
   left: 0,
   right: 0,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
 };
 
 const segmentStyle = {
@@ -83,7 +81,11 @@ class SplashPage extends Component {
     const { error } = this.state;
 
     return (
-      <div style={containerStyle}>
+      <Flex
+        column
+        justifyContent="center"
+        style={containerStyle}
+      >
         <GitHubForkRibbon
           href="https://github.com/zillding/hangouts"
           target="_blank"
@@ -119,7 +121,7 @@ class SplashPage extends Component {
           </div>
           {this.getErrorNode()}
         </div>
-      </div>
+      </Flex>
     );
   }
 }

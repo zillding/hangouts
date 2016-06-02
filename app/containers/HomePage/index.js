@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
+import { Flex, Item } from 'react-flex';
+
 import { createSelector } from 'reselect';
 
 import {
@@ -19,7 +21,13 @@ import Navbar from 'containers/Navbar';
 import Video from 'containers/Video';
 import Youtube from 'containers/Youtube';
 
-import styles from './styles.css';
+const containerStyle = {
+  position: 'fixed',
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+};
 
 class HomePage extends Component {
 
@@ -38,15 +46,22 @@ class HomePage extends Component {
     }
 
     return (
-      <div className={styles.container}>
-        <div className={styles.navbarContainer}>
+      <Flex
+        column
+        alignItems="stretch"
+        style={containerStyle}
+      >
+        <div style={{ paddingBottom: 10 }}>
           <Navbar />
         </div>
-        <div className={styles.contentContainer}>
+        <Item
+          flex={1}
+          style={{ position: 'relative' }}
+        >
           <Video />
           <Youtube />
-        </div>
-      </div>
+        </Item>
+      </Flex>
     );
   }
 }

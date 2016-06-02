@@ -5,6 +5,8 @@
 */
 
 import React, { PropTypes } from 'react';
+
+import { Flex, Item } from 'react-flex';
 import TimeAgo from 'react-timeago';
 
 import styles from './styles.css';
@@ -13,21 +15,24 @@ function YoutubeVideoInfo({ data }) {
   const { snippet } = data;
 
   return (
-    <div className={styles.youtubeVideoInfo}>
-      <div className={styles.imgPlaceholder}>
+    <Flex flex={1}>
+      <Item
+        flex="0 0 120px"
+        className={styles.imgPlaceholder}
+      >
         <img
           className={styles.image}
           src={snippet.thumbnails.default.url}
           alt="thumbnail"
         />
-      </div>
+      </Item>
       <div>
         <div className={styles.title}>{snippet.title}</div>
         <small>Uploaded by <strong>{snippet.channelTitle}</strong></small>
         <br />
         <small>Published <TimeAgo date={snippet.publishedAt} /></small>
       </div>
-    </div>
+    </Flex>
   );
 }
 

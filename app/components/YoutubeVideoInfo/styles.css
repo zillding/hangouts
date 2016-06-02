@@ -1,15 +1,8 @@
-.youtubeVideoInfo {
-  display: flex;
-  align-items: center;
-  flex: 1;
-}
-
 .imgPlaceholder {
   height: 90px;
   background-color: rgba(187, 187, 187, 0.85);
   margin-right: 10px;
   position: relative;
-  flex: 0 0 120px;
 }
 
 .image {

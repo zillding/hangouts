@@ -8,8 +8,10 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import SimpleWebRTC from 'simplewebrtc';
 import shouldPureComponentUpdate from 'react-pure-render/function';
-import Draggable from 'react-draggable';
 import { List } from 'immutable';
+
+import Draggable from 'react-draggable';
+import { Flex } from 'react-flex';
 
 import { createSelector } from 'reselect';
 
@@ -81,7 +83,7 @@ class Webrtc extends Component {
         bounds="parent"
         handle=".drag.handle"
       >
-        <div className={styles.container}>
+        <Flex className={styles.container}>
           <DragHandle />
           <video
             ref="local"
@@ -91,7 +93,7 @@ class Webrtc extends Component {
             data={peerVideos}
             onSelect={onPeerSelect}
           />
-        </div>
+        </Flex>
       </Draggable>
     );
   }
