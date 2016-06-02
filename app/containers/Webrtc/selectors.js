@@ -1,79 +1,61 @@
 import { createSelector, createStructuredSelector } from 'reselect';
 
 import { roomNameSelector } from 'containers/App/selectors';
-import { selectCurrentApp } from 'containers/HomePage/selectors';
+import { currentAppSelector } from 'containers/HomePage/selectors';
 
-function selectRtc() {
-  return state => state.get('webrtc');
-}
+const rtcSelector = state => state.get('webrtc');
 
-export function selectAudioIsMuted() {
-  return createSelector(
-    selectRtc(),
-    globalState => globalState.get('audioIsMuted')
-  );
-}
+export const audioIsMutedSelector = createSelector(
+  rtcSelector,
+  rtcState => rtcState.get('audioIsMuted')
+);
 
-function selectPeerVideos() {
-  return createSelector(
-    selectRtc(),
-    globalState => globalState.get('peerVideos')
-  );
-}
+const peerVideosSelector = createSelector(
+  rtcSelector,
+  rtcState => rtcState.get('peerVideos')
+);
 
-function selectSelectedPeerVideoId() {
-  return createSelector(
-    selectRtc(),
-    globalState => globalState.get('selectedPeerVideoId')
-  );
-}
+const selectedPeerVideoIdSelector = createSelector(
+  rtcSelector,
+  rtcState => rtcState.get('selectedPeerVideoId')
+);
 
-export function selectDisplayPeerVideos() {
-  return createSelector(
-    selectCurrentApp(),
-    selectPeerVideos(),
-    selectSelectedPeerVideoId(),
-    (currentApp, peerVideos, selectedId) => (
-      currentApp === 'video' ?
-        peerVideos.filterNot(
-          ({ peer }) => peer.id === selectedId
-        ) :
-        peerVideos
-    )
-  );
-}
+export const displayPeerVideosSelector = createSelector(
+  currentAppSelector,
+  peerVideosSelector,
+  selectedPeerVideoIdSelector,
+  (currentApp, peerVideos, selectedId) => (
+    currentApp === 'video' ?
+      peerVideos.filterNot(
+        ({ peer }) => peer.id === selectedId
+      ) :
+      peerVideos
+  )
+);
 
-export function selectMainPeerVideo() {
-  return createSelector(
-    selectPeerVideos(),
-    selectSelectedPeerVideoId(),
-    (peerVideos, selectedId) => peerVideos.find(({ peer }) => peer.id === selectedId)
-  );
-}
+export const mainPeerVideoSelector = createSelector(
+  peerVideosSelector,
+  selectedPeerVideoIdSelector,
+  (peerVideos, selectedId) => peerVideos.find(({ peer }) => peer.id === selectedId)
+);
 
-export function selectVideoIsPaused() {
-  return createSelector(
-    selectRtc(),
-    globalState => globalState.get('videoIsPaused')
-  );
-}
+export const videoIsPausedSelector = createSelector(
+  rtcSelector,
+  rtcState => rtcState.get('videoIsPaused')
+);
 
-export function selectVolume() {
-  return createSelector(
-    selectRtc(),
-    globalState => globalState.get('volume')
-  );
-}
+export const volumeSelector = createSelector(
+  rtcSelector,
+  rtcState => rtcState.get('volume')
+);
 
-export function selectWebrtc() {
-  return createSelector(
-    selectRtc(),
-    globalState => globalState.get('webrtc')
-  );
-}
+export const webrtcSelector = createSelector(
+  rtcSelector,
+  rtcState => rtcState.get('webrtc')
+);
 
 export default createStructuredSelector({
   roomName: roomNameSelector,
-  webrtc: selectWebrtc(),
-  peerVideos: selectDisplayPeerVideos(),
+  webrtc: webrtcSelector,
+  peerVideos: displayPeerVideosSelector,
 });

@@ -1,7 +1,7 @@
 import { createStructuredSelector } from 'reselect';
 
-import { selectVideoId } from 'containers/Youtube/selectors';
+import { videoIdSelector } from 'containers/Youtube/selectors';
 
 export default createStructuredSelector({
-  videoId: selectVideoId(),
+  videoId: videoIdSelector,
 });
