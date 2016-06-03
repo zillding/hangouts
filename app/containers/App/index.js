@@ -16,7 +16,13 @@ import mapDispatchToProps from './actions';
 
 import Webrtc from 'containers/Webrtc';
 
-import styles from './styles.css';
+const containerStyle = {
+  position: 'fixed',
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+};
 
 class App extends Component {
   componentDidMount() {
@@ -25,7 +31,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className={styles.container}>
+      <div style={containerStyle}>
         {this.props.children}
         <Webrtc />
         <NotificationSystem ref="notification" />
