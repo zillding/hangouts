@@ -7,17 +7,17 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import mapStateToProps from './selectors';
 import mapDispatchToProps from './actions';
+import mapStateToProps from './selectors';
 
 import ListItem from 'components/ListItem';
 import ListItemControl from 'components/ListItemControl';
 import PreviewYoutubePlayer from 'components/PreviewYoutubePlayer';
-import YoutubeVideoInfo from 'components/YoutubeVideoInfo';
-import SearchPreviewButton from 'components/SearchPreviewButton';
-import SearchCancelPreviewButton from 'components/SearchCancelPreviewButton';
-import SearchAddLabel from 'components/SearchAddLabel';
 import SearchAddButton from 'components/SearchAddButton';
+import SearchAddLabel from 'components/SearchAddLabel';
+import SearchCancelPreviewButton from 'components/SearchCancelPreviewButton';
+import SearchPreviewButton from 'components/SearchPreviewButton';
+import YoutubeVideoInfo from 'components/YoutubeVideoInfo';
 
 class YoutubeSearchItem extends Component {
 

@@ -1,4 +1,4 @@
-import { createSelector, createStructuredSelector } from 'reselect';
+import { createSelector } from 'reselect';
 
 import { getVideoIndex } from 'containers/Youtube/utils';
 
@@ -12,24 +12,12 @@ const disableControlSelector = createSelector(
   isConnected => !isConnected
 );
 
-function getIsInPlaylist({ id: { videoId } }) {
-  return createSelector(
-    playlistSelector,
-    playlist => getVideoIndex(playlist, videoId) !== -1
-  );
-}
-
-export default createStructuredSelector({
-  disableControl: disableControlSelector,
-  getIsInPlaylist,
-});
-
-// createSelector(
-//   disableControlSelector,
-//   playlistSelector,
-//   (disableControl, playlist) => ({
-//     disableControl,
-//     getIsInPlaylist: ({ id: { videoId } }) =>
-//       getVideoIndex(playlist, videoId) !== -1,
-//   })
-// );
+export default createSelector(
+  disableControlSelector,
+  playlistSelector,
+  (disableControl, playlist) => ({
+    disableControl,
+    getIsInPlaylist: ({ id: { videoId } }) =>
+      getVideoIndex(playlist, videoId) !== -1,
+  })
+);

@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable';
+import { fromJS, List } from 'immutable';
 
 import {
   SET_SEARCH_TERM,
@@ -23,7 +23,8 @@ function youtubeSearchReducer(state = initialState, action) {
     case SET_SEARCH_RESULT:
       return state
         .set('isSearching', false)
-        .set('searchResult', action.data);
+        .set('searchError', null)
+        .set('searchResult', new List(action.data.items));
     case SET_SEARCH_ERROR:
       return state
         .set('isSearching', false)
