@@ -14,7 +14,7 @@ import mapStateToProps from './selectors';
 
 import YoutubeControlButton from 'components/YoutubeControlButton';
 
-const YoutubeControl = (props) => {
+const YoutubeControl = props => {
   const {
     isPlaying,
 
@@ -37,7 +37,7 @@ const YoutubeControl = (props) => {
     onSync,
   } = props;
 
-  const PauseButton = (
+  const pauseButton = (
     <YoutubeControlButton
       loading={loadingPause}
       disabled={disablePause}
@@ -47,7 +47,7 @@ const YoutubeControl = (props) => {
     </YoutubeControlButton>
   );
 
-  const ResumeButton = (
+  const resumeButton = (
     <YoutubeControlButton
       loading={loadingResume}
       disabled={disableResume}
@@ -57,33 +57,33 @@ const YoutubeControl = (props) => {
     </YoutubeControlButton>
   );
 
-  const PreviousButton = (
+  const previousButton = (
     <YoutubeControlButton
       loading={loadingPrevious}
       disabled={disablePrevious}
       onClick={onPrevious}
     >
-     Previous
+      Previous
     </YoutubeControlButton>
   );
 
-  const NextButton = (
+  const nextButton = (
     <YoutubeControlButton
       loading={loadingNext}
       disabled={disableNext}
       onClick={onNext}
     >
-     Next
+      Next
     </YoutubeControlButton>
   );
 
-  const SyncButton = (
+  const syncButton = (
     <YoutubeControlButton
       loading={loadingSync}
       disabled={disableSync}
       onClick={onSync}
     >
-     Sync
+      Sync
     </YoutubeControlButton>
   );
 
@@ -92,16 +92,12 @@ const YoutubeControl = (props) => {
       justifyContent="space-between"
     >
       <div>
-        {
-          isPlaying ?
-            <PauseButton /> :
-            <ResumeButton />
-        }
-        <PreviousButton />
-        <NextButton />
+        {isPlaying ? pauseButton : resumeButton}
+        {previousButton}
+        {nextButton}
       </div>
       <div>
-        <SyncButton />
+        {syncButton}
       </div>
     </Flex>
   );
