@@ -40,6 +40,11 @@ export const isPlayingSelector = createSelector(
   youtubeState => youtubeState.get('isPlaying')
 );
 
+export const isSendingSelector = createSelector(
+  youtubeSelector,
+  youtubeState => youtubeState.get('isSending')
+);
+
 export default createStructuredSelector({
   roomName: roomNameSelector,
   currentApp: currentAppSelector,
