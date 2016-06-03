@@ -10,6 +10,11 @@ export const isConnectedSelector = createSelector(
   youtubeState => youtubeState.get('isConnected')
 );
 
+export const disableControlSelector = createSelector(
+  isConnectedSelector,
+  isConnected => !isConnected
+);
+
 export const showSidebarSelector = createSelector(
   youtubeSelector,
   youtubeState => youtubeState.get('showSidebar')

@@ -5,13 +5,16 @@ import { getVideoIndex } from 'containers/Youtube/utils';
 import {
   disableControlSelector,
   playlistSelector,
+  videoIdSelector,
 } from 'containers/Youtube/selectors';
 
 export default createSelector(
   disableControlSelector,
   playlistSelector,
-  (disableControl, playlist) => ({
+  videoIdSelector,
+  (disableControl, playlist, currentPlayingVideoId) => ({
     disableControl,
-    getIsInPlaylist: videoId => getVideoIndex(playlist, videoId) !== -1,
+    getIndex: videoId => getVideoIndex(playlist, videoId),
+    getIsCurrentPlayingItem: videoId => videoId === currentPlayingVideoId,
   })
 );

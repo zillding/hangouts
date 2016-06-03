@@ -47,8 +47,12 @@ class YoutubeSearchItem extends Component {
 
   getControl() {
     const { peeking, isAdding } = this.state;
-    const { data, getIsInPlaylist, disableControl } = this.props;
-    const isInPlaylist = getIsInPlaylist(data);
+    const {
+      data: { id: { videoId } },
+      getIsInPlaylist,
+      disableControl,
+    } = this.props;
+    const isInPlaylist = getIsInPlaylist(videoId);
 
     return (
       <ListItemControl>
