@@ -1,5 +1,6 @@
 .imgPlaceholder {
   height: 90px;
+  width: 120px;
   background-color: rgba(187, 187, 187, 0.85);
   margin-right: 10px;
   position: relative;

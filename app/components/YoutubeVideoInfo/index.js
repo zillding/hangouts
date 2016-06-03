@@ -17,7 +17,7 @@ function YoutubeVideoInfo({ data }) {
   return (
     <Flex flex={1}>
       <Item
-        flex="0 0 120px"
+        flex={0}
         className={styles.imgPlaceholder}
       >
         <img

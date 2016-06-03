@@ -13,7 +13,7 @@ import styles from './styles.css';
 function ListItemControl({ children }) {
   return (
     <Item
-      flexShrink={0}
+      flex={0}
       className={styles.listItemControl}
     >
       {children}

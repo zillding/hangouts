@@ -13,7 +13,7 @@ function SearchPreviewButton({ onClick }) {
       className="ui icon button"
       onClick={onClick}
     >
-      <i className="file icon"></i>
+      <i className="film icon"></i>
     </button>
   );
 }

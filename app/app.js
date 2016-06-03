@@ -21,7 +21,7 @@ import useScroll from 'react-router-scroll';
 import configureStore from './store';
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
-import 'sanitize.css/lib/sanitize.css';
+// import 'sanitize.css/lib/sanitize.css';
 import 'semantic-ui-css/semantic.css';
 import 'react-flex/index.css';
 
