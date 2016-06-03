@@ -4,12 +4,13 @@
  *
  */
 
-import classNames from 'classnames';
 import React, { Component, PropTypes } from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import { connect } from 'react-redux';
 
+import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 import { Flex } from 'react-flex';
 import GitHubForkRibbon from 'react-github-fork-ribbon';
 
@@ -25,7 +26,8 @@ const containerStyle = {
 };
 
 const segmentStyle = {
-  minWidth: 400,
+  minWidth: 450,
+  padding: 20,
 };
 
 class SplashPage extends Component {
@@ -39,19 +41,15 @@ class SplashPage extends Component {
 
   shouldComponentUpdate = shouldPureComponentUpdate
 
-  getErrorNode() {
-    if (!this.state.error) {
-      return null;
-    }
-
-    return (
-      <div className="ui error message">
-        <ui className="list">
-          <li>Please enter room name.</li>
-        </ui>
-      </div>
-    );
-  }
+  getGithubRibbon = () => (
+    <GitHubForkRibbon
+      href="https://github.com/zillding/hangouts"
+      target="_blank"
+      position="right"
+    >
+      Fork me on GitHub
+    </GitHubForkRibbon>
+  )
 
   handleChange = (e) => {
     const { value } = e.target;
@@ -76,7 +74,8 @@ class SplashPage extends Component {
   }
 
   render() {
-    const { error } = this.state;
+    const { value, error } = this.state;
+    const errorNode = error ? 'room name cannot be empty.' : false;
 
     return (
       <Flex
@@ -84,40 +83,28 @@ class SplashPage extends Component {
         justifyContent="center"
         style={containerStyle}
       >
-        <GitHubForkRibbon
-          href="https://github.com/zillding/hangouts"
-          target="_blank"
-          position="right"
+        {this.getGithubRibbon()}
+        <Paper
+          zDepth={2}
+          style={segmentStyle}
         >
-          Fork me on GitHub
-        </GitHubForkRibbon>
-        <div style={segmentStyle}>
-          <div className="ui segment">
-            <h2>Let's hangout!</h2>
-            <form
-              className="ui large form"
-              onSubmit={this.handleSubmit}
-            >
-              <div className={classNames('field', { error })}>
-                <div className="ui left icon input">
-                  <input
-                    ref="input"
-                    type="text"
-                    placeholder="Enter room name..."
-                    onChange={this.handleChange}
-                  />
-                  <i className="home icon"></i>
-                </div>
-              </div>
-              <RaisedButton
-                label="OK"
-                type="submit"
-                primary
-              />
-            </form>
-          </div>
-          {this.getErrorNode()}
-        </div>
+          <h2>Let's hangout!</h2>
+          <form onSubmit={this.handleSubmit}>
+            <TextField
+              floatingLabelText="Enter room name..."
+              hintText="my awesome room"
+              fullWidth
+              errorText={errorNode}
+              value={value}
+              onChange={this.handleChange}
+            />
+            <RaisedButton
+              label="OK"
+              type="submit"
+              primary
+            />
+          </form>
+        </Paper>
       </Flex>
     );
   }
