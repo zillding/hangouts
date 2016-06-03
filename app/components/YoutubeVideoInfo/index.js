@@ -15,7 +15,10 @@ function YoutubeVideoInfo({ data }) {
   const { snippet } = data;
 
   return (
-    <Flex flex={1}>
+    <Flex
+      wrap={false}
+      flex={1}
+    >
       <Item
         flex={0}
         className={styles.imgPlaceholder}

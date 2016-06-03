@@ -27,7 +27,7 @@ function PlaylistDeleteButton({ loading, disabled, onClick }) {
 PlaylistDeleteButton.propTypes = {
   loading: PropTypes.bool.isRequired,
   disabled: PropTypes.bool.isRequired,
-  onClick: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default PlaylistDeleteButton;

@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable';
+import { fromJS, List } from 'immutable';
 
 import {
   SEND_ROOM_NAME,
@@ -39,14 +39,14 @@ const initialState = fromJS({
   playlist: [],
   videoId: '',
   isPlaying: false,
-  isSending: fromJS({
+  isSending: {
     play: false,
     playNext: false,
     playPrevious: false,
     pause: false,
     resume: false,
     syncTime: false,
-  }),
+  },
 });
 
 function youtubeReducer(state = initialState, action) {
@@ -69,7 +69,7 @@ function youtubeReducer(state = initialState, action) {
     case SET_PLAYER:
       return state.set('player', action.player);
     case SET_YOUTUBE_STATE:
-      return state.set('playlist', action.data.playlist);
+      return state.set('playlist', new List(action.data.playlist));
 
     case SEND_ADD_VIDEO_ITEM:
       state.get('socket').emit('action', {
