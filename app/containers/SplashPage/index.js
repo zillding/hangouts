@@ -4,13 +4,14 @@
  *
  */
 
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import shouldPureComponentUpdate from 'react-pure-render/function';
 import classNames from 'classnames';
+import React, { Component, PropTypes } from 'react';
+import shouldPureComponentUpdate from 'react-pure-render/function';
+import { connect } from 'react-redux';
 
-import GitHubForkRibbon from 'react-github-fork-ribbon';
+import RaisedButton from 'material-ui/RaisedButton';
 import { Flex } from 'react-flex';
+import GitHubForkRibbon from 'react-github-fork-ribbon';
 
 import mapDispatchToProps from './actions';
 
@@ -34,8 +35,6 @@ class SplashPage extends Component {
       value: '',
       error: false,
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   shouldComponentUpdate = shouldPureComponentUpdate
@@ -54,7 +53,7 @@ class SplashPage extends Component {
     );
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     const { value } = e.target;
     this.setState({ value });
     if (value.trim()) {
@@ -64,7 +63,7 @@ class SplashPage extends Component {
     }
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     const { value } = this.state;
     if (value) {
@@ -110,12 +109,11 @@ class SplashPage extends Component {
                   <i className="home icon"></i>
                 </div>
               </div>
-              <button
-                className="ui fluid large teal submit button"
+              <RaisedButton
+                label="OK"
                 type="submit"
-              >
-                OK
-              </button>
+                primary
+              />
             </form>
           </div>
           {this.getErrorNode()}

@@ -157,6 +157,7 @@
     "fontfaceobserver": "^1.7.1",
     "history": "^2.1.0",
     "immutable": "^3.8.1",
+    "material-ui": "^0.15.0",
     "qs": "^6.2.0",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",

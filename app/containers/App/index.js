@@ -10,6 +10,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import NotificationSystem from 'react-notification-system';
 
 import mapDispatchToProps from './actions';
@@ -31,11 +33,13 @@ class App extends Component {
 
   render() {
     return (
-      <div style={containerStyle}>
-        {this.props.children}
-        <Webrtc />
-        <NotificationSystem ref="notification" />
-      </div>
+      <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <div style={containerStyle}>
+          {this.props.children}
+          <Webrtc />
+          <NotificationSystem ref="notification" />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
