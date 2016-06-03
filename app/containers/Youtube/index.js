@@ -5,18 +5,19 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
+import { connect } from 'react-redux';
 
 import { Flex, Item } from 'react-flex';
 
+import mapDispatchToProps from './actions';
 import mapStateToProps from './selectors';
 
-import YoutubeSearch from 'containers/YoutubeSearch';
-import YoutubePlaylist from 'containers/YoutubePlaylist';
-import YoutubePlayer from 'containers/YoutubePlayer';
-import YoutubeControl from 'containers/YoutubeControl';
 import YoutubeNotice from 'components/YoutubeNotice';
+import YoutubeControl from 'containers/YoutubeControl';
+import YoutubePlayer from 'containers/YoutubePlayer';
+import YoutubePlaylist from 'containers/YoutubePlaylist';
+import YoutubeSearch from 'containers/YoutubeSearch';
 
 import { setUpSocket } from './utils';
 
@@ -78,4 +79,4 @@ Youtube.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(Youtube);
+export default connect(mapStateToProps, mapDispatchToProps)(Youtube);

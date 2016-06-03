@@ -8,7 +8,7 @@ import {
   setYoutubeState,
   addVideoItem,
   deleteVideoItem,
-  playYoututbe,
+  playYoutube,
   playNextVideo,
   playPrevVideo,
   pauseYoutube,
@@ -43,7 +43,7 @@ export function setUpSocket(roomName, dispatch) {
       case 'DELETE_VIDEO':
         return dispatch(deleteVideoItem(data));
       case 'PLAY':
-        return dispatch(playYoututbe(data));
+        return dispatch(playYoutube(data));
       case 'PLAY_NEXT':
         return dispatch(playNextVideo());
       case 'PLAY_PREVIOUS':

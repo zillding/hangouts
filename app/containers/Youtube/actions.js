@@ -110,3 +110,7 @@ export const syncPlayTime = time => ({
   type: SYNC_PLAY_TIME,
   time,
 });
+
+export default dispatch => ({
+  dispatch,
+});
