@@ -39,7 +39,8 @@ class Youtube extends Component {
 
     return (
       <Item
-        flex={1}
+        flex={0}
+        flexGrow={1}
         className={styles.sidebar}
       >
         {showSearch ? <YoutubeSearch /> : <YoutubePlaylist />}
@@ -54,6 +55,7 @@ class Youtube extends Component {
       <Flex
         alignItems="stretch"
         justifyContent="center"
+        wrap={false}
         className={styles.container}
         style={style}
       >

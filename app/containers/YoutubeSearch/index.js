@@ -15,6 +15,8 @@ import mapStateToProps from './selectors';
 
 import HideSearchButton from 'components/HideSearchButton';
 import SearchErrorMessage from 'components/SearchErrorMessage';
+import SidebarContainer from 'components/SidebarContainer';
+import SidebarScrollItem from 'components/SidebarScrollItem';
 import YoutubeSearchInput from 'components/YoutubeSearchInput';
 import YoutubeSearchItem from 'containers/YoutubeSearchItem';
 
@@ -30,10 +32,7 @@ const YoutubeSearch = props => {
   } = props;
 
   return (
-    <Flex
-      column
-      alignItems="stretch"
-    >
+    <SidebarContainer>
       <Flex style={{ marginBottom: 10 }}>
         <Item
           flex={1}
@@ -48,7 +47,7 @@ const YoutubeSearch = props => {
         </Item>
         <HideSearchButton onClick={toggleSearch} />
       </Flex>
-      <Item flex={1}>
+      <SidebarScrollItem>
         {
           searchError ?
             <SearchErrorMessage error={searchError} /> :
@@ -59,8 +58,8 @@ const YoutubeSearch = props => {
               />
             )
         }
-      </Item>
-    </Flex>
+      </SidebarScrollItem>
+    </SidebarContainer>
   );
 };
 
