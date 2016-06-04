@@ -51,13 +51,6 @@ const initialState = fromJS({
 
 function youtubeReducer(state = initialState, { type, payload }) {
   switch (type) {
-    case SEND_ROOM_NAME: {
-      const socket = state.get('socket');
-      if (socket && socket.connected) {
-        socket.emit('new user', payload);
-      }
-      return state;
-    }
     case SET_CONNECTED:
       return state.set('isConnected', payload);
     case SET_SOCKET:
@@ -71,6 +64,13 @@ function youtubeReducer(state = initialState, { type, payload }) {
     case SET_YOUTUBE_STATE:
       return state.set('playlist', new List(payload.playlist));
 
+    case SEND_ROOM_NAME: {
+      const socket = state.get('socket');
+      if (socket && socket.connected) {
+        socket.emit('new user', { data: payload });
+      }
+      return state;
+    }
     case SEND_ADD_VIDEO_ITEM:
       state.get('socket').emit('action', {
         type: 'ADD_VIDEO',
@@ -180,6 +180,7 @@ function youtubeReducer(state = initialState, { type, payload }) {
     case SYNC_PLAY_TIME:
       state.get('player').seekTo(payload);
       return state.setIn(['isSending', 'syncTime'], false);
+
     default:
       return state;
   }
