@@ -7,40 +7,22 @@ import {
   SET_MUTE,
   SET_VOLUME,
   SET_WEBRTC,
-  TOGGLE_MUTE,
   TOGGLE_VIDEO,
 } from './constants';
 
-export const addPeerVideo = data => ({
-  type: ADD_PEER_VIDEO,
-  data,
-});
+export const addPeerVideo = createAction(ADD_PEER_VIDEO);
 
-export const removePeerVideo = data => ({
-  type: REMOVE_PEER_VIDEO,
-  data,
-});
+export const removePeerVideo = createAction(REMOVE_PEER_VIDEO);
 
-export const selectPeerVideo = id => ({
-  type: SELECT_PEER_VIDEO,
-  id,
-});
+export const selectPeerVideo = createAction(SELECT_PEER_VIDEO);
 
 export const setMute = createAction(SET_MUTE);
 
-export const setVolume = volume => ({
-  type: SET_VOLUME,
-  volume,
-});
+export const setVolume = createAction(SET_VOLUME);
 
-export const setWebrtc = webrtc => ({
-  type: SET_WEBRTC,
-  webrtc,
-});
+export const setWebrtc = createAction(SET_WEBRTC);
 
-export const toggleMute = () => ({ type: TOGGLE_MUTE });
-
-export const toggleVideo = () => ({ type: TOGGLE_VIDEO });
+export const toggleVideo = createAction(TOGGLE_VIDEO);
 
 export default dispatch => ({
   onReady: webrtc => dispatch(setWebrtc(webrtc)),

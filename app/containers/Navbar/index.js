@@ -7,16 +7,16 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import mapStateToProps from './selectors';
 import mapDispatchToProps from './actions';
+import mapStateToProps from './selectors';
 
-import NavItemVideo from 'components/NavItemVideo';
-import NavItemYoutube from 'components/NavItemYoutube';
 import NavItemConnecting from 'components/NavItemConnecting';
-import NavItemVolume from 'components/NavItemVolume';
 import NavItemToggleMute from 'components/NavItemToggleMute';
-import NavItemToggleVideo from 'components/NavItemToggleVideo';
 import NavItemToggleSidebar from 'components/NavItemToggleSidebar';
+import NavItemToggleVideo from 'components/NavItemToggleVideo';
+import NavItemVideo from 'components/NavItemVideo';
+import NavItemVolume from 'components/NavItemVolume';
+import NavItemYoutube from 'components/NavItemYoutube';
 
 function Navbar(props) {
   const {
@@ -28,7 +28,7 @@ function Navbar(props) {
     videoIsPaused,
     showSidebar,
     setCurrentApp,
-    toggleMuteState,
+    setMute,
     toggleVideoState,
     toggleSidebarState,
   } = props;
@@ -59,7 +59,7 @@ function Navbar(props) {
         }
         <NavItemToggleMute
           audioIsMuted={audioIsMuted}
-          onClick={toggleMuteState}
+          onClick={() => setMute(!audioIsMuted)}
         />
         <NavItemToggleVideo
           videoIsPaused={videoIsPaused}
@@ -87,7 +87,7 @@ Navbar.propTypes = {
   videoIsPaused: PropTypes.bool.isRequired,
   showSidebar: PropTypes.bool.isRequired,
   setCurrentApp: PropTypes.func.isRequired,
-  toggleMuteState: PropTypes.func.isRequired,
+  setMute: PropTypes.func.isRequired,
   toggleVideoState: PropTypes.func.isRequired,
   toggleSidebarState: PropTypes.func.isRequired,
 };
