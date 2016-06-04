@@ -21,13 +21,35 @@ const initialState = fromJS({
 
 function webrtcReducer(state = initialState, { type, payload }) {
   switch (type) {
-    case ADD_PEER_VIDEO:
-      return state.set('peerVideos', state.get('peerVideos').push(payload));
+    case ADD_PEER_VIDEO: {
+      if (state.get('peerVideos').size > 0) {
+        return state.set('peerVideos', state.get('peerVideos').push(payload));
+      }
+
+      // if the added video is the only peer video
+      // auto select it to be the main video
+      return state
+        .set('peerVideos', state.get('peerVideos').push(payload))
+        .set('selectedPeerVideoId', payload.peer.id);
+    }
     case REMOVE_PEER_VIDEO: {
-      const index = state.get('peerVideos').findIndex(({ peer: { id } }) =>
+      const peerVideos = state.get('peerVideos');
+      const index = peerVideos.findIndex(({ peer: { id } }) =>
         id === payload.peer.id
       );
-      return state.set('peerVideos', state.get('peerVideos').delete(index));
+
+      if (payload.peer.id !== state.get('selectedPeerVideoId')) {
+        return state.set('peerVideos', peerVideos.delete(index));
+      }
+
+      const nextVideo = peerVideos.find(({ peer }) =>
+        peer.id !== payload.peer.id
+      );
+      const nextId = nextVideo && nextVideo.peer.id || '';
+
+      return state
+        .set('peerVideos', peerVideos.delete(index))
+        .set('selectedPeerVideoId', nextId);
     }
     case SELECT_PEER_VIDEO:
       return state.set('selectedPeerVideoId', payload);

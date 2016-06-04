@@ -13,14 +13,10 @@ import Waiting from 'components/Waiting';
 
 import styles from './styles.css';
 
-function Video({ currentApp, data }) {
-  if (currentApp !== 'video') {
-    return null;
-  }
+function Video({ show, data }) {
+  if (!show) return null;
 
-  if (!data) {
-    return <Waiting />;
-  }
+  if (!data) return <Waiting />;
 
   const { video } = data;
 
@@ -34,9 +30,9 @@ function Video({ currentApp, data }) {
 }
 
 Video.propTypes = {
-  currentApp: PropTypes.string.isRequired,
+  show: PropTypes.bool.isRequired,
   data: PropTypes.shape({
-    video: PropTypes.node.isRequired,
+    video: PropTypes.object.isRequired,
     peer: PropTypes.object.isRequired,
   }),
 };
