@@ -6,5 +6,10 @@
 }
 
 .ball {
+  border-radius: 50%;
+  height: 0.8em;
+  width: 0.8em;
+  background-color: #21ba45;
+  margin-left: 1px;
   opacity: 0.7;
 }

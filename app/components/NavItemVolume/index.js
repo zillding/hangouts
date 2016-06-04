@@ -8,6 +8,10 @@ import React, { PropTypes } from 'react';
 
 import styles from './styles.css';
 
+const Ball = () => (
+  <span className={styles.ball} />
+);
+
 function NavItemVolume({ value }) {
   const array = [];
   for (let i = 0; i < getNumberOfBalls(value); i++) {
@@ -18,11 +22,7 @@ function NavItemVolume({ value }) {
     <div className={`item ${styles.container}`}>
     {
       array.map(index =>
-        <div
-          key={index}
-          className={`ui green empty circular label ${styles.ball}`}
-          style={{ marginLeft: 1 }}
-        />
+        <Ball key={index} />
       )
     }
     </div>
