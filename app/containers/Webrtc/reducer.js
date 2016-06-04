@@ -5,6 +5,7 @@ import {
   ADD_PEER_VIDEO,
   REMOVE_PEER_VIDEO,
   SELECT_PEER_VIDEO,
+  SET_MUTE,
   SET_VOLUME,
   SET_WEBRTC,
   TOGGLE_MUTE,
@@ -38,6 +39,16 @@ function webrtcReducer(state = initialState, action) {
     case SELECT_PEER_VIDEO:
       return state
         .set('selectedPeerVideoId', action.id);
+    case SET_MUTE: {
+      const webrtc = state.get('webrtc');
+      if (action.payload) {
+        webrtc.mute();
+      } else {
+        webrtc.unmute();
+      }
+      return state
+        .set('audioIsMuted', !!action.payload);
+    }
     case SET_VOLUME:
       return state
         .set('volume', action.volume);

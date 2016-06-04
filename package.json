@@ -173,6 +173,7 @@
     "react-timeago": "^3.0.0",
     "react-youtube": "^6.1.0",
     "redux": "^3.5.2",
+    "redux-actions": "^0.9.1",
     "redux-immutable": "^3.0.6",
     "redux-logger": "^2.6.1",
     "redux-saga": "^0.10.0",

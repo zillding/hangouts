@@ -23,7 +23,13 @@ class YoutubePlayer extends Component {
   }
 
   render() {
-    const { videoId, onReady } = this.props;
+    const {
+      videoId,
+      onReady,
+      onPlay,
+      onPause,
+      onEnd,
+    } = this.props;
     const { width } = this.state;
     const height = width === 1280 ? 720 : 480;
 
@@ -48,6 +54,9 @@ class YoutubePlayer extends Component {
           videoId={videoId}
           opts={opts}
           onReady={e => onReady(e.target)}
+          onPlay={onPlay}
+          onPause={onPause}
+          onEnd={onEnd}
         />
         {videoId ? null : <YoutubeOverlay />}
       </div>
@@ -58,6 +67,9 @@ class YoutubePlayer extends Component {
 YoutubePlayer.propTypes = {
   videoId: PropTypes.string.isRequired,
   onReady: PropTypes.func.isRequired,
+  onPlay: PropTypes.func,
+  onPause: PropTypes.func,
+  onEnd: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(YoutubePlayer);

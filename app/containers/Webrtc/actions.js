@@ -1,7 +1,10 @@
+import { createAction } from 'redux-actions';
+
 import {
   ADD_PEER_VIDEO,
   REMOVE_PEER_VIDEO,
   SELECT_PEER_VIDEO,
+  SET_MUTE,
   SET_VOLUME,
   SET_WEBRTC,
   TOGGLE_MUTE,
@@ -22,6 +25,8 @@ export const selectPeerVideo = id => ({
   type: SELECT_PEER_VIDEO,
   id,
 });
+
+export const setMute = createAction(SET_MUTE);
 
 export const setVolume = volume => ({
   type: SET_VOLUME,
