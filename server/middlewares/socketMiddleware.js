@@ -91,7 +91,8 @@ function setUpSocket(io) {
     });
 
     socket.on('action', msg => {
-      io.in(room).emit('action', msg);
+      const broadcastMsg = Object.assign({}, msg, { senderId: socket.id });
+      io.in(room).emit('action', broadcastMsg);
 
       // store on server
       const { type, data } = msg;
