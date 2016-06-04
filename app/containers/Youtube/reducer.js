@@ -151,12 +151,10 @@ function youtubeReducer(state = initialState, { type, payload }) {
         .set('videoId', nextVideoId)
         .set('isPlaying', false);
     }
-    case PLAY_YOUTUBE: {
-      const { videoId } = payload;
+    case PLAY_YOUTUBE:
       return state
-        .set('videoId', videoId)
-        .set('isPlaying', !!videoId);
-    }
+        .set('videoId', payload)
+        .set('isPlaying', !!payload);
     case PLAY_NEXT_VIDEO: {
       const id = getNextVideoId(state.get('playlist'), state.get('videoId'));
       return state
