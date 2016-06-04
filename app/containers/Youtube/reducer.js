@@ -122,20 +122,29 @@ function youtubeReducer(state = initialState, action) {
     }
     case PLAY_NEXT_VIDEO: {
       const id = getNextVideoId(state.get('playlist'), state.get('videoId'));
-      return state.set('videoId', id);
+      return state
+        .setIn(['isSending', 'playNext'], false)
+        .set('videoId', id);
     }
     case PLAY_PREV_VIDEO: {
       const id = getPreviousVideoId(state.get('playlist'), state.get('videoId'));
-      return state.set('videoId', id);
+      return state
+        .setIn(['isSending', 'playPrevious'], false)
+        .set('videoId', id);
     }
     case PAUSE_YOUTUBE:
       state.get('player').pauseVideo();
-      return state.set('isPlaying', false);
+      return state
+        .setIn(['isSending', 'pause'], false)
+        .set('isPlaying', false);
     case RESUME_YOUTUBE:
       state.get('player').playVideo();
-      return state.set('isPlaying', true);
+      return state
+        .setIn(['isSending', 'resume'], false)
+        .set('isPlaying', true);
     case SYNC_PLAY_TIME:
-      return state.get('player').seekTo(action.time);
+      state.get('player').seekTo(action.time);
+      return state.setIn(['isSending', 'syncTime'], false);
     default:
       return state;
   }
