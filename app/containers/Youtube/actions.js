@@ -1,3 +1,5 @@
+import { createAction } from 'redux-actions';
+
 import {
   SEND_ROOM_NAME,
   SET_CONNECTED,
@@ -60,10 +62,7 @@ export const sendAddVideoItem = data => ({
   data,
 });
 
-export const sendDeleteVideoItem = index => ({
-  type: SEND_DELETE_VIDEO_ITEM,
-  index,
-});
+export const sendDeleteVideoItem = createAction(SEND_DELETE_VIDEO_ITEM);
 
 export const sendPlayYoutube = videoId => ({
   type: SEND_PLAY_YOUTUBE,
@@ -88,10 +87,7 @@ export const addVideoItem = data => ({
   data,
 });
 
-export const deleteVideoItem = index => ({
-  type: DELETE_VIDEO_ITEM,
-  index,
-});
+export const deleteVideoItem = createAction(DELETE_VIDEO_ITEM);
 
 export const playYoutube = videoId => ({
   type: PLAY_YOUTUBE,

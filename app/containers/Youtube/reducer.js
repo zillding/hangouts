@@ -1,5 +1,7 @@
 import { fromJS, List } from 'immutable';
 
+import { getNextVideoId, getPreviousVideoId } from './utils';
+
 import {
   SEND_ROOM_NAME,
   SET_CONNECTED,
@@ -27,8 +29,6 @@ import {
   RESUME_YOUTUBE,
   SYNC_PLAY_TIME,
 } from './constants';
-
-import { getNextVideoId, getPreviousVideoId } from './utils';
 
 const initialState = fromJS({
   isConnected: false,
@@ -80,7 +80,7 @@ function youtubeReducer(state = initialState, action) {
     case SEND_DELETE_VIDEO_ITEM:
       state.get('socket').emit('action', {
         type: 'DELETE_VIDEO',
-        data: action.data,
+        data: action.payload,
       });
       return state;
     case SEND_PLAY_YOUTUBE:
@@ -110,10 +110,31 @@ function youtubeReducer(state = initialState, action) {
       return state.setIn(['isSending', 'syncTime'], true);
     }
 
-    case ADD_VIDEO_ITEM:
-      return state.set('playlist', state.get('playlist').push(action.data));
-    case DELETE_VIDEO_ITEM:
-      return state.set('playlist', state.get('playlist').delete(action.index));
+    case ADD_VIDEO_ITEM: {
+      let result = state;
+      // if the video to be added is the only one on the playlist,
+      // auto play this video
+      const playlist = state.get('playlist');
+      if (playlist.size === 0) {
+        const video = action.data;
+        const videoId = video && video.id && video.id.videoId;
+        result = state.set('videoId', videoId);
+      }
+      return result.set('playlist', playlist.push(action.data));
+    }
+    case DELETE_VIDEO_ITEM: {
+      let result = state;
+      // if the video to be deleted is the current playing video,
+      // auto play next video
+      const playlist = state.get('playlist');
+      const video = playlist.get(action.payload);
+      const videoId = video && video.id && video.id.videoId;
+      if (videoId === state.get('videoId')) {
+        const nextVideoId = getNextVideoId(playlist, state.get('videoId'));
+        result = state.set('videoId', nextVideoId);
+      }
+      return result.set('playlist', playlist.delete(action.payload));
+    }
     case PLAY_YOUTUBE: {
       const { videoId } = action;
       return state
