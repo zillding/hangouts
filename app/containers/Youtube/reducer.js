@@ -40,6 +40,9 @@ const initialState = fromJS({
   videoId: '',
   isPlaying: false,
   isSending: {
+    roomName: false,
+    addVideo: false,
+    deleteVideo: false,
     play: false,
     playNext: false,
     playPrevious: false,
@@ -62,27 +65,30 @@ function youtubeReducer(state = initialState, { type, payload }) {
     case SET_PLAYER:
       return state.set('player', payload);
     case SET_YOUTUBE_STATE:
-      return state.set('playlist', new List(payload.playlist));
+      return state
+        .set('playlist', new List(payload.playlist))
+        .setIn(['isSending', 'roomName'], false);
 
     case SEND_ROOM_NAME: {
       const socket = state.get('socket');
       if (socket && socket.connected) {
         socket.emit('new user', { data: payload });
       }
-      return state;
+      return state.setIn(['isSending', 'roomName'], true);
     }
+
     case SEND_ADD_VIDEO_ITEM:
       state.get('socket').emit('action', {
         type: 'ADD_VIDEO',
         data: payload,
       });
-      return state;
+      return state.setIn(['isSending', 'addVideo'], true);
     case SEND_DELETE_VIDEO_ITEM:
       state.get('socket').emit('action', {
         type: 'DELETE_VIDEO',
         data: payload,
       });
-      return state;
+      return state.setIn(['isSending', 'deleteVideo'], true);
     case SEND_PLAY_YOUTUBE:
       state.get('socket').emit('action', {
         type: 'PLAY',
@@ -113,14 +119,17 @@ function youtubeReducer(state = initialState, { type, payload }) {
     case ADD_VIDEO_ITEM: {
       const playlist = state.get('playlist');
 
+      const result = state
+        .setIn(['isSending', 'addVideo'], false)
+        .set('playlist', playlist.push(payload));
+
       if (playlist.size > 0) {
-        return state.set('playlist', playlist.push(payload));
+        return result;
       }
 
       // if the video to be added is the only one on the playlist,
       // auto play this video
-      return state
-        .set('playlist', playlist.push(payload))
+      return result
         .set('videoId', payload && payload.id && payload.id.videoId)
         .set('isPlaying', true);
     }
@@ -129,8 +138,12 @@ function youtubeReducer(state = initialState, { type, payload }) {
       const video = playlist.get(payload);
       const videoId = video && video.id && video.id.videoId;
 
+      const result = state
+        .setIn(['isSending', 'deleteVideo'], false)
+        .set('playlist', playlist.delete(payload));
+
       if (videoId !== state.get('videoId')) {
-        return state.set('playlist', playlist.delete(payload));
+        return result;
       }
 
       // if the video to be deleted is the current playing video,
@@ -138,21 +151,20 @@ function youtubeReducer(state = initialState, { type, payload }) {
       const nextVideoId = getNextVideoId(playlist, state.get('videoId'));
 
       if (nextVideoId) {
-        return state
-          .set('playlist', playlist.delete(payload))
+        return result
           .set('videoId', nextVideoId)
           .set('isPlaying', true);
       }
 
       // if the video to be deleted is the only video in playlist,
       // also set the playing state to false
-      return state
-        .set('playlist', playlist.delete(payload))
-        .set('videoId', nextVideoId)
+      return result
+        .set('videoId', '')
         .set('isPlaying', false);
     }
     case PLAY_YOUTUBE:
       return state
+        .setIn(['isSending', 'play'], false)
         .set('videoId', payload)
         .set('isPlaying', !!payload);
     case PLAY_NEXT_VIDEO: {

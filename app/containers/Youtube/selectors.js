@@ -2,6 +2,7 @@ import { createSelector, createStructuredSelector } from 'reselect';
 
 import { roomNameSelector } from 'containers/App/selectors';
 import { currentAppSelector } from 'containers/HomePage/selectors';
+import { isSearchingSelector } from 'containers/YoutubeSearch/selectors';
 
 const youtubeSelector = state => state.get('home').get('youtube');
 
@@ -45,9 +46,16 @@ export const isSendingSelector = createSelector(
   youtubeState => youtubeState.get('isSending')
 );
 
+const showProgressBarSelector = createSelector(
+  isSendingSelector,
+  isSearchingSelector,
+  (map, isSearching) => !map.every(value => !value) || isSearching
+);
+
 export default createStructuredSelector({
   roomName: roomNameSelector,
   currentApp: currentAppSelector,
   showSidebar: showSidebarSelector,
   showSearch: showSearchSelector,
+  showProgress: showProgressBarSelector,
 });

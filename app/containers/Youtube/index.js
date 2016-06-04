@@ -21,6 +21,8 @@ import YoutubeSearch from 'containers/YoutubeSearch';
 
 import { setUpSocket } from './utils';
 
+import YoutubeProgressBar from 'components/YoutubeProgressBar';
+
 import styles from './styles.css';
 
 class Youtube extends Component {
@@ -50,23 +52,27 @@ class Youtube extends Component {
   }
 
   render() {
-    const style = this.props.currentApp === 'youtube' ? {} : { display: 'none' };
+    const { currentApp, showProgress } = this.props;
+    const style = currentApp === 'youtube' ? {} : { display: 'none' };
 
     return (
-      <Flex
-        alignItems="stretch"
-        justifyContent="center"
-        wrap={false}
-        className={styles.container}
-        style={style}
-      >
-        <div className={styles.player}>
-          <YoutubePlayer />
-          <YoutubeControl />
-          <YoutubeNotice />
-        </div>
-        {this.getSidebar()}
-      </Flex>
+      <div>
+        {showProgress ? <YoutubeProgressBar /> : null}
+        <Flex
+          alignItems="stretch"
+          justifyContent="center"
+          wrap={false}
+          className={styles.container}
+          style={style}
+        >
+          <div className={styles.player}>
+            <YoutubePlayer />
+            <YoutubeControl />
+            <YoutubeNotice />
+          </div>
+          {this.getSidebar()}
+        </Flex>
+      </div>
     );
   }
 }
@@ -76,6 +82,7 @@ Youtube.propTypes = {
   currentApp: PropTypes.string.isRequired,
   showSidebar: PropTypes.bool.isRequired,
   showSearch: PropTypes.bool.isRequired,
+  showProgress: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 

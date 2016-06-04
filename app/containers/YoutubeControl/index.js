@@ -14,7 +14,7 @@ import mapStateToProps from './selectors';
 
 import YoutubeControlButton from 'components/YoutubeControlButton';
 
-const YoutubeControl = props => {
+function YoutubeControl(props) {
   const {
     isPlaying,
 
@@ -88,20 +88,22 @@ const YoutubeControl = props => {
   );
 
   return (
-    <Flex
-      justifyContent="space-between"
-    >
-      <div>
-        {isPlaying ? pauseButton : resumeButton}
-        {previousButton}
-        {nextButton}
-      </div>
-      <div>
-        {syncButton}
-      </div>
-    </Flex>
+    <div>
+      <Flex
+        justifyContent="space-between"
+      >
+        <div>
+          {isPlaying ? pauseButton : resumeButton}
+          {previousButton}
+          {nextButton}
+        </div>
+        <div>
+          {syncButton}
+        </div>
+      </Flex>
+    </div>
   );
-};
+}
 
 YoutubeControl.propTypes = {
   isPlaying: PropTypes.bool.isRequired,

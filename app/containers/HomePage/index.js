@@ -47,7 +47,7 @@ class HomePage extends Component {
         alignItems="stretch"
         style={containerStyle}
       >
-        <div style={{ paddingBottom: 10 }}>
+        <div>
           <Navbar />
         </div>
         <Item
