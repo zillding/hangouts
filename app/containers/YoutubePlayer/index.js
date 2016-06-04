@@ -26,9 +26,7 @@ class YoutubePlayer extends Component {
     const {
       videoId,
       onReady,
-      onPlay,
-      onPause,
-      onEnd,
+      setRTCMute,
     } = this.props;
     const { width } = this.state;
     const height = width === 1280 ? 720 : 480;
@@ -54,9 +52,10 @@ class YoutubePlayer extends Component {
           videoId={videoId}
           opts={opts}
           onReady={e => onReady(e.target)}
-          onPlay={onPlay}
-          onPause={onPause}
-          onEnd={onEnd}
+          onPlay={setRTCMute(true)}
+          onPause={setRTCMute(false)}
+          onEnd={setRTCMute(false)}
+          onError={setRTCMute(false)}
         />
         {videoId ? null : <YoutubeOverlay />}
       </div>
@@ -67,9 +66,7 @@ class YoutubePlayer extends Component {
 YoutubePlayer.propTypes = {
   videoId: PropTypes.string.isRequired,
   onReady: PropTypes.func.isRequired,
-  onPlay: PropTypes.func,
-  onPause: PropTypes.func,
-  onEnd: PropTypes.func,
+  setRTCMute: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(YoutubePlayer);

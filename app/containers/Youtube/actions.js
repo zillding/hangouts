@@ -28,84 +28,51 @@ import {
   SYNC_PLAY_TIME,
 } from './constants';
 
-export const sendRoomName = roomName => ({
-  type: SEND_ROOM_NAME,
-  roomName,
-});
+export const sendRoomName = createAction(SEND_ROOM_NAME);
 
-export const setConnected = connected => ({
-  type: SET_CONNECTED,
-  connected,
-});
+export const setConnected = createAction(SET_CONNECTED);
 
-export const setSocket = socket => ({
-  type: SET_SOCKET,
-  socket,
-});
+export const setSocket = createAction(SET_SOCKET);
 
-export const toggleSidebar = () => ({ type: TOGGLE_SIDEBAR });
+export const toggleSidebar = createAction(TOGGLE_SIDEBAR);
 
-export const toggleSearch = () => ({ type: TOGGLE_SEARCH });
+export const toggleSearch = createAction(TOGGLE_SEARCH);
 
-export const setPlayer = player => ({
-  type: SET_PLAYER,
-  player,
-});
+export const setPlayer = createAction(SET_PLAYER);
 
-export const setYoutubeState = data => ({
-  type: SET_YOUTUBE_STATE,
-  data,
-});
+export const setYoutubeState = createAction(SET_YOUTUBE_STATE);
 
-export const sendAddVideoItem = data => ({
-  type: SEND_ADD_VIDEO_ITEM,
-  data,
-});
+export const sendAddVideoItem = createAction(SEND_ADD_VIDEO_ITEM);
 
 export const sendDeleteVideoItem = createAction(SEND_DELETE_VIDEO_ITEM);
 
-export const sendPlayYoutube = videoId => ({
-  type: SEND_PLAY_YOUTUBE,
-  videoId,
-});
+export const sendPlayYoutube = createAction(SEND_PLAY_YOUTUBE);
 
-export const sendPlayNextVideo = () => ({ type: SEND_PLAY_NEXT_VIDEO });
+export const sendPlayNextVideo = createAction(SEND_PLAY_NEXT_VIDEO);
 
-export const sendPlayPrevVideo = () => ({ type: SEND_PLAY_PREV_VIDEO });
+export const sendPlayPrevVideo = createAction(SEND_PLAY_PREV_VIDEO);
 
-export const sendPauseYoutube = () => ({ type: SEND_PAUSE_YOUTUBE });
+export const sendPauseYoutube = createAction(SEND_PAUSE_YOUTUBE);
 
-export const sendResumeYoutube = () => ({ type: SEND_RESUME_YOUTUBE });
+export const sendResumeYoutube = createAction(SEND_RESUME_YOUTUBE);
 
-export const sendSyncPlayTime = time => ({
-  type: SEND_SYNC_PLAY_TIME,
-  time,
-});
+export const sendSyncPlayTime = createAction(SEND_SYNC_PLAY_TIME);
 
-export const addVideoItem = data => ({
-  type: ADD_VIDEO_ITEM,
-  data,
-});
+export const addVideoItem = createAction(ADD_VIDEO_ITEM);
 
 export const deleteVideoItem = createAction(DELETE_VIDEO_ITEM);
 
-export const playYoutube = videoId => ({
-  type: PLAY_YOUTUBE,
-  videoId,
-});
+export const playYoutube = createAction(PLAY_YOUTUBE);
 
-export const playNextVideo = () => ({ type: PLAY_NEXT_VIDEO });
+export const playNextVideo = createAction(PLAY_NEXT_VIDEO);
 
-export const playPrevVideo = () => ({ type: PLAY_PREV_VIDEO });
+export const playPrevVideo = createAction(PLAY_PREV_VIDEO);
 
-export const pauseYoutube = () => ({ type: PAUSE_YOUTUBE });
+export const pauseYoutube = createAction(PAUSE_YOUTUBE);
 
-export const resumeYoutube = () => ({ type: RESUME_YOUTUBE });
+export const resumeYoutube = createAction(RESUME_YOUTUBE);
 
-export const syncPlayTime = time => ({
-  type: SYNC_PLAY_TIME,
-  time,
-});
+export const syncPlayTime = createAction(SYNC_PLAY_TIME);
 
 export default dispatch => ({
   dispatch,
