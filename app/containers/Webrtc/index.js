@@ -4,17 +4,17 @@
  *
  */
 
+import { List } from 'immutable';
 import React, { Component, PropTypes } from 'react';
+import shouldPureComponentUpdate from 'react-pure-render/function';
 import { connect } from 'react-redux';
 import SimpleWebRTC from 'simplewebrtc';
-import shouldPureComponentUpdate from 'react-pure-render/function';
-import { List } from 'immutable';
 
 import Draggable from 'react-draggable';
 import { Flex } from 'react-flex';
 
-import mapStateToProps from './selectors';
 import mapDispatchToProps from './actions';
+import mapStateToProps from './selectors';
 
 import DragHandle from 'components/DragHandle';
 import PeerVideos from 'components/PeerVideos';
@@ -24,12 +24,7 @@ import styles from './styles.css';
 class Webrtc extends Component {
 
   componentDidMount() {
-    const {
-      onReady,
-      setVolumeNumber,
-      addPeer,
-      removePeer,
-    } = this.props;
+    const { onReady, setVolumeNumber } = this.props;
 
     const webrtc = new SimpleWebRTC({
       localVideoEl: this.refs.local,
@@ -44,6 +39,21 @@ class Webrtc extends Component {
       }
     });
 
+    onReady(webrtc);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {
+      webrtc,
+      roomName,
+      addPeer,
+      removePeer,
+    } = nextProps;
+
+    if (this.props.roomName === roomName || !webrtc) return;
+
+    webrtc.joinRoom(roomName);
+
     webrtc.on('videoAdded', (video, peer) =>
       addPeer({ video, peer })
     );
@@ -51,8 +61,6 @@ class Webrtc extends Component {
     webrtc.on('videoRemoved', (video, peer) =>
       removePeer({ video, peer })
     );
-
-    onReady(webrtc);
   }
 
   shouldComponentUpdate = shouldPureComponentUpdate
@@ -82,6 +90,7 @@ class Webrtc extends Component {
 }
 
 Webrtc.propTypes = {
+  webrtc: PropTypes.object,
   roomName: PropTypes.string,
   peerVideos: PropTypes.instanceOf(List).isRequired,
   onReady: PropTypes.func.isRequired,

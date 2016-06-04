@@ -5,6 +5,11 @@ import { currentAppSelector } from 'containers/HomePage/selectors';
 
 const rtcSelector = state => state.get('global').get('webrtc');
 
+const webrtcSelector = createSelector(
+  rtcSelector,
+  rtcState => rtcState.get('webrtc')
+);
+
 export const audioIsMutedSelector = createSelector(
   rtcSelector,
   rtcState => rtcState.get('audioIsMuted')
@@ -50,6 +55,7 @@ export const volumeSelector = createSelector(
 );
 
 export default createStructuredSelector({
+  webrtc: webrtcSelector,
   roomName: roomNameSelector,
   peerVideos: displayPeerVideosSelector,
 });
