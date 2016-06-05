@@ -29,8 +29,8 @@ class YoutubeSearchItem extends Component {
     };
   }
 
-  componentWillReceiveProps({ getIsInPlaylist }) {
-    if (getIsInPlaylist(this.props.data)) {
+  componentWillReceiveProps({ isInPlaylist }) {
+    if (isInPlaylist) {
       this.setState({ isAdding: false });
     }
   }
@@ -47,12 +47,7 @@ class YoutubeSearchItem extends Component {
 
   getControl() {
     const { peeking, isAdding } = this.state;
-    const {
-      data: { id: { videoId } },
-      getIsInPlaylist,
-      disableControl,
-    } = this.props;
-    const isInPlaylist = getIsInPlaylist(videoId);
+    const { disableControl, isInPlaylist } = this.props;
 
     return (
       <ListItemControl>
@@ -99,7 +94,7 @@ YoutubeSearchItem.propTypes = {
     }).isRequired,
   }).isRequired,
   disableControl: PropTypes.bool.isRequired,
-  getIsInPlaylist: PropTypes.func.isRequired,
+  isInPlaylist: PropTypes.bool.isRequired,
   onAdd: PropTypes.func.isRequired,
 };
 

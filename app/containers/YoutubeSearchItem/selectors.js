@@ -7,11 +7,14 @@ import {
   playlistSelector,
 } from 'containers/Youtube/selectors';
 
+const getVideoId = (_, { data }) => data.id.videoId;
+
 export default createSelector(
   disableControlSelector,
   playlistSelector,
-  (disableControl, playlist) => ({
+  getVideoId,
+  (disableControl, playlist, videoId) => ({
     disableControl,
-    getIsInPlaylist: videoId => getVideoIndex(playlist, videoId) !== -1,
+    isInPlaylist: getVideoIndex(playlist, videoId) !== -1,
   })
 );

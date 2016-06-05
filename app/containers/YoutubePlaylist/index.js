@@ -33,9 +33,9 @@ const YoutubePlaylist = ({ playlist, showSearch }) => (
       {
         playlist.size === 0 ?
           <PlaylistEmptyMessage /> :
-          playlist.map((data, key) =>
+          playlist.map((data) =>
             <YoutubePlaylistItem
-              key={key}
+              key={data.id.videoId}
               data={data}
             />
           )

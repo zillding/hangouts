@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect';
+import { createSelector, createStructuredSelector } from 'reselect';
 
 import { getVideoIndex } from 'containers/Youtube/utils';
 
@@ -8,13 +8,22 @@ import {
   videoIdSelector,
 } from 'containers/Youtube/selectors';
 
-export default createSelector(
-  disableControlSelector,
+const getVideoId = (_, { data }) => data.id.videoId;
+
+const getIndex = createSelector(
   playlistSelector,
-  videoIdSelector,
-  (disableControl, playlist, currentPlayingVideoId) => ({
-    disableControl,
-    getIndex: videoId => getVideoIndex(playlist, videoId),
-    getIsCurrentPlayingItem: videoId => videoId === currentPlayingVideoId,
-  })
+  getVideoId,
+  (playlist, videoId) => getVideoIndex(playlist, videoId)
 );
+
+const getIsCurrentPlayingItem = createSelector(
+  videoIdSelector,
+  getVideoId,
+  (currentPlayingVideoId, videoId) => currentPlayingVideoId === videoId
+);
+
+export default createStructuredSelector({
+  disableControl: disableControlSelector,
+  index: getIndex,
+  isCurrentPlayingItem: getIsCurrentPlayingItem,
+});

@@ -25,24 +25,23 @@ class YoutubePlaylistItem extends Component {
     };
   }
 
-  componentWillReceiveProps({ getIsCurrentPlayingItem }) {
-    if (getIsCurrentPlayingItem !== this.props.getIsCurrentPlayingItem) {
+  componentWillReceiveProps({ isCurrentPlayingItem }) {
+    if (isCurrentPlayingItem !== this.props.isCurrentPlayingItem) {
       this.setState({ isSelecting: false });
     }
   }
 
   getControl() {
     const {
-      data: { id: { videoId } },
       disableControl,
-      getIsCurrentPlayingItem,
+      isCurrentPlayingItem,
     } = this.props;
     const { isSelecting, isDeleting } = this.state;
 
     return (
       <ListItemControl>
         {
-          getIsCurrentPlayingItem(videoId) ?
+          isCurrentPlayingItem ?
             null :
             <PlaylistPlayButton
               loading={isSelecting}
@@ -66,8 +65,7 @@ class YoutubePlaylistItem extends Component {
   }
 
   handleDeleteClick = () => {
-    const { data: { id: { videoId } }, getIndex, onDelete } = this.props;
-    const index = getIndex(videoId);
+    const { index, onDelete } = this.props;
     this.setState({ isDeleting: true });
     onDelete(index);
   }
@@ -89,8 +87,8 @@ YoutubePlaylistItem.propTypes = {
     }).isRequired,
   }).isRequired,
   disableControl: PropTypes.bool.isRequired,
-  getIndex: PropTypes.func.isRequired,
-  getIsCurrentPlayingItem: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  isCurrentPlayingItem: PropTypes.bool.isRequired,
   onSelect: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
