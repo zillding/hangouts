@@ -4,24 +4,46 @@
 *
 */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
+
+import Paper from 'material-ui/Paper';
+import {
+  CardActions,
+  CardTitle,
+  CardText,
+} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
 
-function PlaylistEmptyMessage() {
-  return (
-    <div
-      className="ui icon message"
-      style={{ margin: '10px 0' }}
-    >
-      <i className="youtube play icon"></i>
-      <div className="content">
-        <div className="header">
-          Current playlist is empty!
-        </div>
-        <p>Search and add some videos.</p>
-      </div>
-    </div>
-  );
-}
+const style = {
+  margin: 20,
+  backgroundColor: '#f1f1f1',
+};
+
+const PlaylistEmptyMessage = ({ onActionClick }) => (
+  <Paper
+    zDepth={3}
+    style={style}
+  >
+    <CardTitle
+      title="Empty Playlist"
+      subtitle="nothing here..."
+    />
+    <CardText>
+      The current playlist is empty. Search and add some YouTube videos!
+    </CardText>
+    <CardActions>
+      <FlatButton
+        label="Search"
+        primary
+        onClick={onActionClick}
+      />
+    </CardActions>
+  </Paper>
+);
+
+PlaylistEmptyMessage.propTypes = {
+  onActionClick: PropTypes.func,
+};
 
 export default PlaylistEmptyMessage;

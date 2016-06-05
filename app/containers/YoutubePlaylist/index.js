@@ -27,12 +27,16 @@ const YoutubePlaylist = ({ playlist, showSearch }) => (
       style={{ marginBottom: 10 }}
     >
       <PlaylistHeader />
-      <PlaylistShowSearchButton onClick={showSearch} />
+      {
+        playlist.size > 0 ?
+          <PlaylistShowSearchButton onClick={showSearch} /> :
+          null
+      }
     </Flex>
     <SidebarScrollItem>
       {
         playlist.size === 0 ?
-          <PlaylistEmptyMessage /> :
+          <PlaylistEmptyMessage onActionClick={showSearch} /> :
           playlist.map((data) =>
             <YoutubePlaylistItem
               key={data.id.videoId}

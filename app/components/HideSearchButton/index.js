@@ -6,18 +6,19 @@
 
 import React, { PropTypes } from 'react';
 
+import IconButton from 'material-ui/IconButton';
+import CloseIcon from 'material-ui/svg-icons/navigation/close';
 
-function HideSearchButton({ onClick }) {
-  return (
-    <button
-      className="ui negative icon button"
-      style={{ margin: 0 }}
-      onClick={onClick}
-    >
-      <i className="remove icon"></i>
-    </button>
-  );
-}
+
+const HideSearchButton = ({ onClick }) => (
+  <IconButton
+    tooltip="Close search"
+    tooltipPosition="bottom-left"
+    onClick={onClick}
+  >
+    <CloseIcon />
+  </IconButton>
+);
 
 HideSearchButton.propTypes = {
   onClick: PropTypes.func.isRequired,

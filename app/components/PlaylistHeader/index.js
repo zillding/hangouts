@@ -6,17 +6,28 @@
 
 import React from 'react';
 
+import Avatar from 'material-ui/Avatar';
+import ListItem from 'material-ui/List/ListItem';
+import ListIcon from 'material-ui/svg-icons/action/list';
 
-function PlaylistHeader() {
-  return (
-    <h4
-      className="ui header"
-      style={{ margin: 0 }}
-    >
-      <i className="list icon"></i>
-      Playlist
-    </h4>
-  );
-}
+
+const style = {
+  padding: '15px 62px',
+};
+
+const PlaylistHeader = () => (
+  <ListItem
+    disabled
+    leftAvatar={
+      <Avatar
+        icon={<ListIcon />}
+        size={30}
+      />
+    }
+    style={style}
+  >
+    Playlist
+  </ListItem>
+);
 
 export default PlaylistHeader;

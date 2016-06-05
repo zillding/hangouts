@@ -6,18 +6,19 @@
 
 import React, { PropTypes } from 'react';
 
+import IconButton from 'material-ui/IconButton';
+import SearchIcon from 'material-ui/svg-icons/action/search';
 
-function PlaylistShowSearchButton({ onClick }) {
-  return (
-    <button
-      className="ui positive icon button"
-      style={{ margin: 0 }}
-      onClick={onClick}
-    >
-      <i className="add icon"></i>
-    </button>
-  );
-}
+
+const PlaylistShowSearchButton = ({ onClick }) => (
+  <IconButton
+    tooltip="Show search"
+    tooltipPosition="bottom-left"
+    onClick={onClick}
+  >
+    <SearchIcon />
+  </IconButton>
+);
 
 PlaylistShowSearchButton.propTypes = {
   onClick: PropTypes.func.isRequired,
