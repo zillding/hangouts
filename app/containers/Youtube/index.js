@@ -13,7 +13,6 @@ import { Flex, Item } from 'react-flex';
 import mapDispatchToProps from './actions';
 import mapStateToProps from './selectors';
 
-import YoutubeNotice from 'components/YoutubeNotice';
 import YoutubeControl from 'containers/YoutubeControl';
 import YoutubePlayer from 'containers/YoutubePlayer';
 import YoutubePlaylist from 'containers/YoutubePlaylist';
@@ -52,7 +51,7 @@ class Youtube extends Component {
   }
 
   render() {
-    const { currentApp, showProgress } = this.props;
+    const { currentApp, showProgress, showControl } = this.props;
     const style = currentApp === 'youtube' ? {} : { display: 'none' };
 
     return (
@@ -67,8 +66,7 @@ class Youtube extends Component {
         >
           <div className={styles.player}>
             <YoutubePlayer />
-            <YoutubeControl />
-            <YoutubeNotice />
+            {showControl ? <YoutubeControl /> : null}
           </div>
           {this.getSidebar()}
         </Flex>
@@ -83,6 +81,7 @@ Youtube.propTypes = {
   showSidebar: PropTypes.bool.isRequired,
   showSearch: PropTypes.bool.isRequired,
   showProgress: PropTypes.bool.isRequired,
+  showControl: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 

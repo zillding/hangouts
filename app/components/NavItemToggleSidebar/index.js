@@ -6,20 +6,25 @@
 
 import React, { PropTypes } from 'react';
 
+import Toggle from 'material-ui/Toggle';
 
-function NavItemToggleSidebar({ showSidebar, onClick }) {
-  const cn = showSidebar ? 'active blue item' : 'item';
 
-  return (
-    <a
-      className={cn}
-      onClick={onClick}
-    >
-      <i className="sidebar icon"></i>
-      Sidebar
-    </a>
-  );
-}
+const style = {
+  padding: 10,
+};
+
+const NavItemToggleSidebar = ({ showSidebar, onClick }) => (
+  <div
+    className="item"
+    style={style}
+  >
+    <Toggle
+      label="Sidebar"
+      toggled={showSidebar}
+      onToggle={onClick}
+    />
+  </div>
+);
 
 NavItemToggleSidebar.propTypes = {
   showSidebar: PropTypes.bool.isRequired,

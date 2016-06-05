@@ -12,7 +12,12 @@ import { Flex } from 'react-flex';
 import mapDispatchToProps from './actions';
 import mapStateToProps from './selectors';
 
-import YoutubeControlButton from 'components/YoutubeControlButton';
+import YoutubeControlNextButton from 'components/YoutubeControlNextButton';
+import YoutubeControlPauseButton from 'components/YoutubeControlPauseButton';
+import YoutubeControlPreviousButton from 'components/YoutubeControlPreviousButton';
+import YoutubeControlResumeButton from 'components/YoutubeControlResumeButton';
+import YoutubeControlSyncButton from 'components/YoutubeControlSyncButton';
+import YoutubeNotice from 'components/YoutubeNotice';
 
 function YoutubeControl(props) {
   const {
@@ -38,53 +43,43 @@ function YoutubeControl(props) {
   } = props;
 
   const pauseButton = (
-    <YoutubeControlButton
+    <YoutubeControlPauseButton
       loading={loadingPause}
       disabled={disablePause}
       onClick={onPause}
-    >
-      Pause
-    </YoutubeControlButton>
+    />
   );
 
   const resumeButton = (
-    <YoutubeControlButton
+    <YoutubeControlResumeButton
       loading={loadingResume}
       disabled={disableResume}
       onClick={onResume}
-    >
-      Resume
-    </YoutubeControlButton>
+    />
   );
 
   const previousButton = (
-    <YoutubeControlButton
+    <YoutubeControlPreviousButton
       loading={loadingPrevious}
       disabled={disablePrevious}
       onClick={onPrevious}
-    >
-      Previous
-    </YoutubeControlButton>
+    />
   );
 
   const nextButton = (
-    <YoutubeControlButton
+    <YoutubeControlNextButton
       loading={loadingNext}
       disabled={disableNext}
       onClick={onNext}
-    >
-      Next
-    </YoutubeControlButton>
+    />
   );
 
   const syncButton = (
-    <YoutubeControlButton
+    <YoutubeControlSyncButton
       loading={loadingSync}
       disabled={disableSync}
       onClick={onSync}
-    >
-      Sync
-    </YoutubeControlButton>
+    />
   );
 
   return (
@@ -101,6 +96,7 @@ function YoutubeControl(props) {
           {syncButton}
         </div>
       </Flex>
+      <YoutubeNotice />
     </div>
   );
 }

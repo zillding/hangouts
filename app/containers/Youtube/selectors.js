@@ -52,10 +52,16 @@ const showProgressBarSelector = createSelector(
   (map, isSearching) => !map.every(value => !value) || isSearching
 );
 
+const getShowControl = createSelector(
+  videoIdSelector,
+  videoId => !!videoId
+);
+
 export default createStructuredSelector({
   roomName: roomNameSelector,
   currentApp: currentAppSelector,
   showSidebar: showSidebarSelector,
   showSearch: showSearchSelector,
   showProgress: showProgressBarSelector,
+  showControl: getShowControl,
 });
