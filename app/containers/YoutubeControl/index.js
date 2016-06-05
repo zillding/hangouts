@@ -7,7 +7,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { Flex } from 'react-flex';
+import { Flex, Item } from 'react-flex';
 
 import mapDispatchToProps from './actions';
 import mapStateToProps from './selectors';
@@ -87,11 +87,17 @@ function YoutubeControl(props) {
       <Flex
         justifyContent="space-between"
       >
-        <div>
-          {isPlaying ? pauseButton : resumeButton}
-          {previousButton}
-          {nextButton}
-        </div>
+        <Flex>
+          <Item style={{ marginRight: 10 }}>
+            {isPlaying ? pauseButton : resumeButton}
+          </Item>
+          <Item style={{ marginRight: 10 }}>
+            {previousButton}
+          </Item>
+          <Item>
+            {nextButton}
+          </Item>
+        </Flex>
         <div>
           {syncButton}
         </div>

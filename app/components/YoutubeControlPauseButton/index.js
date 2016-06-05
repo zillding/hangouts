@@ -12,7 +12,6 @@ import PauseIcon from 'material-ui/svg-icons/av/pause';
 
 const YoutubeControlPauseButton = ({ loading, disabled, onClick }) => (
   <RaisedButton
-    label="Pause"
     icon={<PauseIcon />}
     secondary
     disabled={loading || disabled}

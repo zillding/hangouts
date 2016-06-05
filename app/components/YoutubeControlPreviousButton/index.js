@@ -12,7 +12,6 @@ import Icon from 'material-ui/svg-icons/av/skip-previous';
 
 const YoutubeControlPreviousButton = ({ loading, disabled, onClick }) => (
   <RaisedButton
-    label="Play Previous"
     icon={<Icon />}
     disabled={loading || disabled}
     onClick={onClick}

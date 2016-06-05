@@ -12,7 +12,6 @@ import Icon from 'material-ui/svg-icons/av/play-arrow';
 
 const YoutubeControlResumeButton = ({ loading, disabled, onClick }) => (
   <RaisedButton
-    label="Resume"
     icon={<Icon />}
     primary
     disabled={loading || disabled}

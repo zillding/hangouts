@@ -12,7 +12,6 @@ import Icon from 'material-ui/svg-icons/av/skip-next';
 
 const YoutubeControlNextButton = ({ loading, disabled, onClick }) => (
   <RaisedButton
-    label="Play Next"
     icon={<Icon />}
     disabled={loading || disabled}
     onClick={onClick}

@@ -12,7 +12,7 @@ import Icon from 'material-ui/svg-icons/notification/sync';
 
 const YoutubeControlSyncButton = ({ loading, disabled, onClick }) => (
   <RaisedButton
-    label="Sync"
+    label="Sync Play Time"
     icon={<Icon />}
     primary
     disabled={loading || disabled}
