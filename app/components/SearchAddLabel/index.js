@@ -6,16 +6,18 @@
 
 import React from 'react';
 
+import IconButton from 'material-ui/IconButton';
+import AddedIcon from 'material-ui/svg-icons/av/playlist-add-check';
 
-function SearchAddLabel() {
-  return (
-    <button
-      className="ui disabled green basic icon button"
-      disabled
-    >
-      <i className="checkmark icon"></i>
-    </button>
-  );
-}
+
+const SearchAddLabel = () => (
+  <IconButton
+    tooltip="Added"
+    tooltipPosition="top-left"
+    disabled
+  >
+    <AddedIcon />
+  </IconButton>
+);
 
 export default SearchAddLabel;

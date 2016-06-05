@@ -6,22 +6,20 @@
 
 import React, { PropTypes } from 'react';
 
+import IconButton from 'material-ui/IconButton';
+import AddIcon from 'material-ui/svg-icons/av/playlist-add';
 
-function SearchAddButton({ isAdding, disabled, onClick }) {
-  const cn = isAdding ?
-    'ui positive disabled loading icon button' :
-    'ui positive icon button';
 
-  return (
-    <button
-      className={cn}
-      disabled={isAdding || disabled}
-      onClick={onClick}
-    >
-      <i className="plus icon"></i>
-    </button>
-  );
-}
+const SearchAddButton = ({ isAdding, disabled, onClick }) => (
+  <IconButton
+    tooltip="Add to playlist"
+    tooltipPosition="top-left"
+    disabled={isAdding || disabled}
+    onClick={onClick}
+  >
+    <AddIcon />
+  </IconButton>
+);
 
 SearchAddButton.propTypes = {
   isAdding: PropTypes.bool.isRequired,

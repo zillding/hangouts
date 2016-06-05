@@ -6,23 +6,20 @@
 
 import React, { PropTypes } from 'react';
 
+import IconButton from 'material-ui/IconButton';
+import DeleteIcon from 'material-ui/svg-icons/action/delete';
 
-function PlaylistDeleteButton({ loading, disabled, onClick }) {
-  const cn = loading ?
-    'ui disabled negative icon button loading' :
-    'ui negative icon button';
 
-  return (
-    <button
-      className={cn}
-      disabled={loading || disabled}
-      style={{ margin: 0 }}
-      onClick={onClick}
-    >
-      <i className="remove icon"></i>
-    </button>
-  );
-}
+const PlaylistDeleteButton = ({ loading, disabled, onClick }) => (
+  <IconButton
+    tooltip="Delete from playlist"
+    tooltipPosition="top-left"
+    disabled={loading || disabled}
+    onClick={onClick}
+  >
+    <DeleteIcon />
+  </IconButton>
+);
 
 PlaylistDeleteButton.propTypes = {
   loading: PropTypes.bool.isRequired,

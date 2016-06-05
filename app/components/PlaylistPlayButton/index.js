@@ -6,22 +6,20 @@
 
 import React, { PropTypes } from 'react';
 
+import IconButton from 'material-ui/IconButton';
+import PlayIcon from 'material-ui/svg-icons/av/playlist-play';
 
-function PlaylistPlayButton({ loading, disabled, onClick }) {
-  const cn = loading ?
-    'ui disabled icon button loading' :
-    'ui icon button';
 
-  return (
-    <button
-      className={cn}
-      disabled={loading || disabled}
-      onClick={onClick}
-    >
-      <i className="play icon"></i>
-    </button>
-  );
-}
+const PlaylistPlayButton = ({ loading, disabled, onClick }) => (
+  <IconButton
+    tooltip="Play"
+    tooltipPosition="top-left"
+    disabled={loading || disabled}
+    onClick={onClick}
+  >
+    <PlayIcon />
+  </IconButton>
+);
 
 PlaylistPlayButton.propTypes = {
   loading: PropTypes.bool.isRequired,
