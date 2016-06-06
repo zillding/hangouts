@@ -54,7 +54,7 @@ const initialState = fromJS({
   },
   notification: {
     open: false,
-    message: null,
+    message: 'connecting...',
   },
 });
 

@@ -96,7 +96,7 @@ Youtube.propTypes = {
   showProgress: PropTypes.bool.isRequired,
   showControl: PropTypes.bool.isRequired,
   showSnackbar: PropTypes.bool.isRequired,
-  snackbarMessage: PropTypes.node,
+  snackbarMessage: PropTypes.node.isRequired,
   dispatch: PropTypes.func.isRequired,
   closeSnackbar: PropTypes.func.isRequired,
 };
