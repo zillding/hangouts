@@ -6,23 +6,26 @@
 
 import React, { PropTypes } from 'react';
 
+import FlatButton from 'material-ui/FlatButton';
+import Icon from 'material-ui/svg-icons/av/videocam';
 
-function NavItemVideo({ currentApp, onClick }) {
-  const cn = currentApp === 'video' ? 'active green item' : 'item';
 
-  return (
-    <a
-      className={cn}
-      onClick={onClick}
-    >
-      <i className="record icon"></i>
-      Video
-    </a>
-  );
-}
+const style = {
+  margin: '10px 24px',
+};
+
+const NavItemVideo = ({ active, onClick }) => (
+  <FlatButton
+    label="Video"
+    icon={<Icon />}
+    primary={active}
+    style={style}
+    onClick={onClick}
+  />
+);
 
 NavItemVideo.propTypes = {
-  currentApp: PropTypes.string.isRequired,
+  active: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

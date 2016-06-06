@@ -7,16 +7,25 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import {
+  Toolbar,
+  ToolbarGroup,
+  ToolbarSeparator,
+  ToolbarTitle,
+} from 'material-ui/Toolbar';
+
 import mapDispatchToProps from './actions';
 import mapStateToProps from './selectors';
 
 import NavItemConnecting from 'components/NavItemConnecting';
+import NavItemRoomInfo from 'components/NavItemRoomInfo';
 import NavItemToggleMute from 'components/NavItemToggleMute';
 import NavItemToggleSidebar from 'components/NavItemToggleSidebar';
 import NavItemToggleVideo from 'components/NavItemToggleVideo';
 import NavItemVideo from 'components/NavItemVideo';
 import NavItemVolume from 'components/NavItemVolume';
 import NavItemYoutube from 'components/NavItemYoutube';
+
 
 function Navbar(props) {
   const {
@@ -34,47 +43,44 @@ function Navbar(props) {
   } = props;
 
   return (
-    <div className="ui large secondary pointing menu">
-      <div className="item">
-        Hangouts!
-      </div>
-      <div className="item">
-        <i className="home icon"></i>
-        {roomName}
-      </div>
-      <NavItemVideo
-        currentApp={currentApp}
-        onClick={() => setCurrentApp('video')}
-      />
-      <NavItemYoutube
-        currentApp={currentApp}
-        onClick={() => setCurrentApp('youtube')}
-      />
-      <div className="right menu">
-        {
-          isConnected ? null : <NavItemConnecting />
-        }
-        {
-          audioIsMuted ? null : <NavItemVolume value={volume} />
-        }
+    <Toolbar>
+      <ToolbarGroup>
+        <ToolbarTitle text="Hangouts" />
+        <NavItemRoomInfo name={roomName} />
+        <ToolbarSeparator />
+        <NavItemVideo
+          active={currentApp === 'video'}
+          onClick={() => setCurrentApp('video')}
+        />
+        <NavItemYoutube
+          active={currentApp === 'youtube'}
+          onClick={() => setCurrentApp('youtube')}
+        />
+      </ToolbarGroup>
+      <ToolbarGroup>
+        {isConnected ? null : <NavItemConnecting />}
+      </ToolbarGroup>
+      <ToolbarGroup>
+        {audioIsMuted ? null : <NavItemVolume value={volume} />}
         <NavItemToggleMute
-          audioIsMuted={audioIsMuted}
+          active={audioIsMuted}
           onClick={() => setMute(!audioIsMuted)}
         />
         <NavItemToggleVideo
-          videoIsPaused={videoIsPaused}
+          active={videoIsPaused}
           onClick={toggleVideoState}
         />
+        {currentApp === 'youtube' ? <ToolbarSeparator /> : null}
         {
           currentApp === 'youtube' ?
             <NavItemToggleSidebar
-              showSidebar={showSidebar}
+              toggled={showSidebar}
               onClick={toggleSidebarState}
             /> :
             null
         }
-      </div>
-    </div>
+      </ToolbarGroup>
+    </Toolbar>
   );
 }
 

@@ -7,27 +7,25 @@
 import React, { PropTypes } from 'react';
 
 import Toggle from 'material-ui/Toggle';
+import { Flex } from 'react-flex';
 
 
 const style = {
-  padding: 10,
+  marginLeft: 24,
 };
 
-const NavItemToggleSidebar = ({ showSidebar, onClick }) => (
-  <div
-    className="item"
-    style={style}
-  >
+const NavItemToggleSidebar = ({ toggled, onClick }) => (
+  <Flex style={style}>
     <Toggle
       label="Sidebar"
-      toggled={showSidebar}
+      toggled={toggled}
       onToggle={onClick}
     />
-  </div>
+  </Flex>
 );
 
 NavItemToggleSidebar.propTypes = {
-  showSidebar: PropTypes.bool.isRequired,
+  toggled: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

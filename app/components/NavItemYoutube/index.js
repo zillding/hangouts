@@ -6,23 +6,26 @@
 
 import React, { PropTypes } from 'react';
 
+import FlatButton from 'material-ui/FlatButton';
+import Icon from 'material-ui/svg-icons/av/subscriptions';
 
-function NavItemYoutube({ currentApp, onClick }) {
-  const cn = currentApp === 'youtube' ? 'active red item' : 'item';
 
-  return (
-    <a
-      className={cn}
-      onClick={onClick}
-    >
-      <i className="youtube play icon"></i>
-      YouTube
-    </a>
-  );
-}
+const style = {
+  margin: '10px 0',
+};
+
+const NavItemYoutube = ({ active, onClick }) => (
+  <FlatButton
+    label="YouTube"
+    icon={<Icon />}
+    secondary={active}
+    style={style}
+    onClick={onClick}
+  />
+);
 
 NavItemYoutube.propTypes = {
-  currentApp: PropTypes.string.isRequired,
+  active: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

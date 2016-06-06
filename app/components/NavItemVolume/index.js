@@ -6,7 +6,18 @@
 
 import React, { PropTypes } from 'react';
 
+import { Flex } from 'react-flex';
+
+
 import styles from './styles.css';
+
+function getNumberOfBalls(value = 0) {
+  if (value < 5) return 1;
+  if (value < 9) return 2;
+  if (value < 12) return 3;
+  if (value < 14) return 4;
+  return 5;
+}
 
 const Ball = () => (
   <span className={styles.ball} />
@@ -19,13 +30,13 @@ function NavItemVolume({ value }) {
   }
 
   return (
-    <div className={`item ${styles.container}`}>
+    <Flex>
     {
       array.map(index =>
         <Ball key={index} />
       )
     }
-    </div>
+    </Flex>
   );
 }
 
@@ -34,12 +45,3 @@ NavItemVolume.propTypes = {
 };
 
 export default NavItemVolume;
-
-
-function getNumberOfBalls(value = 0) {
-  if (value < 5) return 1;
-  if (value < 9) return 2;
-  if (value < 12) return 3;
-  if (value < 14) return 4;
-  return 5;
-}

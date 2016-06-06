@@ -6,22 +6,40 @@
 
 import React, { PropTypes } from 'react';
 
+import IconButton from 'material-ui/IconButton';
+import Icon from 'material-ui/svg-icons/av/videocam-off';
 
-function NavItemToggleVideo({ videoIsPaused, onClick }) {
-  const cn = videoIsPaused ? 'item' : 'active grey item';
 
-  return (
-    <a
-      className={cn}
-      onClick={onClick}
-    >
-      <i className="record icon"></i>
-    </a>
-  );
+const style = {
+  top: 4,
+  marginLeft: 10,
+  borderRadius: '50%',
+};
+
+function getButtonStyle(active) {
+  if (!active) return style;
+  return Object.assign({}, style, { backgroundColor: 'red' });
 }
 
+function getIconStyle(active) {
+  if (!active) return {};
+  return { fill: 'white' };
+}
+
+const NavItemToggleVideo = ({ active, onClick }) => (
+  <IconButton
+    tooltip="Toggle video"
+    disableTouchRipple
+    style={getButtonStyle(active)}
+    iconStyle={getIconStyle(active)}
+    onClick={onClick}
+  >
+    <Icon />
+  </IconButton>
+);
+
 NavItemToggleVideo.propTypes = {
-  videoIsPaused: PropTypes.bool.isRequired,
+  active: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

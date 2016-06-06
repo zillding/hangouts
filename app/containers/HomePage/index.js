@@ -47,9 +47,7 @@ class HomePage extends Component {
         alignItems="stretch"
         style={containerStyle}
       >
-        <div>
-          <Navbar />
-        </div>
+        <Navbar />
         <Item
           flex={1}
           style={{ position: 'relative' }}

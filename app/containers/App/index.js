@@ -20,6 +20,7 @@ const containerStyle = {
   bottom: 0,
   left: 0,
   right: 0,
+  fontFamily: '"Roboto", sans-serif',
 };
 
 const App = ({ children }) => (
