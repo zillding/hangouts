@@ -6,19 +6,18 @@
 
 import React, { PropTypes } from 'react';
 
-import IconButton from 'material-ui/IconButton';
-import PlayIcon from 'material-ui/svg-icons/av/playlist-play';
+import YoutubeSidebarIconButton from 'components/YoutubeSidebarIconButton';
+import Icon from 'material-ui/svg-icons/av/playlist-play';
 
 
 const PlaylistPlayButton = ({ loading, disabled, onClick }) => (
-  <IconButton
+  <YoutubeSidebarIconButton
     tooltip="Play"
-    tooltipPosition="top-left"
     disabled={loading || disabled}
     onClick={onClick}
   >
-    <PlayIcon />
-  </IconButton>
+    <Icon />
+  </YoutubeSidebarIconButton>
 );
 
 PlaylistPlayButton.propTypes = {

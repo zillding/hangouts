@@ -6,18 +6,17 @@
 
 import React, { PropTypes } from 'react';
 
-import IconButton from 'material-ui/IconButton';
-import CloseIcon from 'material-ui/svg-icons/action/visibility-off';
+import YoutubeSidebarIconButton from 'components/YoutubeSidebarIconButton';
+import Icon from 'material-ui/svg-icons/action/visibility-off';
 
 
 const SearchCancelPreviewButton = ({ onClick }) => (
-  <IconButton
+  <YoutubeSidebarIconButton
     tooltip="Close preview"
-    tooltipPosition="top-left"
     onClick={onClick}
   >
-    <CloseIcon />
-  </IconButton>
+    <Icon />
+  </YoutubeSidebarIconButton>
 );
 
 SearchCancelPreviewButton.propTypes = {

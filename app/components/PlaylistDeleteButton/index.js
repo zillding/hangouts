@@ -6,19 +6,18 @@
 
 import React, { PropTypes } from 'react';
 
-import IconButton from 'material-ui/IconButton';
+import YoutubeSidebarIconButton from 'components/YoutubeSidebarIconButton';
 import Icon from 'material-ui/svg-icons/av/remove-from-queue';
 
 
 const PlaylistDeleteButton = ({ loading, disabled, onClick }) => (
-  <IconButton
+  <YoutubeSidebarIconButton
     tooltip="Delete from playlist"
-    tooltipPosition="top-left"
     disabled={loading || disabled}
     onClick={onClick}
   >
     <Icon />
-  </IconButton>
+  </YoutubeSidebarIconButton>
 );
 
 PlaylistDeleteButton.propTypes = {

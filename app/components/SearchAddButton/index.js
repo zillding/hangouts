@@ -6,23 +6,22 @@
 
 import React, { PropTypes } from 'react';
 
-import IconButton from 'material-ui/IconButton';
+import YoutubeSidebarIconButton from 'components/YoutubeSidebarIconButton';
 import Icon from 'material-ui/svg-icons/av/queue-play-next';
 
 
-const SearchAddButton = ({ isAdding, disabled, onClick }) => (
-  <IconButton
+const SearchAddButton = ({ loading, disabled, onClick }) => (
+  <YoutubeSidebarIconButton
     tooltip="Add to playlist"
-    tooltipPosition="top-left"
-    disabled={isAdding || disabled}
+    disabled={loading || disabled}
     onClick={onClick}
   >
     <Icon />
-  </IconButton>
+  </YoutubeSidebarIconButton>
 );
 
 SearchAddButton.propTypes = {
-  isAdding: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
   disabled: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
 };

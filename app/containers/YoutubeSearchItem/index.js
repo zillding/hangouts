@@ -60,7 +60,7 @@ class YoutubeSearchItem extends Component {
           isInPlaylist ?
             <SearchAddLabel /> :
             <SearchAddButton
-              isAdding={isAdding}
+              loading={isAdding}
               disabled={disableControl}
               onClick={this.handleAdd}
             />
