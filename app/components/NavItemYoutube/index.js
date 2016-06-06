@@ -20,7 +20,7 @@ const NavItemYoutube = ({ active, onClick }) => (
     icon={<Icon />}
     secondary={active}
     style={style}
-    onClick={onClick}
+    onClick={active ? () => null : onClick}
   />
 );
 

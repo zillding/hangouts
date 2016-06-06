@@ -20,7 +20,7 @@ const NavItemVideo = ({ active, onClick }) => (
     icon={<Icon />}
     primary={active}
     style={style}
-    onClick={onClick}
+    onClick={active ? () => null : onClick}
   />
 );
 

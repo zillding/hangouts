@@ -21,7 +21,6 @@ open http://localhost:3000
 
 ## TODO
 
-+ Remove semantic ui dependency and adjust style
 + Add user number badge
 + Meta files update (change to hangouts project)
 + Explore unit tests
