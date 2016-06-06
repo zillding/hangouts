@@ -1,6 +1,8 @@
 import { createAction } from 'redux-actions';
 
 import {
+  SHOW_NOTIFICATION,
+  CLOSE_NOTIFICATION,
   SEND_ROOM_NAME,
   SET_CONNECTED,
   SET_SOCKET,
@@ -27,6 +29,10 @@ import {
   RESUME_YOUTUBE,
   SYNC_PLAY_TIME,
 } from './constants';
+
+export const showNotification = createAction(SHOW_NOTIFICATION);
+
+export const closeNotification = createAction(CLOSE_NOTIFICATION);
 
 export const sendRoomName = createAction(SEND_ROOM_NAME);
 
@@ -76,4 +82,5 @@ export const syncPlayTime = createAction(SYNC_PLAY_TIME);
 
 export default dispatch => ({
   dispatch,
+  closeSnackbar: () => dispatch(closeNotification()),
 });

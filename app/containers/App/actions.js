@@ -1,24 +1,5 @@
-import {
-  ADD_NOTIFICATION,
-  SET_NOTIFICATION_SYSTEM,
-  SET_ROOM_NAME,
-} from './constants';
+import { createAction } from 'redux-actions';
 
-export const addNotification = data => ({
-  type: ADD_NOTIFICATION,
-  data,
-});
+import { SET_ROOM_NAME } from './constants';
 
-const setNotificationSystem = ns => ({
-  type: SET_NOTIFICATION_SYSTEM,
-  ns,
-});
-
-export const setRoomName = roomName => ({
-  type: SET_ROOM_NAME,
-  roomName,
-});
-
-export default dispatch => ({
-  setNotificationSystem: ns => dispatch(setNotificationSystem(ns)),
-});
+export const setRoomName = createAction(SET_ROOM_NAME);

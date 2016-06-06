@@ -57,6 +57,21 @@ const getShowControl = createSelector(
   videoId => !!videoId
 );
 
+const getNotification = createSelector(
+  youtubeSelector,
+  youtubeState => youtubeState.get('notification')
+);
+
+const getShowSnackbar = createSelector(
+  getNotification,
+  notification => notification.get('open')
+);
+
+const getSnackbarMessage = createSelector(
+  getNotification,
+  notification => notification.get('message')
+);
+
 export default createStructuredSelector({
   roomName: roomNameSelector,
   currentApp: currentAppSelector,
@@ -64,4 +79,6 @@ export default createStructuredSelector({
   showSearch: showSearchSelector,
   showProgress: showProgressBarSelector,
   showControl: getShowControl,
+  showSnackbar: getShowSnackbar,
+  snackbarMessage: getSnackbarMessage,
 });

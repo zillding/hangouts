@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 
-import { addNotification } from 'containers/App/actions';
 import {
+  showNotification,
   sendRoomName,
   setConnected,
   setSocket,
@@ -21,6 +21,7 @@ export function setUpSocket(roomName, dispatch) {
   dispatch(setSocket(socket));
 
   socket.on('connect', () => {
+    dispatch(showNotification('Connect to socket.'));
     dispatch(setConnected(true));
     if (roomName) {
       dispatch(sendRoomName(roomName));
@@ -32,10 +33,7 @@ export function setUpSocket(roomName, dispatch) {
   });
 
   socket.on('action', ({ type, data }) => {
-    dispatch(addNotification({
-      message: `Action performed: ${type}`,
-      level: 'info',
-    }));
+    dispatch(showNotification(`Action performed: ${type}`));
 
     switch (type) {
       case 'ADD_VIDEO':
@@ -61,10 +59,7 @@ export function setUpSocket(roomName, dispatch) {
 
   socket.on('disconnect', () => {
     dispatch(setConnected(false));
-    dispatch(addNotification({
-      message: 'Lost connection to server!',
-      level: 'error',
-    }));
+    dispatch(showNotification('Lost connection to server!'));
     dispatch(pauseYoutube());
   });
 }

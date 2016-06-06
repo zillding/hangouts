@@ -3,6 +3,8 @@ import { fromJS, List } from 'immutable';
 import { getNextVideoId, getPreviousVideoId } from './utils';
 
 import {
+  SHOW_NOTIFICATION,
+  CLOSE_NOTIFICATION,
   SEND_ROOM_NAME,
   SET_CONNECTED,
   SET_SOCKET,
@@ -50,10 +52,21 @@ const initialState = fromJS({
     resume: false,
     syncTime: false,
   },
+  notification: {
+    open: false,
+    message: null,
+  },
 });
 
 function youtubeReducer(state = initialState, { type, payload }) {
   switch (type) {
+    case SHOW_NOTIFICATION:
+      return state
+        .setIn(['notification', 'open'], true)
+        .setIn(['notification', 'message'], payload);
+    case CLOSE_NOTIFICATION:
+      return state
+        .setIn(['notification', 'open'], false);
     case SET_CONNECTED:
       return state.set('isConnected', payload);
     case SET_SOCKET:

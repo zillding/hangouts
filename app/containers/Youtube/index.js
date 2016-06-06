@@ -8,6 +8,7 @@ import React, { Component, PropTypes } from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import { connect } from 'react-redux';
 
+import Snackbar from 'material-ui/Snackbar';
 import { Flex, Item } from 'react-flex';
 
 import mapDispatchToProps from './actions';
@@ -51,18 +52,24 @@ class Youtube extends Component {
   }
 
   render() {
-    const { currentApp, showProgress, showControl } = this.props;
+    const {
+      currentApp,
+      showProgress,
+      showControl,
+      showSnackbar,
+      snackbarMessage,
+      closeSnackbar,
+    } = this.props;
     const style = currentApp === 'youtube' ? {} : { display: 'none' };
 
     return (
-      <div>
+      <div style={style}>
         {showProgress ? <YoutubeProgressBar /> : null}
         <Flex
           alignItems="stretch"
           justifyContent="center"
           wrap={false}
           className={styles.container}
-          style={style}
         >
           <div className={styles.player}>
             <YoutubePlayer />
@@ -70,6 +77,12 @@ class Youtube extends Component {
           </div>
           {this.getSidebar()}
         </Flex>
+        <Snackbar
+          open={showSnackbar}
+          message={snackbarMessage}
+          autoHideDuration={3000}
+          onRequestClose={closeSnackbar}
+        />
       </div>
     );
   }
@@ -82,7 +95,10 @@ Youtube.propTypes = {
   showSearch: PropTypes.bool.isRequired,
   showProgress: PropTypes.bool.isRequired,
   showControl: PropTypes.bool.isRequired,
+  showSnackbar: PropTypes.bool.isRequired,
+  snackbarMessage: PropTypes.node,
   dispatch: PropTypes.func.isRequired,
+  closeSnackbar: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Youtube);
