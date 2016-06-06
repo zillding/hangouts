@@ -2,6 +2,8 @@
 
 A simple app to allow video chat
 
+This is an app built on [react boilerplate](http://reactboilerplate.com/). Refer to its [docs](https://github.com/mxstbr/react-boilerplate/tree/master/docs) for details.
+
 ## Installation
 
 ```bash
@@ -22,7 +24,5 @@ open http://localhost:3000
 ## TODO
 
 + Improve not found page
-+ Meta files update (change to hangouts project)
 + Explore unit tests
-+ Explore travis CI
 + Deploy

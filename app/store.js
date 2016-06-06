@@ -7,7 +7,6 @@ import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
-import loggerMiddleware from './loggerMiddleware';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,7 +17,6 @@ export default function configureStore(initialState = {}, history) {
   const middlewares = [
     sagaMiddleware,
     routerMiddleware(history),
-    loggerMiddleware,
   ];
 
   const enhancers = [
