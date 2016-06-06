@@ -39,10 +39,10 @@ const YoutubeSearch = props => {
           style={{ marginRight: 10 }}
         >
           <YoutubeSearchInput
-            isSearching={isSearching}
+            loading={isSearching}
             value={searchTerm}
             onChange={setSearchTerm}
-            onSearch={fetchResult}
+            onSubmit={fetchResult}
           />
         </Item>
         <HideSearchButton onClick={toggleSearch} />

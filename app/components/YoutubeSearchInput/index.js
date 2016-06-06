@@ -5,7 +5,8 @@
 */
 
 import React, { Component, PropTypes } from 'react';
-import classNames from 'classnames';
+
+import TextField from 'material-ui/TextField';
 
 
 class YoutubeSearchInput extends Component {
@@ -14,37 +15,34 @@ class YoutubeSearchInput extends Component {
 
   handleEnter = e => {
     if (e.key === 'Enter') {
-      const { value, onSearch } = this.props;
-      if (value) {
-        onSearch(value);
+      const { value, onSubmit } = this.props;
+      if (value.trim()) {
+        onSubmit(value);
       }
     }
   };
 
   render() {
-    const { isSearching, value } = this.props;
-    const cn = classNames('ui fluid left icon input', { loading: isSearching });
+    const { loading, value } = this.props;
 
     return (
-      <div className={cn}>
-        <input
-          type="text"
-          value={value}
-          onKeyPress={this.handleEnter}
-          onChange={this.handleChange}
-          placeholder="Press enter to search..."
-        />
-        <i className="search icon"></i>
-      </div>
+      <TextField
+        hintText="Type search term and press enter."
+        fullWidth
+        disabled={loading}
+        value={value}
+        onChange={this.handleChange}
+        onKeyDown={this.handleEnter}
+      />
     );
   }
 }
 
 YoutubeSearchInput.propTypes = {
-  isSearching: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  onSearch: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default YoutubeSearchInput;
