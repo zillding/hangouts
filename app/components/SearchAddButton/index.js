@@ -7,7 +7,7 @@
 import React, { PropTypes } from 'react';
 
 import IconButton from 'material-ui/IconButton';
-import AddIcon from 'material-ui/svg-icons/av/playlist-add';
+import Icon from 'material-ui/svg-icons/av/queue-play-next';
 
 
 const SearchAddButton = ({ isAdding, disabled, onClick }) => (
@@ -17,7 +17,7 @@ const SearchAddButton = ({ isAdding, disabled, onClick }) => (
     disabled={isAdding || disabled}
     onClick={onClick}
   >
-    <AddIcon />
+    <Icon />
   </IconButton>
 );
 

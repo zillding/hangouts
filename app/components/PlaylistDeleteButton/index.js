@@ -7,7 +7,7 @@
 import React, { PropTypes } from 'react';
 
 import IconButton from 'material-ui/IconButton';
-import DeleteIcon from 'material-ui/svg-icons/action/delete';
+import Icon from 'material-ui/svg-icons/av/remove-from-queue';
 
 
 const PlaylistDeleteButton = ({ loading, disabled, onClick }) => (
@@ -17,7 +17,7 @@ const PlaylistDeleteButton = ({ loading, disabled, onClick }) => (
     disabled={loading || disabled}
     onClick={onClick}
   >
-    <DeleteIcon />
+    <Icon />
   </IconButton>
 );
 
