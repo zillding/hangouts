@@ -1,12 +1,12 @@
 {
-  "name": "react-boilerplate",
-  "version": "3.0.0",
-  "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
+  "name": "hangouts",
+  "version": "1.0.0",
+  "description": "A web application allow people video call while watching YouTube",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mxstbr/react-boilerplate.git"
+    "url": "git://github.com/zillding/hangouts.git"
   },
-  "author": "Max Stoiber",
+  "author": "Zill Ding",
   "license": "MIT",
   "scripts": {
     "prebuild": "npm run test && npm run build:clean",
@@ -151,7 +151,6 @@
   "dependencies": {
     "babel-polyfill": "^6.7.4",
     "chalk": "^1.1.3",
-    "classnames": "^2.2.5",
     "compression": "^1.6.1",
     "express": "^4.13.4",
     "fontfaceobserver": "^1.7.1",
