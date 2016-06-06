@@ -7,7 +7,7 @@
 import React, { PropTypes } from 'react';
 
 import IconButton from 'material-ui/IconButton';
-import CloseIcon from 'material-ui/svg-icons/navigation/close';
+import Icon from 'material-ui/svg-icons/navigation/close';
 
 
 const HideSearchButton = ({ onClick }) => (
@@ -16,7 +16,7 @@ const HideSearchButton = ({ onClick }) => (
     tooltipPosition="bottom-left"
     onClick={onClick}
   >
-    <CloseIcon />
+    <Icon />
   </IconButton>
 );
 
