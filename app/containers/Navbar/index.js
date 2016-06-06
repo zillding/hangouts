@@ -26,7 +26,6 @@ import NavItemVideo from 'components/NavItemVideo';
 import NavItemVolume from 'components/NavItemVolume';
 import NavItemYoutube from 'components/NavItemYoutube';
 
-
 function Navbar(props) {
   const {
     roomName,

@@ -9,7 +9,6 @@ import React, { PropTypes } from 'react';
 import IconButton from 'material-ui/IconButton';
 import Icon from 'material-ui/svg-icons/av/mic-off';
 
-
 const style = {
   top: 4,
   marginLeft: 20,

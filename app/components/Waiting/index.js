@@ -11,7 +11,6 @@ import { Flex } from 'react-flex';
 
 import styles from './styles.css';
 
-
 const iconStyle = {
   height: 46,
   width: 46,

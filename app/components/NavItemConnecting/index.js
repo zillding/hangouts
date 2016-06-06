@@ -9,7 +9,6 @@ import React from 'react';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import { Flex } from 'react-flex';
 
-
 const style = {
   paddingLeft: 50,
 };

@@ -21,6 +21,7 @@ open http://localhost:3000
 
 ## TODO
 
++ Improve not found page
 + Meta files update (change to hangouts project)
 + Explore unit tests
 + Explore travis CI

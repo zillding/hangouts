@@ -62,13 +62,13 @@ class YoutubePlaylistItem extends Component {
     const { data: { id: { videoId } }, onSelect } = this.props;
     this.setState({ isSelecting: true });
     onSelect(videoId);
-  }
+  };
 
   handleDeleteClick = () => {
     const { index, onDelete } = this.props;
     this.setState({ isDeleting: true });
     onDelete(index);
-  }
+  };
 
   render() {
     return (

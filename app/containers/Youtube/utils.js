@@ -64,11 +64,9 @@ export function setUpSocket(roomName, dispatch) {
   });
 }
 
-
 export function getVideoIndex(playlist, videoId) {
   return playlist.findIndex(video => video.id.videoId === videoId);
 }
-
 
 export function getNextVideoId(playlist, currentVideoId) {
   if (!currentVideoId) {
@@ -82,7 +80,6 @@ export function getNextVideoId(playlist, currentVideoId) {
   if (video) return video.id.videoId;
   return '';
 }
-
 
 export function getPreviousVideoId(playlist, currentVideoId) {
   if (!currentVideoId) return '';

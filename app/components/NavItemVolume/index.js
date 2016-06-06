@@ -8,7 +8,6 @@ import React, { PropTypes } from 'react';
 
 import { Flex } from 'react-flex';
 
-
 import styles from './styles.css';
 
 function getNumberOfBalls(value = 0) {

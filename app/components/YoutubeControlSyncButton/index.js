@@ -9,7 +9,6 @@ import React, { PropTypes } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Icon from 'material-ui/svg-icons/notification/sync';
 
-
 const YoutubeControlSyncButton = ({ loading, disabled, onClick }) => (
   <RaisedButton
     label="Sync Play Time"

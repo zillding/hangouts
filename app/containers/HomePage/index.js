@@ -34,7 +34,7 @@ class HomePage extends Component {
     }
   }
 
-  shouldComponentUpdate = shouldPureComponentUpdate
+  shouldComponentUpdate = shouldPureComponentUpdate;
 
   render() {
     if (!this.props.roomName) {

@@ -8,7 +8,6 @@ import React, { PropTypes } from 'react';
 
 import IconButton from 'material-ui/IconButton';
 
-
 const style = {
   top: -5,
 };

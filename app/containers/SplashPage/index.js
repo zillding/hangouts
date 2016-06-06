@@ -39,7 +39,7 @@ class SplashPage extends Component {
     };
   }
 
-  shouldComponentUpdate = shouldPureComponentUpdate
+  shouldComponentUpdate = shouldPureComponentUpdate;
 
   getGithubRibbon = () => (
     <GitHubForkRibbon
@@ -49,7 +49,7 @@ class SplashPage extends Component {
     >
       Fork me on GitHub
     </GitHubForkRibbon>
-  )
+  );
 
   handleChange = (e) => {
     const { value } = e.target;
@@ -59,7 +59,7 @@ class SplashPage extends Component {
     } else {
       this.setState({ error: true });
     }
-  }
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -71,7 +71,7 @@ class SplashPage extends Component {
     } else {
       this.setState({ error: true });
     }
-  }
+  };
 
   render() {
     const { value, error } = this.state;

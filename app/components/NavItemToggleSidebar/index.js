@@ -9,7 +9,6 @@ import React, { PropTypes } from 'react';
 import Toggle from 'material-ui/Toggle';
 import { Flex } from 'react-flex';
 
-
 const style = {
   marginLeft: 24,
 };

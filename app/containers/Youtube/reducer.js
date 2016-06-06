@@ -87,6 +87,7 @@ function youtubeReducer(state = initialState, { type, payload }) {
       if (socket && socket.connected) {
         socket.emit('new user', { data: payload });
       }
+
       return state.setIn(['isSending', 'roomName'], true);
     }
 
@@ -146,6 +147,7 @@ function youtubeReducer(state = initialState, { type, payload }) {
         .set('videoId', payload && payload.id && payload.id.videoId)
         .set('isPlaying', true);
     }
+
     case DELETE_VIDEO_ITEM: {
       const playlist = state.get('playlist');
       const video = playlist.get(payload);
@@ -175,6 +177,7 @@ function youtubeReducer(state = initialState, { type, payload }) {
         .set('videoId', '')
         .set('isPlaying', false);
     }
+
     case PLAY_YOUTUBE:
       return state
         .setIn(['isSending', 'play'], false)
@@ -186,12 +189,14 @@ function youtubeReducer(state = initialState, { type, payload }) {
         .setIn(['isSending', 'playNext'], false)
         .set('videoId', id);
     }
+
     case PLAY_PREV_VIDEO: {
       const id = getPreviousVideoId(state.get('playlist'), state.get('videoId'));
       return state
         .setIn(['isSending', 'playPrevious'], false)
         .set('videoId', id);
     }
+
     case PAUSE_YOUTUBE:
       state.get('player').pauseVideo();
       return state

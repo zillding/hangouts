@@ -9,7 +9,6 @@ import React, { PropTypes } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import PauseIcon from 'material-ui/svg-icons/av/pause';
 
-
 const YoutubeControlPauseButton = ({ loading, disabled, onClick }) => (
   <RaisedButton
     icon={<PauseIcon />}

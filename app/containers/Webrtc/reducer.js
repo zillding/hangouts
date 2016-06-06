@@ -32,6 +32,7 @@ function webrtcReducer(state = initialState, { type, payload }) {
         .set('peerVideos', state.get('peerVideos').push(payload))
         .set('selectedPeerVideoId', payload.peer.id);
     }
+
     case REMOVE_PEER_VIDEO: {
       const peerVideos = state.get('peerVideos');
       const index = peerVideos.findIndex(({ peer: { id } }) =>
@@ -51,6 +52,7 @@ function webrtcReducer(state = initialState, { type, payload }) {
         .set('peerVideos', peerVideos.delete(index))
         .set('selectedPeerVideoId', nextId);
     }
+
     case SELECT_PEER_VIDEO:
       return state.set('selectedPeerVideoId', payload);
     case SET_MUTE: {
@@ -58,6 +60,7 @@ function webrtcReducer(state = initialState, { type, payload }) {
       payload ? webrtc.mute() : webrtc.unmute(); // eslint-disable-line
       return state.set('audioIsMuted', !!payload);
     }
+
     case SET_VOLUME:
       return state.set('volume', payload);
     case SET_WEBRTC:
@@ -68,6 +71,7 @@ function webrtcReducer(state = initialState, { type, payload }) {
       videoIsPaused ? webrtc.resumeVideo() : webrtc.pauseVideo(); // eslint-disable-line
       return state.set('videoIsPaused', !videoIsPaused);
     }
+
     default:
       return state;
   }

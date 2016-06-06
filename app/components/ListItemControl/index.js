@@ -10,16 +10,14 @@ import { Item } from 'react-flex';
 
 import styles from './styles.css';
 
-function ListItemControl({ children }) {
-  return (
-    <Item
-      flex={0}
-      className={styles.listItemControl}
-    >
-      {children}
-    </Item>
-  );
-}
+const ListItemControl = ({ children }) => (
+  <Item
+    flex={0}
+    className={styles.listItemControl}
+  >
+    {children}
+  </Item>
+);
 
 ListItemControl.propTypes = {
   children: PropTypes.node,

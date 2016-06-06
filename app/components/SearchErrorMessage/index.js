@@ -6,7 +6,6 @@
 
 import React, { PropTypes } from 'react';
 
-
 const SearchErrorMessage = ({ error }) => (
   <p>
     {error.message}

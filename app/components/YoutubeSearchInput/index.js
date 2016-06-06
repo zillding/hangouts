@@ -8,7 +8,6 @@ import React, { Component, PropTypes } from 'react';
 
 import TextField from 'material-ui/TextField';
 
-
 class YoutubeSearchInput extends Component {
 
   handleChange = e => this.props.onChange(e.target.value);

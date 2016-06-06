@@ -69,13 +69,13 @@ class YoutubeSearchItem extends Component {
     );
   }
 
-  handleTogglePeek = () => this.setState({ peeking: !this.state.peeking })
+  handleTogglePeek = () => this.setState({ peeking: !this.state.peeking });
 
   handleAdd = () => {
     const { data, onAdd } = this.props;
     this.setState({ isAdding: true });
     onAdd(data);
-  }
+  };
 
   render() {
     return (

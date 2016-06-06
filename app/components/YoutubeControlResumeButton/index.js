@@ -9,7 +9,6 @@ import React, { PropTypes } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Icon from 'material-ui/svg-icons/av/play-arrow';
 
-
 const YoutubeControlResumeButton = ({ loading, disabled, onClick }) => (
   <RaisedButton
     icon={<Icon />}

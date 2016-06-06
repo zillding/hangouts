@@ -9,7 +9,6 @@ import React, { PropTypes } from 'react';
 import IconButton from 'material-ui/IconButton';
 import Icon from 'material-ui/svg-icons/navigation/close';
 
-
 const HideSearchButton = ({ onClick }) => (
   <IconButton
     tooltip="Close search"

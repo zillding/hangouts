@@ -9,7 +9,6 @@ import React, { PropTypes } from 'react';
 import YoutubeSidebarIconButton from 'components/YoutubeSidebarIconButton';
 import Icon from 'material-ui/svg-icons/av/queue-play-next';
 
-
 const SearchAddButton = ({ loading, disabled, onClick }) => (
   <YoutubeSidebarIconButton
     tooltip="Add to playlist"

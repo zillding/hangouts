@@ -22,7 +22,6 @@ export const searchErrorSelector = createSelector(
   searchState => searchState.get('searchError')
 );
 
-
 export default createStructuredSelector({
   isSearching: isSearchingSelector,
   searchTerm: searchTermSelector,

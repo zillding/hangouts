@@ -14,7 +14,6 @@ import {
 } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-
 const style = {
   margin: 20,
   backgroundColor: '#f1f1f1',
