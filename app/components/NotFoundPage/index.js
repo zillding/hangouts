@@ -3,20 +3,29 @@
  *
  * This is the page we show when the user visits a url that doesn't have a route
  *
- * NOTE: while this component should technically be a stateless functional
- * component (SFC), hot reloading does not currently support SFCs. If hot
- * reloading is not a neccessity for you then you can refactor it and remove
- * the linting exception.
  */
 
 import React from 'react';
 
-/* eslint-disable react/prefer-stateless-function */
-export default class NotFound extends React.Component {
+import { Flex } from 'react-flex';
 
-  render() {
-    return (
-      <h1>Page Not Found</h1>
-    );
-  }
-}
+const style = {
+  position: 'absolute',
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+};
+
+const NotFound = () => (
+  <Flex
+    column
+    justifyContent="center"
+    style={style}
+  >
+    <h1>Page Not Found</h1>
+    <p>Please go to home page.</p>
+  </Flex>
+);
+
+export default NotFound;
