@@ -26,7 +26,7 @@ export function* getYoutubeSearchData() {
     const searchTerm = yield select(searchTermSelector);
     const searchParams = {
       part: 'snippet',
-      key: 'AIzaSyAFAW8si9cN1Rx5No-AEGmZY-ZFPK5me-I',
+      key: 'AIzaSyAGJHsTou-m4iS898mEXyxyJO0lvnm4ENU',
       q: searchTerm,
       type: 'video',
       maxResults: 30,
