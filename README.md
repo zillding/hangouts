@@ -23,6 +23,4 @@ open http://localhost:3000
 
 ## TODO
 
-+ Improve not found page
-+ Explore unit tests
 + Deploy

@@ -4,7 +4,7 @@
   "description": "A web application allow people video call while watching YouTube",
   "repository": {
     "type": "git",
-    "url": "git://github.com/zillding/hangouts.git"
+    "url": "https://github.com/zillding/hangouts.git"
   },
   "author": "Zill Ding",
   "license": "MIT",
