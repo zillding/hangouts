@@ -16,7 +16,7 @@ import PlaylistDeleteButton from 'components/PlaylistDeleteButton';
 import PlaylistPlayButton from 'components/PlaylistPlayButton';
 import YoutubeVideoInfo from 'components/YoutubeVideoInfo';
 
-class YoutubePlaylistItem extends Component {
+export class YoutubePlaylistItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
