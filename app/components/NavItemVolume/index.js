@@ -22,6 +22,10 @@ const Ball = () => (
   <span className={styles.ball} />
 );
 
+const style = {
+  minWidth: 80,
+};
+
 function NavItemVolume({ value }) {
   const array = [];
   for (let i = 0; i < getNumberOfBalls(value); i++) {
@@ -29,7 +33,10 @@ function NavItemVolume({ value }) {
   }
 
   return (
-    <Flex>
+    <Flex
+      reverse
+      style={style}
+    >
     {
       array.map(index =>
         <Ball key={index} />
