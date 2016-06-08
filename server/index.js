@@ -8,11 +8,9 @@ const frontend = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
 
 const app = express();
-const server = require('http').Server(app); // eslint-disable-line new-cap
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
-require('./middlewares/socketMiddleware')(server);
 
 // Initialize frontend middleware that will serve your JS app
 const webpackConfig = isDev
@@ -24,7 +22,7 @@ app.use(frontend(webpackConfig));
 const port = process.env.PORT || 3000;
 
 // Start your app.
-server.listen(port, (err) => {
+app.listen(port, (err) => {
   if (err) {
     return logger.error(err);
   }

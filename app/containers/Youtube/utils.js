@@ -17,7 +17,7 @@ import {
 } from './actions';
 
 export function setUpSocket(roomName, dispatch) {
-  const socket = io();
+  const socket = io('https://hangouts-youtube-socket-server.herokuapp.com/');
   dispatch(setSocket(socket));
 
   socket.on('connect', () => {
