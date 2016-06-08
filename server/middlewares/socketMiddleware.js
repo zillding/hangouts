@@ -1,4 +1,5 @@
 const List = require('immutable').List;
+const socketIO = require('socket.io');
 
 // socket middleware on the server side to handle
 // client requests for YouTube app based on socket.io
@@ -63,19 +64,23 @@ function updateData(room, field, data) {
   rooms[room][field] = data;
 }
 
-function setUpSocket(io) {
+function setUpSocket(server) {
+  const io = socketIO(server);
+
   io.on('connection', socket => {
     let room = 'default';
 
-    socket.on('new user', ({ data }) => {
-      room = data.trim() || room;
+    socket.on('new user', msg => {
+      room = msg.data.trim() || room;
       socket.join(room);
 
       if (!rooms[room]) {
         initRoom(room);
       }
 
-      const { playlist, currentPlayingVideoId } = rooms[room];
+      const playlist = rooms[room].playlist;
+      const currentPlayingVideoId = rooms[room].currentPlayingVideoId;
+
       socket.emit('welcome', {
         data: {
           playlist: playlist.toArray(),
@@ -95,7 +100,9 @@ function setUpSocket(io) {
       io.in(room).emit('action', broadcastMsg);
 
       // store on server
-      const { type, data } = msg;
+      const type = msg.type;
+      const data = msg.data;
+
       switch (type) {
         case 'ADD_VIDEO':
           return updateData(room, 'playlist', rooms[room].playlist.push(data));
@@ -110,8 +117,8 @@ function setUpSocket(io) {
 
     socket.on('disconnect', () => {
       // clean up the room data if all users left
-      const { length = 0 } = io.sockets.adapter.rooms[room] || {};
-      if (length === 0) {
+      const socketRoom = io.sockets.adapter.rooms[room];
+      if (socketRoom && socketRoom.length === 0) {
         deleteRoom(room);
       }
     });
