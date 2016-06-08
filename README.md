@@ -4,6 +4,8 @@ A simple app to allow video chat
 
 This is an app built on [react boilerplate](http://reactboilerplate.com/). Refer to its [docs](https://github.com/mxstbr/react-boilerplate/tree/master/docs) for details.
 
+=> [Demo](https://hangouts-zillding.herokuapp.com)
+
 ## Installation
 
 ```bash
@@ -20,7 +22,3 @@ open http://localhost:3000
 + Mute/Unmute
 + Pause/Resume video
 + Watch YouTube together (inspired by [YouTube Together](https://github.com/zillding/yt-together))
-
-## TODO
-
-+ Deploy
