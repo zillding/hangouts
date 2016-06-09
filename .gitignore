@@ -1,0 +1,13 @@
+# Don't check auto-generated stuff into git
+coverage
+app
+node_modules
+stats.json
+internals
+server/*
+!server/heroku.index.js
+
+# Cruft
+.DS_Store
+npm-debug.log
+.idea

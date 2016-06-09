@@ -1,0 +1,17 @@
+{
+  "name": "hangouts",
+  "version": "1.0.0",
+  "description": "A web application allow people video call while watching YouTube",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zillding/hangouts.git"
+  },
+  "author": "Zill Ding",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server/heroku.index"
+  },
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
