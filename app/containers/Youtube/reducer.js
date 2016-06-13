@@ -79,7 +79,7 @@ function youtubeReducer(state = initialState, { type, payload }) {
       return state.set('player', payload);
     case SET_YOUTUBE_STATE:
       return state
-        .set('playlist', new List(payload.playlist))
+        .set('playlist', state.get('playlist').merge(new List(payload.playlist)))
         .setIn(['isSending', 'roomName'], false);
 
     case SEND_ROOM_NAME: {
