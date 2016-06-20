@@ -26,7 +26,7 @@ export function setUpSocket(roomName, dispatch) {
     }
   });
 
-  socket.on('welcome', data => {
+  socket.on('welcome', ({ data }) => {
     dispatch(setYoutubeState(data));
   });
 
