@@ -10,6 +10,7 @@ import {
   TOGGLE_SEARCH,
   SET_PLAYER,
   SET_YOUTUBE_STATE,
+  SET_IS_PLAYING,
 
   SEND_ADD_VIDEO_ITEM,
   SEND_DELETE_VIDEO_ITEM,
@@ -47,6 +48,8 @@ export const toggleSearch = createAction(TOGGLE_SEARCH);
 export const setPlayer = createAction(SET_PLAYER);
 
 export const setYoutubeState = createAction(SET_YOUTUBE_STATE);
+
+export const setIsPlaying = createAction(SET_IS_PLAYING);
 
 export const sendAddVideoItem = createAction(SEND_ADD_VIDEO_ITEM);
 

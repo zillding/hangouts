@@ -9,6 +9,7 @@ export const TOGGLE_SEARCH = 'hangouts/Youtube/TOGGLE_SEARCH';
 
 export const SET_PLAYER = 'hangouts/Youtube/SET_PLAYER';
 export const SET_YOUTUBE_STATE = 'hangouts/Youtube/SET_YOUTUBE_STATE';
+export const SET_IS_PLAYING = 'hangouts/Youtube/SET_IS_PLAYING';
 
 export const SEND_ADD_VIDEO_ITEM = 'hangouts/Youtube/SEND_ADD_VIDEO_ITEM';
 export const SEND_DELETE_VIDEO_ITEM = 'hangouts/Youtube/SEND_DELETE_VIDEO_ITEM';

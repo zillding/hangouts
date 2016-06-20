@@ -12,6 +12,7 @@ import {
   TOGGLE_SEARCH,
   SET_PLAYER,
   SET_YOUTUBE_STATE,
+  SET_IS_PLAYING,
 
   SEND_ADD_VIDEO_ITEM,
   SEND_DELETE_VIDEO_ITEM,
@@ -86,6 +87,8 @@ function youtubeReducer(state = initialState, { type, payload }) {
       return state
         .set('playlist', new List(payload.playlist))
         .setIn(['isSending', 'roomName'], false);
+    case SET_IS_PLAYING:
+      return state.set('isPlaying', payload);
 
     case SEND_INIT_INFO: {
       if (socket && socket.connected) {
@@ -153,9 +156,7 @@ function youtubeReducer(state = initialState, { type, payload }) {
 
       // if the video to be added is the only one on the playlist,
       // auto play this video
-      return result
-        .set('videoId', payload && payload.id && payload.id.videoId)
-        .set('isPlaying', true);
+      return result.set('videoId', payload && payload.id && payload.id.videoId);
     }
 
     case DELETE_VIDEO_ITEM: {
@@ -176,23 +177,18 @@ function youtubeReducer(state = initialState, { type, payload }) {
       const nextVideoId = getNextVideoId(playlist, state.get('videoId'));
 
       if (nextVideoId) {
-        return result
-          .set('videoId', nextVideoId)
-          .set('isPlaying', true);
+        return result.set('videoId', nextVideoId);
       }
 
       // if the video to be deleted is the only video in playlist,
       // also set the playing state to false
-      return result
-        .set('videoId', '')
-        .set('isPlaying', false);
+      return result.set('videoId', '');
     }
 
     case PLAY_YOUTUBE:
       return state
         .setIn(['isSending', 'play'], false)
-        .set('videoId', payload)
-        .set('isPlaying', !!payload);
+        .set('videoId', payload);
     case PLAY_NEXT_VIDEO: {
       const id = getNextVideoId(state.get('playlist'), state.get('videoId'));
       return state
@@ -209,14 +205,10 @@ function youtubeReducer(state = initialState, { type, payload }) {
 
     case PAUSE_YOUTUBE:
       state.get('player').pauseVideo();
-      return state
-        .setIn(['isSending', 'pause'], false)
-        .set('isPlaying', false);
+      return state.setIn(['isSending', 'pause'], false);
     case RESUME_YOUTUBE:
       state.get('player').playVideo();
-      return state
-        .setIn(['isSending', 'resume'], false)
-        .set('isPlaying', true);
+      return state.setIn(['isSending', 'resume'], false);
     case SYNC_PLAY_TIME:
       state.get('player').seekTo(payload);
       return state.setIn(['isSending', 'syncTime'], false);
