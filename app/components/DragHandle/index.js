@@ -10,6 +10,7 @@ import IconButton from 'material-ui/IconButton';
 import DragHandleIcon from 'material-ui/svg-icons/editor/drag-handle';
 
 const style = {
+  cursor: 'move',
   position: 'absolute',
   top: -10,
   left: -10,
