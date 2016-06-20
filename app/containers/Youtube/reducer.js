@@ -143,47 +143,14 @@ function youtubeReducer(state = initialState, { type, payload }) {
       return state.setIn(['isSending', 'syncTime'], true);
     }
 
-    case ADD_VIDEO_ITEM: {
-      const playlist = state.get('playlist');
-
-      const result = state
+    case ADD_VIDEO_ITEM:
+      return state
         .setIn(['isSending', 'addVideo'], false)
-        .set('playlist', playlist.push(payload));
-
-      if (playlist.size > 0) {
-        return result;
-      }
-
-      // if the video to be added is the only one on the playlist,
-      // auto play this video
-      return result.set('videoId', payload && payload.id && payload.id.videoId);
-    }
-
-    case DELETE_VIDEO_ITEM: {
-      const playlist = state.get('playlist');
-      const video = playlist.get(payload);
-      const videoId = video && video.id && video.id.videoId;
-
-      const result = state
+        .set('playlist', state.get('playlist').push(payload));
+    case DELETE_VIDEO_ITEM:
+      return state
         .setIn(['isSending', 'deleteVideo'], false)
-        .set('playlist', playlist.delete(payload));
-
-      if (videoId !== state.get('videoId')) {
-        return result;
-      }
-
-      // if the video to be deleted is the current playing video,
-      // auto play next video
-      const nextVideoId = getNextVideoId(playlist, state.get('videoId'));
-
-      if (nextVideoId) {
-        return result.set('videoId', nextVideoId);
-      }
-
-      // if the video to be deleted is the only video in playlist,
-      // also set the playing state to false
-      return result.set('videoId', '');
-    }
+        .set('playlist', state.get('playlist').delete(payload));
 
     case PLAY_YOUTUBE:
       return state
