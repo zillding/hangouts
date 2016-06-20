@@ -3,7 +3,7 @@ import { createAction } from 'redux-actions';
 import {
   SHOW_NOTIFICATION,
   CLOSE_NOTIFICATION,
-  SEND_ROOM_NAME,
+  SEND_INIT_INFO,
   SET_CONNECTED,
   SET_SOCKET,
   TOGGLE_SIDEBAR,
@@ -34,7 +34,7 @@ export const showNotification = createAction(SHOW_NOTIFICATION);
 
 export const closeNotification = createAction(CLOSE_NOTIFICATION);
 
-export const sendRoomName = createAction(SEND_ROOM_NAME);
+export const sendInitInfo = createAction(SEND_INIT_INFO);
 
 export const setConnected = createAction(SET_CONNECTED);
 

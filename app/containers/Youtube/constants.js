@@ -1,6 +1,6 @@
 export const SHOW_NOTIFICATION = 'hangouts/Youtube/SHOW_NOTIFICATION';
 export const CLOSE_NOTIFICATION = 'hangouts/Youtube/CLOSE_NOTIFICATION';
-export const SEND_ROOM_NAME = 'hangouts/Youtube/SEND_ROOM_NAME';
+export const SEND_INIT_INFO = 'hangouts/Youtube/SEND_INIT_INFO';
 
 export const SET_CONNECTED = 'hangouts/Youtube/SET_CONNECTED';
 export const SET_SOCKET = 'hangouts/Youtube/SET_SOCKET';

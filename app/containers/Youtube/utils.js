@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 
 import {
   showNotification,
-  sendRoomName,
+  sendInitInfo,
   setConnected,
   setYoutubeState,
   addVideoItem,
@@ -22,7 +22,7 @@ export function setUpSocket(roomName, dispatch) {
     dispatch(showNotification('Connect to socket.'));
     dispatch(setConnected(true));
     if (roomName) {
-      dispatch(sendRoomName(roomName));
+      dispatch(sendInitInfo(roomName));
     }
   });
 

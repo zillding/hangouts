@@ -5,7 +5,7 @@ import { setUpSocket, getNextVideoId, getPreviousVideoId } from './utils';
 import {
   SHOW_NOTIFICATION,
   CLOSE_NOTIFICATION,
-  SEND_ROOM_NAME,
+  SEND_INIT_INFO,
   SET_CONNECTED,
   SET_SOCKET,
   TOGGLE_SIDEBAR,
@@ -87,9 +87,15 @@ function youtubeReducer(state = initialState, { type, payload }) {
         .set('playlist', state.get('playlist').merge(new List(payload.playlist)))
         .setIn(['isSending', 'roomName'], false);
 
-    case SEND_ROOM_NAME: {
+    case SEND_INIT_INFO: {
       if (socket && socket.connected) {
-        socket.emit('new user', { data: payload });
+        socket.emit('new user', {
+          data: {
+            roomName: payload,
+            playlist: state.get('playlist').toArray(),
+            videoId: state.get('videoId'),
+          },
+        });
       }
 
       return state.setIn(['isSending', 'roomName'], true);
