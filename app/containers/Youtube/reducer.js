@@ -1,6 +1,6 @@
 import { fromJS, List } from 'immutable';
 
-import { getNextVideoId, getPreviousVideoId } from './utils';
+import { setUpSocket, getNextVideoId, getPreviousVideoId } from './utils';
 
 import {
   SHOW_NOTIFICATION,
@@ -32,9 +32,10 @@ import {
   SYNC_PLAY_TIME,
 } from './constants';
 
+let socket = null;
+
 const initialState = fromJS({
   isConnected: false,
-  socket: null,
   showSidebar: true,
   showSearch: true,
   player: null,
@@ -65,12 +66,16 @@ function youtubeReducer(state = initialState, { type, payload }) {
         .setIn(['notification', 'open'], true)
         .setIn(['notification', 'message'], payload);
     case CLOSE_NOTIFICATION:
-      return state
-        .setIn(['notification', 'open'], false);
+      return state.setIn(['notification', 'open'], false);
     case SET_CONNECTED:
       return state.set('isConnected', payload);
-    case SET_SOCKET:
-      return state.set('socket', payload);
+
+    case SET_SOCKET: {
+      const { roomName, dispatch } = payload;
+      socket = setUpSocket(roomName, dispatch);
+      return state;
+    }
+
     case TOGGLE_SIDEBAR:
       return state.set('showSidebar', !state.get('showSidebar'));
     case TOGGLE_SEARCH:
@@ -83,7 +88,6 @@ function youtubeReducer(state = initialState, { type, payload }) {
         .setIn(['isSending', 'roomName'], false);
 
     case SEND_ROOM_NAME: {
-      const socket = state.get('socket');
       if (socket && socket.connected) {
         socket.emit('new user', { data: payload });
       }
@@ -92,38 +96,38 @@ function youtubeReducer(state = initialState, { type, payload }) {
     }
 
     case SEND_ADD_VIDEO_ITEM:
-      state.get('socket').emit('action', {
+      socket.emit('action', {
         type: 'ADD_VIDEO',
         data: payload,
       });
       return state.setIn(['isSending', 'addVideo'], true);
     case SEND_DELETE_VIDEO_ITEM:
-      state.get('socket').emit('action', {
+      socket.emit('action', {
         type: 'DELETE_VIDEO',
         data: payload,
       });
       return state.setIn(['isSending', 'deleteVideo'], true);
     case SEND_PLAY_YOUTUBE:
-      state.get('socket').emit('action', {
+      socket.emit('action', {
         type: 'PLAY',
         data: payload,
       });
       return state.setIn(['isSending', 'play'], true);
     case SEND_PLAY_NEXT_VIDEO:
-      state.get('socket').emit('action', { type: 'PLAY_NEXT' });
+      socket.emit('action', { type: 'PLAY_NEXT' });
       return state.setIn(['isSending', 'playNext'], true);
     case SEND_PLAY_PREV_VIDEO:
-      state.get('socket').emit('action', { type: 'PLAY_PREVIOUS' });
+      socket.emit('action', { type: 'PLAY_PREVIOUS' });
       return state.setIn(['isSending', 'playPrevious'], true);
     case SEND_PAUSE_YOUTUBE:
-      state.get('socket').emit('action', { type: 'PAUSE' });
+      socket.emit('action', { type: 'PAUSE' });
       return state.setIn(['isSending', 'pause'], true);
     case SEND_RESUME_YOUTUBE:
-      state.get('socket').emit('action', { type: 'RESUME' });
+      socket.emit('action', { type: 'RESUME' });
       return state.setIn(['isSending', 'resume'], true);
     case SEND_SYNC_PLAY_TIME: {
       const data = state.get('player').getCurrentTime();
-      state.get('socket').emit('action', {
+      socket.emit('action', {
         type: 'SYNC_TIME',
         data,
       });

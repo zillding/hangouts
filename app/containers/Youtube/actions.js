@@ -81,6 +81,6 @@ export const resumeYoutube = createAction(RESUME_YOUTUBE);
 export const syncPlayTime = createAction(SYNC_PLAY_TIME);
 
 export default dispatch => ({
-  dispatch,
+  setUpSocket: roomName => dispatch(setSocket({ roomName, dispatch })),
   closeSnackbar: () => dispatch(closeNotification()),
 });

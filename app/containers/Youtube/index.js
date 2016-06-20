@@ -19,16 +19,14 @@ import YoutubePlayer from 'containers/YoutubePlayer';
 import YoutubePlaylist from 'containers/YoutubePlaylist';
 import YoutubeSearch from 'containers/YoutubeSearch';
 
-import { setUpSocket } from './utils';
-
 import YoutubeProgressBar from 'components/YoutubeProgressBar';
 
 import styles from './styles.css';
 
 class Youtube extends Component {
   componentWillMount() {
-    const { roomName, dispatch } = this.props;
-    setUpSocket(roomName, dispatch);
+    const { roomName, setUpSocket } = this.props;
+    setUpSocket(roomName);
   }
 
   shouldComponentUpdate = shouldPureComponentUpdate;
@@ -97,7 +95,7 @@ Youtube.propTypes = {
   showControl: PropTypes.bool.isRequired,
   showSnackbar: PropTypes.bool.isRequired,
   snackbarMessage: PropTypes.node.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  setUpSocket: PropTypes.func.isRequired,
   closeSnackbar: PropTypes.func.isRequired,
 };
 

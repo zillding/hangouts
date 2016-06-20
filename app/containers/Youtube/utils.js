@@ -4,7 +4,6 @@ import {
   showNotification,
   sendRoomName,
   setConnected,
-  setSocket,
   setYoutubeState,
   addVideoItem,
   deleteVideoItem,
@@ -18,7 +17,6 @@ import {
 
 export function setUpSocket(roomName, dispatch) {
   const socket = io('https://hangouts-youtube-socket-server.herokuapp.com/');
-  dispatch(setSocket(socket));
 
   socket.on('connect', () => {
     dispatch(showNotification('Connect to socket.'));
@@ -62,6 +60,8 @@ export function setUpSocket(roomName, dispatch) {
     dispatch(showNotification('Lost connection to server!'));
     dispatch(pauseYoutube());
   });
+
+  return socket;
 }
 
 export function getVideoIndex(playlist, videoId) {
