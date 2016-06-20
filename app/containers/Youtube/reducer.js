@@ -86,6 +86,7 @@ function youtubeReducer(state = initialState, { type, payload }) {
     case SET_YOUTUBE_STATE:
       return state
         .set('playlist', new List(payload.playlist))
+        .set('videoId', payload.currentPlayingVideoId)
         .setIn(['isSending', 'roomName'], false);
     case SET_IS_PLAYING:
       return state.set('isPlaying', payload);
