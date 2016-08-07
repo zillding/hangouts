@@ -4,6 +4,7 @@
  *
  */
 
+import classNames from 'classnames';
 import { List } from 'immutable';
 import React, { Component, PropTypes } from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
@@ -66,19 +67,20 @@ class Webrtc extends Component {
   shouldComponentUpdate = shouldPureComponentUpdate;
 
   render() {
-    const { peerVideos, onPeerSelect } = this.props;
+    const { peerVideos, currentApp, onPeerSelect } = this.props;
+
+    const cn = classNames(styles.container, {
+      [styles.smallVideo]: currentApp !== 'video',
+    });
 
     return (
       <Draggable
         bounds="parent"
         handle=".drag.handle"
       >
-        <Flex className={styles.container}>
+        <Flex className={cn}>
           <DragHandle />
-          <video
-            ref="local"
-            height="150"
-          />
+          <video ref="local" />
           <PeerVideos
             data={peerVideos}
             onSelect={onPeerSelect}
@@ -93,6 +95,7 @@ Webrtc.propTypes = {
   webrtc: PropTypes.object,
   roomName: PropTypes.string,
   peerVideos: PropTypes.instanceOf(List).isRequired,
+  currentApp: PropTypes.string.isRequired,
   onReady: PropTypes.func.isRequired,
   addPeer: PropTypes.func.isRequired,
   removePeer: PropTypes.func.isRequired,

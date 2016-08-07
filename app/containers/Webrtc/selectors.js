@@ -58,4 +58,5 @@ export default createStructuredSelector({
   webrtc: webrtcSelector,
   roomName: roomNameSelector,
   peerVideos: peerVideosSelector,
+  currentApp: currentAppSelector,
 });
