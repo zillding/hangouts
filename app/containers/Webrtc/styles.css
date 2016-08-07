@@ -3,3 +3,7 @@
   bottom: 0;
   left: 0;
 }
+
+.smallVideo video {
+  height: 150px;
+}
