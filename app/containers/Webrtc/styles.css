@@ -4,6 +4,10 @@
   left: 0;
 }
 
+.container video {
+  height: 300px;
+}
+
 .smallVideo video {
   height: 150px;
 }
