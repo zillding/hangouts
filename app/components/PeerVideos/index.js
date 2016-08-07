@@ -7,20 +7,22 @@
 import React, { PropTypes } from 'react';
 import { List } from 'immutable';
 
+import { Flex } from 'react-flex';
+
+import Video from 'components/Video';
+
 const PeerVideos = ({ data, onSelect }) => (
-  <span style={{ display: 'flex' }}>
+  <Flex>
     {
       data.map(({ video, peer }) =>
-        <video
+        <Video
           key={peer.id}
-          height="150"
-          src={video.src}
-          id={video.id}
+          video={video}
           onClick={() => onSelect(peer.id)}
         />
       )
     }
-  </span>
+  </Flex>
 );
 
 PeerVideos.propTypes = {

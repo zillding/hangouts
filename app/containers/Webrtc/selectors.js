@@ -57,5 +57,5 @@ export const volumeSelector = createSelector(
 export default createStructuredSelector({
   webrtc: webrtcSelector,
   roomName: roomNameSelector,
-  peerVideos: displayPeerVideosSelector,
+  peerVideos: peerVideosSelector,
 });
