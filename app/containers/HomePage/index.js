@@ -14,7 +14,6 @@ import mapStateToProps from './selectors';
 import mapDispatchToProps from './actions';
 
 import Navbar from 'containers/Navbar';
-import Video from 'containers/Video';
 import Youtube from 'containers/Youtube';
 
 const containerStyle = {
@@ -52,7 +51,6 @@ class HomePage extends Component {
           flex={1}
           style={{ position: 'relative' }}
         >
-          <Video />
           <Youtube />
         </Item>
       </Flex>
