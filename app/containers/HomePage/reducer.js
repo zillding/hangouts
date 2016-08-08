@@ -7,7 +7,7 @@ import {
   SET_APP,
 } from './constants';
 
-function currentApp(state = 'video', action) {
+function currentApp(state = 'youtube', action) {
   switch (action.type) {
     case SET_APP:
       return action.app;
