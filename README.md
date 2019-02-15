@@ -1,5 +1,7 @@
 # Hangouts
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/zillding/hangouts.svg)](https://greenkeeper.io/)
+
 A simple app to allow video chat
 
 This is an app built on [react boilerplate](http://reactboilerplate.com/). Refer to its [docs](https://github.com/mxstbr/react-boilerplate/tree/master/docs) for details.
